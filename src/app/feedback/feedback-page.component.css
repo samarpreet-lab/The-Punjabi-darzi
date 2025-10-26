@@ -89,3 +89,38 @@ select option{background:#fff;color:#111}
   .form-actions .actions{width:100%;justify-content:flex-start}
   .form-actions .actions button{flex:0 0 auto}
 }
+
+/* Mobile-specific improvements to prevent buttons overflowing and to
+   improve touch targets. Stack consent and actions and make action buttons
+   full-width on small devices. Also ensure preview box can scroll without
+   pushing buttons off-screen. */
+@media (max-width:640px) {
+  .feedback-shell{padding:16px}
+  .form-col, .preview-col{width:100%;min-width:0}
+  .row{gap:12px}
+
+  /* Move consent above actions and make actions stretch */
+  .form-actions{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+  .consent{order:0}
+  .form-actions .actions{order:1;display:flex;flex-direction:column;gap:10px;width:100%}
+
+  /* Make each action button take full width and avoid min-width overflow */
+  .btn-action{width:100%;box-sizing:border-box;min-width:0;padding:12px 14px}
+  .btn-action .icon{margin-right:8px}
+
+  /* Reduce preview height if it's very tall but allow scrolling */
+  .preview-box{max-height:260px;overflow:auto;padding:10px}
+
+  /* Make stars and rating controls larger and more tappable */
+  .star{min-width:52px;padding:12px 14px;font-size:22px}
+}
+
+@media (max-width:420px){
+  .feedback-shell{padding:12px}
+  .header-ctas{gap:6px}
+  .feedback-header h1{font-size:18px}
+  .preview-box{max-height:200px}
+  .star{min-width:48px;padding:10px 12px}
+  .btn-action{padding:11px 12px;border-radius:10px}
+}
+

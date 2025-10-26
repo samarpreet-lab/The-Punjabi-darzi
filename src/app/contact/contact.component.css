@@ -5,6 +5,8 @@
   background: #100918;
   padding: 3rem 2rem;
   color: #ffffff;
+  /* Ensure this doesn't create a stacking context that blocks fixed nav */
+  overflow: visible;
 }
 
 .contact-layout {
@@ -30,7 +32,8 @@
   border-radius: 16px;
   padding: 2rem;
   border: 1px solid #2a2130;
-  backdrop-filter: blur(10px);
+  /* Remove backdrop-filter to prevent stacking context issues with nav menu */
+  /* backdrop-filter: blur(10px); */
 }
 
 .card-header,

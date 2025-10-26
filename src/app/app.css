@@ -9,16 +9,14 @@
 }
 
 .global-nav {
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	padding:3px 0;
-	background: linear-gradient(180deg, rgba(9, 6, 16, 0.85), rgba(9, 6, 16, 0.75));
-	backdrop-filter: blur(14px);
-	border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    padding:3px 0;
+    background: linear-gradient(180deg, rgba(9, 6, 16, 0.85), rgba(9, 6, 16, 0.75));
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}.nav-bar {
 	max-width: 1140px;
 	margin: 0 auto;
 	padding: 0px 12px;
@@ -521,16 +519,16 @@
 	.nav-center.mobile-open {
 		display: block;
 		position: fixed;
-		top: calc(100% * 0 + 64px + 8px); /* place right below header; 64px is approximate header height */
+		top: 80px; /* place right below header; adjust based on actual header height */
 		left: 50%;
 		transform: translateX(-50%);
 		width: min(360px, 94%);
-		background: linear-gradient(180deg, rgba(22,16,35,0.96), rgba(16,11,27,0.98));
+		background: linear-gradient(180deg, rgba(22,16,35,0.98), rgba(16,11,27,0.99));
 		border-radius: 18px;
 		padding: 10px;
-		border: 1px solid rgba(255,255,255,0.04);
-		box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 6px 16px rgba(5,2,12,0.5);
-		z-index: 99999; /* very high so it appears above transformed/stacking-context elements */
+		border: 1px solid rgba(255,255,255,0.08);
+		box-shadow: 0 18px 40px rgba(0,0,0,0.75), 0 6px 16px rgba(5,2,12,0.6);
+		z-index: 10000; /* very high so it appears above all page content */
 	}
 
 	.nav-links {
