@@ -168,41 +168,6 @@ export class PortfolioComponent {
   // user consent for storing/using PII in the enquiry
   enquiryConsent = false;
 
-  // Simple validation helper used by the template to enable/disable Send button
-  // DEPRECATED: Now using Angular form validation instead. This method is kept for backwards compatibility.
-  isEnquiryValid(): boolean {
-    const e = this.enquiry;
-    // basic checks: required fields present
-    if (!e.name || !e.phone || !e.email || !e.location) return false;
-    if (!e.notes || e.notes.trim().length < 3) return false;
-    if (!this.enquiryConsent) return false;
-
-  // If the user chose 'send-fabric', address becomes required (we need a courier return/delivery address)
-  if (e.visitOption === 'send-fabric' && !(e.address && e.address.trim().length > 5)) return false;
-
-  // If the user chose 'someone', require the representative's name so we know who will visit
-  if (e.visitOption === 'someone' && !(e.representativeName && e.representativeName.trim().length > 2)) return false;
-
-    // phone pattern: optional leading +, then 7-15 digits
-    const combined = `${e.countryCode || ''}${e.phone || ''}`;
-    const phoneClean = (combined || '').replace(/[ \-()]/g, '');
-    const phoneOk = /^\+?\d{7,15}$/.test(phoneClean);
-    if (!phoneOk) return false;
-
-    // very small email sanity check
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.email)) return false;
-
-    return true;
-  }
-
-  // DEPRECATED: No longer needed with Angular form validation. Kept for reference.
-  isPhoneFormatValid(): boolean {
-    const e = this.enquiry;
-    const combined = `${e.countryCode || ''}${e.phone || ''}`;
-    const phoneClean = (combined || '').replace(/[ \-()]/g, '');
-    return /^\+?\d{7,15}$/.test(phoneClean);
-  }
-
   // Return first N filters for compact mobile header. We keep this as a simple getter to use from template.
   visibleFilters(count = 4) {
     return this.filters.slice(0, count);
