@@ -366,7 +366,11 @@ export class PortfolioComponent {
         name: this.enquiry.name,
         email: this.enquiry.email,
         phone: `${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
-        location: this.enquiry.location
+        location: this.enquiry.location,
+        formType: 'Portfolio Item Enquiry',
+        itemTitle: item.title,
+        itemId: item.id,
+        quantity: this.enquiry.quantity
       };
 
       const res = await fetch(this.formspreeEndpoint, {

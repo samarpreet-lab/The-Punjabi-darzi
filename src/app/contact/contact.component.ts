@@ -128,7 +128,8 @@ export class ContactComponent {
             _replyto: this.formData.senderEmail,
             phone: this.formData.phone,
             service: selectedService,
-            message: this.formData.message
+            message: this.formData.message,
+            formType: 'General Contact Enquiry'
           };
 
           const res = await fetch(this.formspreeEndpoint, {

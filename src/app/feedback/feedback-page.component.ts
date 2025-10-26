@@ -87,7 +87,8 @@ export class FeedbackPageComponent {
       comment: this.model.comment,
       email: this.model.email,
       consent: this.model.consent,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      formType: 'Customer Feedback'
     };
 
     try {
