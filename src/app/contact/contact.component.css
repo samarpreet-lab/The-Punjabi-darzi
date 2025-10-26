@@ -96,9 +96,11 @@
 /* Make the WhatsApp icon bigger and bolder where used */
 .whatsapp-btn i,
 .whatsapp-btn svg {
-  font-size: 1.45rem; /* larger icon */
+  font-size: 1.45rem;
+  /* larger icon */
   line-height: 1;
-  font-weight: 800; /* bolder for font icons where supported */
+  font-weight: 800;
+  /* bolder for font icons where supported */
 }
 
 .whatsapp-btn:hover {
@@ -208,14 +210,17 @@ textarea.form-input {
   margin-right: 10px;
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* space between label text and pills */
+  gap: 0.75rem;
+  /* space between label text and pills */
 }
 
 .send-methods {
   display: inline-flex;
-  gap: 0.9rem; /* slightly larger gap between pills for clarity */
+  gap: 0.9rem;
+  /* slightly larger gap between pills for clarity */
   align-items: center;
-  margin-left: 0.5rem; /* small offset so pills don't butt against the label */
+  margin-left: 0.5rem;
+  /* small offset so pills don't butt against the label */
 }
 
 /* Each label contains a hidden native radio and a visible pill (.label-text) */
@@ -236,8 +241,8 @@ textarea.form-input {
   gap: 0.6rem;
   padding: 0.5rem 1rem;
   border-radius: 999px;
-  background: rgba(255,255,255,0.03);
-  color: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 700;
   cursor: pointer;
   transition: all 0.18s ease;
@@ -260,18 +265,18 @@ textarea.form-input {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.25);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   background: transparent;
 }
 
 /* checked state: pill turns gold, text dark, indicator becomes black */
-.send-option input[type="radio"]:checked + .label-text {
+.send-option input[type="radio"]:checked+.label-text {
   background: #b88a1e;
   color: #100918;
 }
 
 
-.send-option input[type="radio"]:checked + .label-text::before {
+.send-option input[type="radio"]:checked+.label-text::before {
   /* when selected, the circular indicator should be white */
   background: #ffffff;
   border-color: #ffffff;
@@ -279,11 +284,11 @@ textarea.form-input {
 
 .send-option .label-text:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.045);
+  background: rgba(255, 255, 255, 0.045);
 }
 
-.send-option input[type="radio"]:focus + .label-text {
-  box-shadow: 0 0 0 3px rgba(184,138,30,0.12);
+.send-option input[type="radio"]:focus+.label-text {
+  box-shadow: 0 0 0 3px rgba(184, 138, 30, 0.12);
 }
 
 /* Right Section */
@@ -447,7 +452,7 @@ textarea.form-input {
   .contact-layout {
     grid-template-columns: 1fr;
   }
-  
+
   .location-actions {
     grid-template-columns: 1fr;
   }
@@ -457,26 +462,113 @@ textarea.form-input {
   .contact-container {
     padding: 2rem 1rem;
   }
-  
+
   .contact-card,
   .contact-form-card,
   .info-card,
   .visit-studio-card {
     padding: 1.5rem;
   }
-  
+
   .section-title {
     font-size: 1.5rem;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
   }
-  
+
   .card-header,
   .form-header,
   .studio-header {
     font-size: 0.85rem;
     padding: 0.75rem 1.25rem;
+  }
+}
+
+/* Extra-small phones: improve touch targets and stacking */
+@media (max-width: 420px) {
+  .contact-container {
+    padding: 1.25rem 0.8rem;
+  }
+
+  .contact-layout {
+    gap: 1rem;
+  }
+
+  .contact-card,
+  .contact-form-card,
+  .info-card,
+  .visit-studio-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  .section-description,
+  .form-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Make action buttons larger and more tappable */
+  .action-btn {
+    padding: 1rem 1.25rem;
+    font-size: 1.02rem;
+    border-radius: 999px;
+  }
+
+  .whatsapp-btn {
+    padding: 0.95rem 1rem;
+  }
+
+  .whatsapp-btn i,
+  .whatsapp-btn svg {
+    font-size: 1.35rem;
+  }
+
+  .phone-link {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+
+  /* Ensure form inputs are comfortably tappable */
+  .form-input {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+
+  textarea.form-input {
+    min-height: 100px;
+  }
+
+  /* Stack location actions and make buttons full width */
+  .location-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .maps-btn,
+  .nav-btn {
+    width: 100%;
+    padding: 0.85rem;
+    border-radius: 10px;
+  }
+
+  /* Reduce map height to fit smaller screens */
+  .map-container iframe {
+    height: 200px;
+    width: 100%;
+  }
+
+  /* Tighten margins for preview spacing */
+  .form-row {
+    gap: 0.75rem;
+  }
+
+  .contact-card+.contact-card {
+    margin-top: 0.75rem;
   }
 }
