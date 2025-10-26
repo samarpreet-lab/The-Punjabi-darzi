@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TailoringDataService } from '../services/tailoring-data.service';
 import type { PortfolioItem } from '../shared/services.shared';
 
@@ -208,7 +209,7 @@ export class PortfolioComponent {
     return this.filters.slice(count);
   }
 
-  constructor(private dataService: TailoringDataService) {
+  constructor(private dataService: TailoringDataService, private router: Router) {
     this.portfolioItems = this.dataService.getPortfolioItems();
     this.filteredItems = this.portfolioItems;
   }
@@ -404,14 +405,9 @@ export class PortfolioComponent {
     this.showEmailSuccessModal = false;
   }
 
-  // Open the feedback page with the selected item preselected via query param
+  // Navigate to feedback page with selected item as a query param
   openFeedbackForItem(item: PortfolioItem): void {
     if (!item) return;
-    try {
-      const ev = new CustomEvent('navigate', { detail: `feedback?suit=${encodeURIComponent(item.id)}` });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      location.href = `/feedback?suit=${encodeURIComponent(item.id)}`;
-    }
+    this.router.navigate(['/feedback'], { queryParams: { suit: item.id } });
   }
 }

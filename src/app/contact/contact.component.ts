@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -37,6 +38,8 @@ export class ContactComponent {
     sendMethod: 'email'
   };
 
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   sendWhatsApp(): void {
     // Instead of opening WhatsApp immediately, scroll to the contact form and
     // pre-select WhatsApp as the send method so users can fill details and send.
@@ -60,37 +63,30 @@ export class ContactComponent {
   }
 
   ngOnInit(): void {
-    // If the contact page is opened with query params (eg. ?sendMethod=whatsapp&service=...),
-    // prefill the form and scroll to it.
-    try {
-      const qs = new URLSearchParams(window.location.search);
-      const method = qs.get('sendMethod');
-      const service = qs.get('service');
-      if (method === 'whatsapp') this.formData.sendMethod = 'whatsapp';
-      if (service) this.formData.service = decodeURIComponent(service);
-
-      if (method || service) {
-        // scroll to contact form for convenience
-        const el = document.getElementById('contact-form');
-        if (el) {
-          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
-        }
+    // Read query params from the activated route and prefill the form
+    this.route.queryParams.subscribe(params => {
+      if (params['sendMethod'] === 'whatsapp') {
+        this.formData.sendMethod = 'whatsapp';
       }
-    } catch (e) {
-      // ignore
-    }
+      if (params['service']) {
+        this.formData.service = params['service'];
+      }
+
+      if (params['sendMethod'] || params['service']) {
+        // scroll to contact form for convenience
+        setTimeout(() => {
+          const el = document.getElementById('contact-form');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 120);
+      }
+    });
   }
 
-  // Open the Feedback page. Uses a simple location change to '/feedback'.
-  // If you later wire SPA navigation, replace this with a signal or router navigation.
+  // Navigate to Feedback page
   openFeedback(): void {
-    try {
-      const ev = new CustomEvent('navigate', { detail: 'feedback' });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      // fallback to direct navigation
-      location.href = '/feedback';
-    }
+    this.router.navigate(['/feedback']);
   }
 
   async submitForm(): Promise<void> {

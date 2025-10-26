@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { TailoringDataService } from './tailoring-data.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { TailoringDataService } from './tailoring-data.service';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent {
-  constructor(private data: TailoringDataService) {
+  constructor(private data: TailoringDataService, private router: Router) {
     // fetch categories and pricing from the data service to keep a single source
     this.serviceCategories = this.data.getServiceCategories();
     this.pricingRows = this.data.getPricingRows();
@@ -152,24 +153,12 @@ export class ServicesComponent {
 
   // Navigate to the contact page
   goToContact() {
-    // Dispatch a small SPA navigation event so the root App can switch the view
-    try {
-      const ev = new CustomEvent('navigate', { detail: 'contact' });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      // fallback to location change if CustomEvent is not supported
-      location.href = '/contact';
-    }
+    this.router.navigate(['/contact']);
   }
 
-  // Open the global Feedback page. We prefer SPA navigation via CustomEvent; fallback to direct location.
+  // Navigate to the Feedback page
   openFeedbackForService(): void {
-    try {
-      const ev = new CustomEvent('navigate', { detail: 'feedback' });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      location.href = '/feedback';
-    }
+    this.router.navigate(['/feedback']);
   }
 
   // Format price string into small HTML with spans for styling ranges and prefixes.

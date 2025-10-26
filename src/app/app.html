@@ -1,7 +1,7 @@
 <header class="global-nav">
 	<nav class="nav-bar" [class.nav-opened]="navOpen()">
 		<div class="brand-wrap">
-			<a class="brand" (click)="setView('home')">
+			<a class="brand" routerLink="/home" (click)="closeNav()">
 				<span class="brand-logo">
 					<img src="/assets/images/logo-bgremove.png" alt="The Punjabi Darzi logo" class="brand-img" />
 				</span>
@@ -15,24 +15,22 @@
 			</button>
 		</div>
 
-
-
 		<div class="nav-center" [class.mobile-open]="navOpen()" id="primaryNav">
 			<ul class="nav-links">
 				<li>
-					<a (click)="setView('home')" [class.active]="currentView() === 'home'">
+					<a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNav()">
 						<i class="fas fa-home" aria-hidden="true"></i>
 						<span>Home</span>
 					</a>
 				</li>
 				<li>
-					<a (click)="setView('services')" [class.active]="currentView() === 'services'">
+					<a routerLink="/services" routerLinkActive="active" (click)="closeNav()">
 						<i class="fas fa-cut" aria-hidden="true"></i>
 						<span>Services</span>
 					</a>
 				</li>
 				<li>
-					<a (click)="setView('portfolio')" [class.active]="currentView() === 'portfolio'">
+					<a routerLink="/portfolio" routerLinkActive="active" (click)="closeNav()">
 						<i class="fas fa-images" aria-hidden="true"></i>
 						<span>Portfolio</span>
 					</a>
@@ -40,7 +38,7 @@
 				<!-- Testimonials removed -->
 				<!-- Fabric Guide removed -->
 				<li>
-					<a (click)="setView('contact')" [class.active]="currentView() === 'contact'">
+					<a routerLink="/contact" routerLinkActive="active" (click)="closeNav()">
 						<i class="fas fa-phone" aria-hidden="true"></i>
 						<span>Contact</span>
 					</a>
@@ -48,7 +46,7 @@
 			</ul>
 		</div>
 
-		<a class="nav-cta" (click)="setView('contact')">
+		<a class="nav-cta" routerLink="/contact" (click)="closeNav()">
 			<i class="fas fa-envelope" aria-hidden="true"></i>
 			<span>Enquire Now</span>
 		</a>
@@ -56,13 +54,7 @@
 </header>
 
 <main class="app-content">
-	<app-home *ngIf="currentView() === 'home'"></app-home>
-	<app-services *ngIf="currentView() === 'services'"></app-services>
-	<app-portfolio *ngIf="currentView() === 'portfolio'"></app-portfolio>
-	<!-- Testimonials removed (kept on Home page) -->
-	<!-- Fabric Guide removed -->
-	<app-contact *ngIf="currentView() === 'contact'"></app-contact>
-	<app-feedback-page *ngIf="currentView() === 'feedback'"></app-feedback-page>
+	<router-outlet></router-outlet>
 </main>
 
 <footer class="site-footer">
@@ -89,9 +81,9 @@
 		<div class="footer-col nav-col">
 			<h4>Explore</h4>
 			<ul>
-				<li><a (click)="setView('home')"><i class="fas fa-home"></i> Home</a></li>
-				<li><a (click)="setView('services')"><i class="fas fa-cut"></i> Services</a></li>
-				<li><a (click)="setView('portfolio')"><i class="fas fa-images"></i> Portfolio</a></li>
+				<li><a routerLink="/home"><i class="fas fa-home"></i> Home</a></li>
+				<li><a routerLink="/services"><i class="fas fa-cut"></i> Services</a></li>
+				<li><a routerLink="/portfolio"><i class="fas fa-images"></i> Portfolio</a></li>
 			</ul>
 		</div>
 
@@ -116,13 +108,13 @@
 		<div class="footer-col contact-col">
 			<h4>Get in Touch</h4>
 			<ul>
-				<li><a (click)="setView('contact')"><i class="fas fa-phone"></i> Contact Form</a></li>
+				<li><a routerLink="/contact"><i class="fas fa-phone"></i> Contact Form</a></li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="footer-bottom">
 		<div class="copy">© 2025 The Punjabi Darzi. All rights reserved.</div>
-		<div class="policies"><a (click)="setView('home')">Privacy</a> • <a (click)="setView('home')">Terms</a></div>
+		<div class="policies"><a routerLink="/home">Privacy</a> • <a routerLink="/home">Terms</a></div>
 	</div>
 </footer>

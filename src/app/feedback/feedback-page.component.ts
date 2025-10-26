@@ -1,6 +1,7 @@
 import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CustomSelectComponent } from '../shared/custom-select/custom-select.component';
 import { PRICING_ROWS, SERVICE_CATEGORIES } from '../shared/services.shared';
 
@@ -61,6 +62,8 @@ export class FeedbackPageComponent {
   recent = signal<Feedback[]>([]);
   successMessage = signal('');
 
+  constructor(private route: ActivatedRoute) {}
+
   formatPreview(): string {
     const svc = this.services.find(s => s.id === this.model.serviceId)?.title || '';
     const suitFromPortfolio = this.portfolio.find(p => p.id === this.model.suitId)?.title;
@@ -115,17 +118,16 @@ export class FeedbackPageComponent {
     }
   }
 
-  // On init, check query params for a preselected suit or service and prefill the model
+  // On init, read query params from the activated route and prefill the model
   ngOnInit(): void {
-    try {
-      const qs = new URLSearchParams(window.location.search);
-      const suit = qs.get('suit');
-      const service = qs.get('service');
-      if (suit) this.model.suitId = suit;
-      if (service) this.model.serviceId = service;
-    } catch (e) {
-      // ignore
-    }
+    this.route.queryParams.subscribe(params => {
+      if (params['suit']) {
+        this.model.suitId = params['suit'];
+      }
+      if (params['service']) {
+        this.model.serviceId = params['service'];
+      }
+    });
   }
 
   sendViaWhatsApp() {

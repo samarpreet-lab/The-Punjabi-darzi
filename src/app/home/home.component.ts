@@ -1,6 +1,7 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TailoringDataService } from '../services/tailoring-data.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { TailoringDataService } from '../services/tailoring-data.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private el: ElementRef, private data: TailoringDataService) {
+  constructor(private el: ElementRef, private data: TailoringDataService, private router: Router) {
     // populate the home service cards from shared service categories
     // (shows Punjabi Suits, Simple Lining Suits, Baby Girl Frocks as requested)
     this.services = this.data.getServiceCategories().slice(0, 3);
@@ -62,29 +63,20 @@ export class HomeComponent {
   whatsappNumber = '917589114421';
 
   /**
-   * Open WhatsApp with a prefilled enquiry message.
-   * If `pre` is provided (number index or string title), use it as the selected service.
+   * Navigate to contact page with optional service prefill.
+   * If `pre` is provided (number index or string title), pass it as a query param.
    */
   sendEnquiry(pre?: number | string) {
-    // Instead of opening WhatsApp directly, navigate to the contact page
-    // and prefill the contact form with sendMethod=whatsapp and optional service.
-    let serviceParam = '';
+    let queryParams: any = { sendMethod: 'whatsapp' };
+    
     if (typeof pre === 'number') {
       const svc = this.services[pre];
-      if (svc) serviceParam = encodeURIComponent(svc.title);
+      if (svc) queryParams.service = svc.title;
     } else if (typeof pre === 'string' && pre) {
-      serviceParam = encodeURIComponent(pre);
+      queryParams.service = pre;
     }
 
-    try {
-      const detail = serviceParam ? `contact?sendMethod=whatsapp&service=${serviceParam}` : 'contact?sendMethod=whatsapp';
-      const ev = new CustomEvent('navigate', { detail });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      // fallback to hard navigation with query params
-      const qs = serviceParam ? `?sendMethod=whatsapp&service=${serviceParam}` : '?sendMethod=whatsapp';
-      location.href = `/contact${qs}`;
-    }
+    this.router.navigate(['/contact'], { queryParams });
   }
 
   // Toggle the custom dropdown
@@ -124,22 +116,12 @@ export class HomeComponent {
     }
   }
 
-  // Navigate to Services page via SPA navigation event (or fallback)
+  // Navigate to Services page
   goToServices() {
-    try {
-      const ev = new CustomEvent('navigate', { detail: 'services' });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      location.href = '/services';
-    }
+    this.router.navigate(['/services']);
   }
 
   goToPortfolio() {
-    try {
-      const ev = new CustomEvent('navigate', { detail: 'portfolio' });
-      window.dispatchEvent(ev);
-    } catch (e) {
-      location.href = '/portfolio';
-    }
+    this.router.navigate(['/portfolio']);
   }
 }
