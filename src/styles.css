@@ -1,0 +1,27 @@
+/* Global theme variables (updated per request) */
+:root {
+	--site-bg: #100918; /* background color */
+	--border-color: #2a2130; /* border color */
+	--primary-color: #b88a1e; /* primary / gold color */
+
+	/* legacy aliases used across components */
+	--accent-gold: var(--primary-color);
+	--gold: var(--primary-color);
+	--primary-purple: var(--site-bg);
+	--text-light: #ffffff;
+	--text-muted: #B8B8D1;
+	--card-bg: rgba(26, 18, 32, 0.78);
+}
+
+body {
+	background: var(--site-bg);
+	color: var(--text-light);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	min-height: 100vh;
+}
+
+/* small helper for borders used often */
+.global-border {
+	border-color: var(--border-color) !important;
+}
+

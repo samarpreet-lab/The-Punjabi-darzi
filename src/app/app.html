@@ -1,0 +1,128 @@
+<header class="global-nav">
+	<nav class="nav-bar" [class.nav-opened]="navOpen()">
+		<div class="brand-wrap">
+			<a class="brand" (click)="setView('home')">
+				<span class="brand-logo">
+					<img src="/assets/images/logo-bgremove.png" alt="The Punjabi Darzi logo" class="brand-img" />
+				</span>
+				<span class="brand-name">The Punjabi Darzi</span>
+			</a>
+			<button type="button" class="nav-toggle" (click)="toggleNav()" [class.is-open]="navOpen()"
+				[attr.aria-expanded]="navOpen()" aria-controls="primaryNav" aria-label="Toggle navigation">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+
+
+
+		<div class="nav-center" [class.mobile-open]="navOpen()" id="primaryNav">
+			<ul class="nav-links">
+				<li>
+					<a (click)="setView('home')" [class.active]="currentView() === 'home'">
+						<i class="fas fa-home" aria-hidden="true"></i>
+						<span>Home</span>
+					</a>
+				</li>
+				<li>
+					<a (click)="setView('services')" [class.active]="currentView() === 'services'">
+						<i class="fas fa-cut" aria-hidden="true"></i>
+						<span>Services</span>
+					</a>
+				</li>
+				<li>
+					<a (click)="setView('portfolio')" [class.active]="currentView() === 'portfolio'">
+						<i class="fas fa-images" aria-hidden="true"></i>
+						<span>Portfolio</span>
+					</a>
+				</li>
+				<!-- Testimonials removed -->
+				<!-- Fabric Guide removed -->
+				<li>
+					<a (click)="setView('contact')" [class.active]="currentView() === 'contact'">
+						<i class="fas fa-phone" aria-hidden="true"></i>
+						<span>Contact</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<a class="nav-cta" (click)="setView('contact')">
+			<i class="fas fa-envelope" aria-hidden="true"></i>
+			<span>Enquire Now</span>
+		</a>
+	</nav>
+</header>
+
+<main class="app-content">
+	<app-home *ngIf="currentView() === 'home'"></app-home>
+	<app-services *ngIf="currentView() === 'services'"></app-services>
+	<app-portfolio *ngIf="currentView() === 'portfolio'"></app-portfolio>
+	<!-- Testimonials removed (kept on Home page) -->
+	<!-- Fabric Guide removed -->
+	<app-contact *ngIf="currentView() === 'contact'"></app-contact>
+	<app-feedback-page *ngIf="currentView() === 'feedback'"></app-feedback-page>
+</main>
+
+<footer class="site-footer">
+	<div class="footer-inner">
+		<div class="footer-col brand-col">
+			<div class="brand-small">
+				<span class="brand-logo">
+					<img src="/assets/images/logo-bgremove.png" alt="The Punjabi Darzi logo" class="brand-img small" />
+				</span>
+				<div>
+					<div class="brand-name">The Punjabi Darzi</div>
+					<div class="brand-tag">Custom Punjabi women's suit stitching, alterations, and fabric consultation
+						by a master tailor.</div>
+					<div class="owner-line">Owner: Parminderjit Kaur (Master Tailor)</div>
+				</div>
+			</div>
+
+			<div class="location-pill">
+				<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+				<span>Sulehrian Khurd — 5 minutes from Mukerian</span>
+			</div>
+		</div>
+
+		<div class="footer-col nav-col">
+			<h4>Explore</h4>
+			<ul>
+				<li><a (click)="setView('home')"><i class="fas fa-home"></i> Home</a></li>
+				<li><a (click)="setView('services')"><i class="fas fa-cut"></i> Services</a></li>
+				<li><a (click)="setView('portfolio')"><i class="fas fa-images"></i> Portfolio</a></li>
+			</ul>
+		</div>
+
+		<div class="footer-col resources-col">
+			<h4>Social Media</h4>
+			<ul class="social-links">
+				<li>
+					<a href="https://instagram.com/thepunjabidarzi" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-instagram" aria-hidden="true"></i>
+						<span>Instagram</span>
+					</a>
+				</li>
+				<li>
+					<a href="https://wa.me/917589114421" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-whatsapp" aria-hidden="true"></i>
+						<span>WhatsApp</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-col contact-col">
+			<h4>Get in Touch</h4>
+			<ul>
+				<li><a (click)="setView('contact')"><i class="fas fa-phone"></i> Contact Form</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="copy">© 2025 The Punjabi Darzi. All rights reserved.</div>
+		<div class="policies"><a (click)="setView('home')">Privacy</a> • <a (click)="setView('home')">Terms</a></div>
+	</div>
+</footer>

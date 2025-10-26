@@ -1,0 +1,88 @@
+<div class="feedback-shell">
+  <header class="feedback-header">
+    <div>
+      <h1>Share your experience</h1>
+      <p>Select a service and, if you like, the exact suit/style. Rate and add details to help others choose.</p>
+    </div>
+  </header>
+
+  <section id="feedback-form" class="feedback-card">
+    <form (ngSubmit)="sendViaFormspree()" #f="ngForm" novalidate>
+      <div class="row">
+        <div class="col form-col">
+          <label>Service (required)
+            <div class="select-wrapper">
+              <app-custom-select [options]="services" [(value)]="model.serviceId"></app-custom-select>
+            </div>
+          </label>
+
+          <label>Suit / Style (optional)
+            <div class="select-wrapper">
+              <app-custom-select [options]="suitOptions" [(value)]="model.suitId"></app-custom-select>
+            </div>
+          </label>
+
+          <label class="rating-row">Rating (1–5)
+            <div class="stars" role="radiogroup" aria-label="Rating">
+              <label *ngFor="let r of [1,2,3,4,5]" class="star-label">
+                <input type="radio" name="rating" [value]="r" [(ngModel)]="model.rating" required aria-label="{{r}} stars" />
+                <span class="star" aria-hidden="true">★</span>
+              </label>
+            </div>
+          </label>
+
+          <label>Comments (optional)
+            <textarea name="comment" [(ngModel)]="model.comment" rows="4" placeholder="Tip: Mention fabric, fit, or turnaround time."></textarea>
+          </label>
+
+          <label>Customer name (optional)
+            <input type="text" name="name" [(ngModel)]="model.name" placeholder="Your name" />
+          </label>
+
+          <label>Email for follow-up (optional)
+            <input type="email" name="email" [(ngModel)]="model.email" />
+          </label>
+
+          <div class="form-actions">
+            <label class="consent"><input type="checkbox" name="consent" [(ngModel)]="model.consent" required/> <span class="consent-text">I agree my feedback may be displayed on the site</span></label>
+
+            <div class="actions">
+              <button type="button" class="btn-action secondary" (click)="reset()">
+                <i class="fa fa-rotate-left icon" aria-hidden="true"></i>
+                <span>Reset</span>
+              </button>
+
+              <button type="button" class="btn-action" (click)="sendViaWhatsApp()">
+                <i class="fa-brands fa-whatsapp icon" aria-hidden="true"></i>
+                <span>Send via WhatsApp</span>
+              </button>
+
+              <button type="submit" class="btn-action" [disabled]="submitting() || !f.valid">
+                <i class="fa-solid fa-envelope icon" aria-hidden="true"></i>
+                <span>Send via Email</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="col preview-col">
+          <h3>Preview</h3>
+          <div class="preview-box">
+            <pre>{{ formatPreview() }}</pre>
+          </div>
+          <div *ngIf="successMessage()" class="success">{{ successMessage() }}</div>
+        </aside>
+      </div>
+    </form>
+
+    <hr />
+
+    <h3>Recent feedback</h3>
+    <ul class="recent-list">
+      <li *ngFor="let fb of recent()"> 
+        <div class="meta">{{fb.rating}} ★ — <strong>{{fb.serviceTitle}}</strong> <span *ngIf="fb.suitTitle">/ {{fb.suitTitle}}</span></div>
+        <p class="comment">{{fb.comment}}</p>
+      </li>
+    </ul>
+  </section>
+</div>

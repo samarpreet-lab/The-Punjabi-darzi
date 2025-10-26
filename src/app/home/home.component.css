@@ -1,0 +1,898 @@
+/* Component-level color aliases to the global theme */
+:host {
+	--gold-color: #b88a1e;
+	--primary-color: #b88a1e;
+	--site-bg: #100918;
+	--border-color: #2a2130;
+	--card-bg: rgba(42, 33, 48, 0.8);
+	--text-light: #ffffff;
+	--text-muted: #b8b8d1;
+}
+
+/* Home Page Styles */
+.home-page {
+  background: var(--site-bg);
+  color: var(--text-light);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 32px 0 40px;
+  background: linear-gradient(135deg, rgba(16, 9, 24, 0.98), rgba(30, 22, 34, 0.9));
+  border: 1px solid rgba(255,255,255,0.02);
+  border-radius: 18px;
+  margin: 12px 16px 20px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(184, 138, 30, 0.2);
+  border: 1px solid var(--gold-color);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: var(--gold-color);
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--text-light);
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 34px;
+  margin-bottom: 26px;
+}
+
+.stat-item {
+  text-align: left;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-light);
+  line-height: 1;
+}
+
+.stat-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.hero-image {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.hero-image img {
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Keep image slightly offset on large screens for a magazine look */
+@media (min-width: 1200px) {
+  .hero-image img { height: 520px; }
+}
+
+/* Button Styles */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--gold-color), #d4a924);
+  color: var(--site-bg);
+}
+
+.btn-primary:hover {
+  background: #d4a924;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(184, 138, 30, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-light);
+  padding: 12px 20px;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold-color);
+  color: var(--gold-color);
+  background: rgba(184, 138, 30, 0.06);
+}
+
+/* Compact primary button variant for service cards */
+.btn-compact {
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  margin-top:10px;
+}
+
+.btn-block {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Services Section */
+.services-section {
+  padding: 60px 0;
+  margin: 20px;
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  color: var(--text-light);
+  font-size: 1.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-header h2 i {
+  color: var(--gold-color);
+}
+
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border-color: var(--gold-color);
+}
+
+.service-card.highlight {
+  border-color: var(--gold-color);
+  background: rgba(184, 138, 30, 0.1);
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--gold-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--site-bg);
+  font-size: 1.5rem;
+}
+
+.service-card h3 {
+  color: var(--text-light);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.service-description {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.service-price {
+  color: var(--gold-color);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Compact WhatsApp action inside service cards */
+/* (reverted compact contact styles) */
+
+/* Featured Section */
+.featured-section {
+  padding: 40px 0;
+  margin: 20px;
+}
+
+/* Featured card surface: stronger contrast, soft inset border and deep shadow for depth */
+.featured-card {
+  background: linear-gradient(180deg, rgba(24,16,26,0.9), rgba(17,10,20,0.9));
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 18px;
+  padding: 40px;
+  position: relative; /* allow absolutely positioned elements like badge */
+  box-shadow: 0 20px 60px rgba(4,0,20,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: hidden;
+}
+
+.featured-badge {
+  background: var(--gold-color);
+  color: var(--site-bg);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* Made-to-order badge attached to the featured headline */
+.featured-headline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mto-badge {
+  /* prominent pill badge */
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(248,201,91,1), rgba(241,169,12,1));
+  color: #12081c; /* dark text for contrast */
+  border: 1px solid rgba(212,175,55,0.14);
+  padding: 10px 16px;
+  border-radius: 28px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 30px rgba(241,169,12,0.14);
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  z-index: 30;
+}
+
+/* Mobile adjustments: keep badge inline and prevent wrapping */
+@media (max-width: 768px) {
+  .featured-headline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .mto-badge {
+    position: static;
+    display: inline-block;
+    margin-left: auto; /* push to right when space allows */
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    border-radius: 18px;
+    white-space: nowrap; /* prevent wrapping into multiple lines */
+    box-shadow: none;
+    right: auto;
+    top: auto;
+  }
+}
+
+/* Make badge inline below title on small screens to avoid overlap */
+@media (max-width: 768px) {
+  .mto-badge {
+    position: static;
+    display: inline-block;
+    margin-top: 8px;
+    box-shadow: none;
+    background: rgba(17,10,20,0.6);
+    color: var(--gold-color);
+    border: 1px solid rgba(184,138,30,0.18);
+  }
+  .featured-card { padding: 24px; }
+  .featured-title { font-size: 1.6rem; }
+}
+
+/* Microcopy beneath the portfolio button explaining no ready stock */
+.portfolio-tooltip {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.featured-title {
+  color: var(--text-light);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 8px 0 14px;
+}
+
+.featured-summary {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+}
+
+.featured-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px 0;
+  color: var(--text-muted);
+}
+.featured-meta li {
+  margin-bottom: 8px;
+}
+.featured-meta strong {
+  color: var(--text-light);
+  margin-right: 6px;
+}
+
+.featured-details {
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.detail-item strong {
+  color: var(--text-light);
+}
+
+.featured-price {
+  color: var(--gold-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.featured-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.featured-image img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+}
+
+.featured-photo {
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  border: 6px solid rgba(0,0,0,0.12);
+  object-fit: cover;
+}
+
+/* Slight layout tweak for large screens: make image visually offset */
+@media (min-width: 992px) {
+  .featured-image { padding-left: 24px; }
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 60px 0;
+  margin: 20px;
+}
+
+.testimonials-section h2 {
+  color: var(--text-light);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.testimonial-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.quote-icon {
+  color: var(--gold-color);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.testimonial-text {
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-name {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 60px 0;
+  margin: 20px;
+}
+
+/* Quick Contact Section */
+.quick-contact-wrap {
+  margin-bottom: 48px;
+}
+
+.contact-heading {
+  color: var(--text-light);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-heading i {
+  color: var(--gold-color);
+}
+
+.contact-lead {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+.quick-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.quick-contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: left;
+}
+
+.quick-contact-card h3 {
+  color: var(--text-light);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.quick-contact-card .card-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.btn-wa-quick {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+}
+
+/* Location Section */
+.location-wrap {
+  margin-top: 48px;
+}
+
+.location-map {
+  width: 100%;
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  background: #e9eef3;
+  border: 1px solid rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+}
+
+.location-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.location-hours {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Add gap between contact columns (desktop) and ensure stacked columns have space on mobile */
+/* Target only the top-level row inside the contact section (direct child of container) so nested rows
+   within the form (like .row inside the contact form) retain their normal Bootstrap/grid behavior. */
+.contact-section > .container > .row {
+  /* Use a controlled flex layout on desktop so the two cards sit side-by-side */
+  display: flex;
+  gap: 24px;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.contact-section > .container > .row > .col-lg-8 {
+  flex: 0 0 calc(66.666666% - 12px);
+  max-width: calc(66.666666% - 12px);
+}
+
+.contact-section > .container > .row > .col-lg-4 {
+  flex: 0 0 calc(33.333333% - 12px);
+  max-width: calc(33.333333% - 12px);
+}
+
+.contact-form-card h3,
+.studio-info-card h3 {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--gold-color);
+  box-shadow: 0 0 0 3px rgba(184, 138, 30, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Styled select to match form controls and ensure options are readable on dark backgrounds */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--gold-color);
+  box-shadow: 0 0 0 3px rgba(184,138,30,0.08);
+  background: rgba(255,255,255,0.08);
+}
+
+/* Option styling — limited by browser, but color helps in many browsers */
+.form-select option {
+  color: #111; /* use dark text for the dropdown options so they appear on light backgrounds */
+  background: #fff; /* ensures options panel uses light background where supported */
+}
+
+/* Custom dropdown styles (replaces native select for pixel-perfect theme) */
+.custom-dropdown-wrap {
+  position: relative;
+}
+.custom-dropdown-toggle {
+  width: 100%;
+  text-align: left;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.custom-dropdown-toggle .caret {
+  margin-left: 12px;
+  opacity: 0.9;
+}
+.custom-dropdown-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 8px;
+  background: #fff;
+  color: #111;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  list-style: none;
+  padding: 6px 0;
+  z-index: 50;
+  max-height: 220px;
+  overflow: auto;
+}
+.custom-dropdown-item {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.custom-dropdown-item:hover {
+  background: rgba(16,9,24,0.06);
+}
+.custom-dropdown .custom-dropdown-item:first-of-type {
+  font-weight: 600;
+}
+.custom-dropdown.open .custom-dropdown-toggle {
+  border-color: var(--gold-color);
+  box-shadow: 0 4px 18px rgba(184,138,30,0.12);
+}
+
+.studio-hours {
+  margin-bottom: 20px;
+}
+
+.hours-item {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.hours-item strong {
+  color: var(--text-light);
+}
+
+.studio-map {
+  margin-bottom: 12px;
+}
+
+/* Responsive iframe wrapper for the embedded map */
+.map-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  background: #e9eef3;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.map-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Small white callout button in the top-left of the map */
+.map-wrap .map-overlay {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 20;
+}
+
+.view-larger {
+  background: #ffffff;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.view-larger:hover { transform: translateY(-2px); }
+
+.map-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.map-actions .open-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(184,138,30,0.06);
+  color: var(--gold-color);
+  text-decoration: none;
+  border: 1px solid rgba(184,138,30,0.18);
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.map-actions .open-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(184,138,30,0.12);
+  background: rgba(184,138,30,0.12);
+}
+
+.studio-note {
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-image{
+    margin-top: 20px;
+  }
+  
+  .hero-stats {
+    gap: 20px;
+  }
+  
+  .featured-card {
+    padding: 25px;
+  }
+ .service-card {
+    margin-bottom: 15px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .hero-section,
+  .services-section,
+  .featured-section,
+  .testimonials-section,
+  .contact-section {
+    margin: 10px;
+  }
+
+  /* On small screens, allow contact columns to wrap and take full width */
+  .contact-section .row {
+    flex-wrap: wrap;
+  }
+
+  .contact-section .row > .col-lg-8,
+  .contact-section .row > .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .btn {
+    justify-content: center;
+  }
+  
+  .featured-buttons {
+    flex-direction: column;
+  }
+
+  /* Ensure service cards have clear vertical spacing when stacked on mobile */
+  .services-section .row > [class*="col-"] {
+    margin-bottom: 14px;
+  }
+
+  .services-section .service-card {
+    margin-bottom: 18px; /* slightly larger to create breathing room */
+  }
+
+  /* Add spacing between testimonial cards when stacked */
+  .testimonials-section .row > [class*="col-"] {
+    margin-bottom: 16px;
+  }
+
+  /* Give featured buttons some bottom margin so the image doesn't sit flush */
+  .featured-buttons {
+    margin-bottom: 12px;
+  }
+
+  /* Mobile-specific fixes for contact/studio column layout */
+  .contact-section > .container > .row {
+    display: block; /* stack cards vertically on mobile */
+  }
+
+  .contact-section > .container > .row > .col-lg-8,
+  .contact-section > .container > .row > .col-lg-4 {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
+
+  /* Reduce padding inside cards on small screens */
+  .contact-form-card,
+  .studio-info-card {
+    padding: 18px;
+  }
+
+  /* Prevent the map overlay button from overflowing the container on very narrow screens */
+  .map-wrap .map-overlay {
+    left: 8px;
+    top: 8px;
+  }
+
+  .map-actions .open-link {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Ensure the portfolio microcopy and badge don't crowd the layout on small screens */
+  .mto-badge { padding: 5px 8px; font-size: 0.8rem; }
+  .portfolio-tooltip { font-size: 0.8rem; }
+}
+

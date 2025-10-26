@@ -1,0 +1,91 @@
+
+/* Match global site theme: dark purple/navy backgrounds and gold accent */
+.feedback-shell{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  padding: 22px;
+  background: linear-gradient(180deg, rgba(9,6,16,0.95), rgba(22,16,35,0.96));
+  color: rgba(255,255,255,0.95);
+  min-height: 100vh;
+}
+
+.feedback-header{
+  display:flex;justify-content:space-between;align-items:center;padding:18px;border-radius:12px;
+  background: linear-gradient(90deg, rgba(22,16,35,0.9), rgba(16,11,27,0.88));
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);margin-bottom:18px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.feedback-header h1{margin:0;font-size:20px;color:var(--accent-gold)}
+.feedback-header p{margin:4px 0 0;color:rgba(255,255,255,0.8)}
+.header-ctas{display:flex;gap:8px}
+.btn-primary{background: linear-gradient(135deg, var(--accent-gold), #bb8a1b); color:#1b0f2a; padding:8px 12px;border-radius:8px;border:none;text-decoration:none}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.9);padding:8px 12px;border-radius:8px}
+.btn-secondary{background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.92);padding:8px 12px;border-radius:8px;border:none}
+.feedback-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+.row{display:flex;gap:18px}
+.col{flex:1}
+.form-col{min-width:320px}
+.preview-col{width:360px}
+
+label{display:block;margin-bottom:12px;font-size:14px;color:rgba(255,255,255,0.9)}
+
+/* Inputs / selects / textarea base styles */
+select,input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:inherit}
+
+/* Provide a wrapper to style select arrow and avoid clipping issues */
+.select-wrapper{position:relative}
+.select-wrapper select{ -webkit-appearance:none; -moz-appearance:none; appearance:none; padding-right:34px; background: linear-gradient(180deg, rgba(9,6,16,0.95), rgba(22,16,35,0.96)); color: #fff; border:1px solid rgba(255,255,255,0.06); position:relative; z-index:1000}
+.select-wrapper::after{content:"\25BE"; position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#fff; pointer-events:none}
+
+/* Try to style native options where the browser permits it; fallback may vary by browser/OS */
+select option{ background: rgba(16,11,27,0.98); color: #fff }
+/* Ensure focused text remains white in Firefox */
+select:-moz-focusring { color: transparent; text-shadow: 0 0 0 #fff }
+/* IE/Edge expand arrow color tweak */
+select::-ms-expand { color: #fff }
+
+/* If parent containers apply clipping, raise wrapper z-index when active */
+.select-wrapper[aria-expanded="true"]{ z-index:1200 }
+
+/* Try to ensure options are legible (support varies by browser) */
+select option{background:#fff;color:#111}
+
+/* Rating stars: hide native radio controls and style stars as buttons */
+.rating-row .stars{display:flex;gap:10px;align-items:center}
+.star-label{position:relative}
+.star-label input[type="radio"]{position:absolute;opacity:0;pointer-events:none;height:0;width:0}
+.star{display:inline-block;padding:10px 12px;min-width:44px;text-align:center;background:rgba(255,255,255,0.02);border-radius:8px;color:rgba(255,255,255,0.18);font-size:20px;transition:transform .12s ease,color .12s ease,background .12s ease;box-shadow:0 6px 14px rgba(0,0,0,0.45);user-select:none}
+.star-label:hover .star{color:var(--accent-gold);transform:translateY(-3px);background:rgba(204,160,44,0.06)}
+.star-label input[type="radio"]:checked + .star{color:var(--accent-gold);background:rgba(204,160,44,0.10);transform:translateY(-2px) scale(1.03);box-shadow:0 10px 24px rgba(0,0,0,0.55)}
+.preview-box{background:linear-gradient(180deg, rgba(16,11,27,0.6), rgba(22,16,35,0.6));padding:12px;border-radius:8px;min-height:120px;overflow:auto;border:1px solid rgba(255,255,255,0.02)}
+.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.recent-list{list-style:none;padding:0;margin:12px 0}
+.recent-list li{padding:12px;border-radius:8px;background:linear-gradient(180deg, rgba(16,11,27,0.5), rgba(22,16,35,0.45));margin-bottom:8px;border:1px solid rgba(255,255,255,0.02)}
+.meta{font-size:13px;color:var(--accent-gold)}
+.comment{margin:6px 0 0;color:rgba(255,255,255,0.9)}
+.consent{display:flex;align-items:center;gap:8px}
+.consent{display:flex;align-items:center;gap:10px}
+.consent input[type="checkbox"]{width:18px;height:18px;border-radius:4px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.02);accent-color:var(--accent-gold)}
+.consent .consent-text{font-size:14px;color:rgba(255,255,255,0.9)}
+
+/* Form actions layout: consent on left, buttons on right */
+.form-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.form-actions .actions{margin:0;display:flex;gap:10px}
+
+/* Unified action button styles */
+.btn-action{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:rgba(255,255,255,0.95);font-weight:600;cursor:pointer;transition:transform .08s ease,box-shadow .08s ease}
+.btn-action .icon{width:18px;height:18px;display:inline-block;margin-right:6px;color:var(--accent-gold)}
+.btn-action:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.45)}
+.btn-action.primary{background: linear-gradient(135deg, var(--accent-gold), #bb8a1b); color:#1b0f2a; border:none}
+.btn-action.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.9)}
+.btn-action[disabled]{opacity:0.6;cursor:not-allowed;transform:none}
+
+.success{margin-top:10px;padding:8px;border-radius:8px;background:linear-gradient(90deg,var(--accent-gold),#bb8a1b);color:#1b0f2a}
+
+@media (max-width:900px){
+  .row{flex-direction:column}
+  .preview-col{width:auto}
+  .form-actions{flex-direction:column;align-items:flex-start}
+  .form-actions .actions{width:100%;justify-content:flex-start}
+  .form-actions .actions button{flex:0 0 auto}
+}

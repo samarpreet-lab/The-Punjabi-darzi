@@ -1,0 +1,179 @@
+<div class="contact-container">
+  <div class="contact-layout">
+    <!-- Left Section: Contact & Form -->
+    <div class="left-section">
+      <!-- Contact & Enquiries -->
+      <div class="contact-card">
+        <div class="card-header">
+          <i class="fas fa-phone-alt"></i>
+          <span>Contact & Enquiries</span>
+        </div>
+        <div class="card-body">
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="section-description">
+            Fastest via WhatsApp. Or call us directly.
+          </p>
+
+          <!-- WhatsApp Button -->
+          <button class="action-btn whatsapp-btn" (click)="sendWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+            <span>Send via WhatsApp</span>
+          </button>
+
+          <!-- Feedback Button -->
+          <button class="action-btn whatsapp-btn" (click)="openFeedback()">
+            <i class="fas fa-comment-dots"></i>
+            <span>Leave feedback</span>
+          </button>
+
+          <!-- Phone Number -->
+          <a href="tel:+917589114421" class="phone-link">
+            <i class="fas fa-phone"></i>
+            <span>+91 75891 14421</span>
+          </a>
+        </div>
+      </div>
+
+  <!-- Contact Form -->
+  <div id="contact-form" class="contact-form-card">
+        <div class="form-header">
+          <i class="fas fa-file-alt"></i>
+          <span>Contact Form</span>
+        </div>
+        <div class="form-body">
+          <p class="form-description">
+            Prefer using a form for more elaborate inquiries? Choose to send via Email or WhatsApp.
+          </p>
+
+          <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+            <div class="form-group send-method-group">
+              <label class="form-label">Send via</label>
+              <div class="send-methods" role="radiogroup" aria-label="Send via">
+                <label class="send-option">
+                  <input type="radio" name="sendMethod" [(ngModel)]="formData.sendMethod" value="email" />
+                  <span class="label-text">Email</span>
+                </label>
+                <label class="send-option">
+                  <input type="radio" name="sendMethod" [(ngModel)]="formData.sendMethod" value="whatsapp" />
+                  <span class="label-text">WhatsApp</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="formData.sendMethod === 'email'">
+              <input type="email" class="form-input" placeholder="Your email address" [(ngModel)]="formData.senderEmail" name="senderEmail" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" class="form-input" placeholder="Your Name" [(ngModel)]="formData.name" name="name"
+                  required />
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-input" placeholder="Phone" [(ngModel)]="formData.phone" name="phone" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <select class="form-input" [(ngModel)]="formData.service" name="service">
+                <option value="">Select a Service</option>
+                <option value="custom-stitching">Custom Stitching</option>
+                <option value="patiala-suits">Patiala Suits</option>
+                <option value="bridal-collection">Bridal Collection</option>
+                <option value="fabric-selection">Fabric Selection</option>
+                <option value="design-consultation">Design Consultation</option>
+                <option value="other">Other (please specify)</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="formData.service === 'other'">
+              <input type="text" class="form-input" placeholder="Please specify the service" [(ngModel)]="formData.otherService" name="otherService" />
+            </div>
+
+            <div class="form-group">
+              <textarea class="form-input" placeholder="Message" rows="4" [(ngModel)]="formData.message"
+                name="message"></textarea>
+            </div>
+
+            <!-- send-method moved to top -->
+
+            <p class="form-note">
+              This form will forward to our email or open WhatsApp depending on your selection.
+            </p>
+
+            <button type="submit" class="action-btn submit-btn">
+              <i class="fas fa-paper-plane"></i>
+              <span>Submit Form</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section: Business Hours & Location -->
+    <div class="right-section">
+
+      <!-- Visit Studio Button -->
+      <div class="visit-studio-card">
+        <div class="studio-header">
+          <i class="fas fa-store"></i>
+          <span>Visit Our Studio</span>
+        </div>
+      </div>
+
+      <!-- Business Hours -->
+      <div class="info-card business-hours-card">
+        <h2 class="section-title">Business Hours</h2>
+        <div class="hours-content">
+          <div class="hours-item">
+            <span class="day">All Days</span>
+            <span class="time">10:00 AM - 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Find Us -->
+      <div class="info-card location-card">
+        <h2 class="section-title">Find Us</h2>
+
+        <!-- Map -->
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3386.347928258869!2d75.59761807446016!3d31.924309974031598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDU1JzI3LjUiTiA3NcKwMzYnMDAuNyJF!5e0!3m2!1sen!2sus!4v1761035893250!5m2!1sen!2sus"
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+            title="The Punjabi Darzi Location"></iframe>
+        </div>
+
+        <!-- Location Buttons -->
+        <div class="location-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Sulehrian+Khurd+Mukerian" target="_blank"
+            class="location-btn maps-btn">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Open in Google Maps</span>
+          </a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Sulehrian+Khurd+Mukerian" target="_blank"
+            class="location-btn nav-btn">
+            <i class="fas fa-directions"></i>
+            <span>Start Navigation</span>
+          </a>
+        </div>
+
+        <!-- Address & Directions -->
+        <div class="address-section">
+          <h3 class="address-title">Address & Directions</h3>
+          <div class="address-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Sulehrian Khurd, P.O. Tanda Ram Sahai, Mukerian( Just Ask "Where is Ex Sarpanch Baldev Singh House")</span>
+          </div>
+          <div class="address-item">
+            <i class="fas fa-motorcycle"></i>
+            <span>10 minutes from Mukerian Bus Stand</span>
+          </div>
+          <p class="landmark-note">
+            Landmark–friendly directions to help you find us easily.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

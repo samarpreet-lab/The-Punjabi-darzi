@@ -1,0 +1,178 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-contact',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.css'
+})
+export class ContactComponent {
+  whatsappNumber = '917589114421';
+  studioEmail = 'bhamrasamar02@gmail.com';
+  emailRecipient = this.studioEmail;
+  /**
+   * Configured Formspree endpoint — POSTs will be sent here when Email is chosen.
+   */
+  formspreeEndpoint = 'https://formspree.io/f/meorwror';
+
+  isSubmitting = false;
+
+  formData: {
+    name: string;
+    phone: string;
+    service: string;
+    otherService?: string;
+    message: string;
+    sendMethod?: 'email' | 'whatsapp';
+    senderEmail?: string;
+  } = {
+    name: '',
+    phone: '',
+    service: '',
+    otherService: '',
+    message: '',
+    sendMethod: 'email'
+  };
+
+  sendWhatsApp(): void {
+    // Instead of opening WhatsApp immediately, scroll to the contact form and
+    // pre-select WhatsApp as the send method so users can fill details and send.
+    this.formData.sendMethod = 'whatsapp';
+    // Smooth scroll to the form container
+    const el = document.getElementById('contact-form');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // focus the first input inside the form for convenience
+      const firstInput = el.querySelector('input[name="name"]') as HTMLElement | null;
+      if (firstInput) {
+        // small timeout to allow scrolling animation to begin
+        setTimeout(() => firstInput.focus(), 300);
+      }
+    } else {
+      // fallback: open WhatsApp if form not found
+      const message = 'Hi, I would like to inquire about your tailoring services.';
+      const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  }
+
+  ngOnInit(): void {
+    // If the contact page is opened with query params (eg. ?sendMethod=whatsapp&service=...),
+    // prefill the form and scroll to it.
+    try {
+      const qs = new URLSearchParams(window.location.search);
+      const method = qs.get('sendMethod');
+      const service = qs.get('service');
+      if (method === 'whatsapp') this.formData.sendMethod = 'whatsapp';
+      if (service) this.formData.service = decodeURIComponent(service);
+
+      if (method || service) {
+        // scroll to contact form for convenience
+        const el = document.getElementById('contact-form');
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // Open the Feedback page. Uses a simple location change to '/feedback'.
+  // If you later wire SPA navigation, replace this with a signal or router navigation.
+  openFeedback(): void {
+    try {
+      const ev = new CustomEvent('navigate', { detail: 'feedback' });
+      window.dispatchEvent(ev);
+    } catch (e) {
+      // fallback to direct navigation
+      location.href = '/feedback';
+    }
+  }
+
+  async submitForm(): Promise<void> {
+    // Basic validation
+    if (!this.formData.name.trim()) {
+      alert('Please enter your name');
+      return;
+    }
+    const subject = `Enquiry from ${this.formData.name}`;
+    const selectedService = this.formData.service === 'other' ? (this.formData.otherService || 'Other') : (this.formData.service || 'N/A');
+    const bodyLines = [
+      `Name: ${this.formData.name}`,
+      `Phone: ${this.formData.phone || 'N/A'}`,
+      `Service: ${selectedService}`,
+      '',
+      this.formData.message || ''
+    ];
+    const body = bodyLines.join('\n');
+
+    if (this.formData.sendMethod === 'whatsapp') {
+      const waMessage = `${subject}\n\n${body}`;
+      const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
+      window.open(url, '_blank');
+    } else {
+      // require sender email
+      if (!this.formData.senderEmail || !this.formData.senderEmail.includes('@')) {
+        alert('Please enter a valid email address to send via Email');
+        return;
+      }
+      // If a Formspree endpoint is configured, POST the form data there.
+      if (this.formspreeEndpoint && this.formspreeEndpoint.trim() !== '') {
+        this.isSubmitting = true;
+        try {
+          // Formspree prefers a `_replyto` field for the sender's email so replies go to them.
+          const payload = {
+            _subject: subject,
+            name: this.formData.name,
+            _replyto: this.formData.senderEmail,
+            phone: this.formData.phone,
+            service: selectedService,
+            message: this.formData.message
+          };
+
+          const res = await fetch(this.formspreeEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) {
+            // try to read error body for debugging
+            let errText = '';
+            try { errText = await res.text(); } catch (e) { /* ignore */ }
+            throw new Error(`Formspree error: ${res.status} ${res.statusText} ${errText}`);
+          }
+
+          alert('Thank you — your message was sent successfully. We will be in touch soon.');
+        } catch (err) {
+          console.error(err);
+          alert('There was an error sending your message. Falling back to opening your mail client.');
+          // fallback to mailto if Formspree fails
+          const mailto = `mailto:${this.emailRecipient}?cc=${encodeURIComponent(this.formData.senderEmail!)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailto;
+        } finally {
+          this.isSubmitting = false;
+        }
+      } else {
+        // no Formspree configured — open user's mail client
+        const mailto = `mailto:${this.emailRecipient}?cc=${encodeURIComponent(this.formData.senderEmail!)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+      }
+    }
+
+    // Reset the form (only clear fields; keep sendMethod default)
+    this.formData = {
+      name: '',
+      phone: '',
+      service: '',
+      message: '',
+      sendMethod: 'email'
+    };
+  }
+}

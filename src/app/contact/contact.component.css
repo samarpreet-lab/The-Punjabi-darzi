@@ -1,0 +1,482 @@
+/* Contact Component Styles */
+
+.contact-container {
+  min-height: 100vh;
+  background: #100918;
+  padding: 3rem 2rem;
+  color: #ffffff;
+}
+
+.contact-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Left Section */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-card,
+.contact-form-card,
+.info-card,
+.visit-studio-card {
+  background: #120814;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid #2a2130;
+  backdrop-filter: blur(10px);
+}
+
+.card-header,
+.form-header,
+.studio-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(184, 138, 30, 0.15);
+  border: 1px solid rgba(184, 138, 30, 0.3);
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b88a1e;
+  width: fit-content;
+}
+
+.card-header i,
+.form-header i,
+.studio-header i {
+  font-size: 1rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.section-description,
+.form-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.whatsapp-btn {
+  background: #b88a1e;
+  color: #100918;
+}
+
+/* Make the WhatsApp icon bigger and bolder where used */
+.whatsapp-btn i,
+.whatsapp-btn svg {
+  font-size: 1.45rem; /* larger icon */
+  line-height: 1;
+  font-weight: 800; /* bolder for font icons where supported */
+}
+
+.whatsapp-btn:hover {
+  background: #a67b1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 138, 30, 0.3);
+}
+
+.submit-btn {
+  background: #b88a1e;
+  color: #100918;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: #a67b1a;
+  transform: translateY(-2px);
+}
+
+.phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: #b88a1e;
+  color: #100918;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  transition: all 0.25s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.phone-link:hover {
+  background: #a67b1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 138, 30, 0.25);
+  color: #100918;
+}
+
+.phone-link i {
+  font-size: 1.2rem;
+}
+
+/* Form Styles */
+.form-body {
+  margin-top: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: #100918;
+  border: 1px solid #2a2130;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #b88a1e;
+  background: #120814;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-input option {
+  background: #100918;
+  color: #ffffff;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-note {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* Send-method pill toggles */
+
+.send-method-group {
+  margin-bottom: 1rem;
+  /* ensure some breathing room under the group */
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* space between label text and pills */
+}
+
+.send-methods {
+  display: inline-flex;
+  gap: 0.9rem; /* slightly larger gap between pills for clarity */
+  align-items: center;
+  margin-left: 0.5rem; /* small offset so pills don't butt against the label */
+}
+
+/* Each label contains a hidden native radio and a visible pill (.label-text) */
+.send-option {
+  display: inline-block;
+}
+
+.send-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.send-option .label-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.9);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  min-width: 80px;
+  justify-content: center;
+}
+
+/* If a send-method pill contains a WhatsApp icon, make it more prominent */
+.send-option .label-text .wh-icon,
+.send-option .label-text svg.wh-icon,
+.send-option .label-text i.wh-icon {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+/* custom circular indicator inside the pill */
+.send-option .label-text::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  background: transparent;
+}
+
+/* checked state: pill turns gold, text dark, indicator becomes black */
+.send-option input[type="radio"]:checked + .label-text {
+  background: #b88a1e;
+  color: #100918;
+}
+
+
+.send-option input[type="radio"]:checked + .label-text::before {
+  /* when selected, the circular indicator should be white */
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.send-option .label-text:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.045);
+}
+
+.send-option input[type="radio"]:focus + .label-text {
+  box-shadow: 0 0 0 3px rgba(184,138,30,0.12);
+}
+
+/* Right Section */
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Business Hours */
+.business-hours-card {
+  background: linear-gradient(135deg, rgba(184, 138, 30, 0.1) 0%, rgba(184, 138, 30, 0.05) 100%);
+}
+
+.hours-content {
+  margin-top: 1.5rem;
+}
+
+.hours-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #2a2130;
+}
+
+.hours-item:last-child {
+  border-bottom: none;
+}
+
+.day {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Location Card */
+.location-card {
+  flex: 1;
+}
+
+.map-container {
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #2a2130;
+}
+
+.map-container iframe {
+  display: block;
+  filter: grayscale(20%) brightness(0.9);
+}
+
+.location-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.location-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.maps-btn {
+  background: #b88a1e;
+  color: #100918;
+  border: none;
+  border-radius: 50px;
+  padding: 0.9rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.maps-btn:hover {
+  background: #a67b1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 138, 30, 0.25);
+}
+
+.nav-btn {
+  background: #b88a1e;
+  color: #100918;
+  border: none;
+  border-radius: 50px;
+  padding: 0.9rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.nav-btn:hover {
+  background: #a67b1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(184, 138, 30, 0.25);
+}
+
+/* Address Section */
+.address-section {
+  margin-top: 1.5rem;
+}
+
+.address-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.address-item i {
+  color: #b88a1e;
+  font-size: 1rem;
+  min-width: 20px;
+}
+
+.landmark-note {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+/* Visit Studio Card */
+.visit-studio-card {
+  background: rgba(184, 138, 30, 0.1);
+  border: 2px solid rgba(184, 138, 30, 0.3);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.studio-header {
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .location-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-container {
+    padding: 2rem 1rem;
+  }
+  
+  .contact-card,
+  .contact-form-card,
+  .info-card,
+  .visit-studio-card {
+    padding: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-header,
+  .form-header,
+  .studio-header {
+    font-size: 0.85rem;
+    padding: 0.75rem 1.25rem;
+  }
+}

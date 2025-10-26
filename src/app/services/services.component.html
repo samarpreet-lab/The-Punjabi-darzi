@@ -1,0 +1,220 @@
+<div class="services-page container py-4 py-lg-5">
+	<!-- Hero / Overview -->
+	<section class="section-card overview-card mb-4 mb-lg-5">
+		<div class="section-tag">
+			<i class="fa-solid fa-scissors"></i>
+			Our Services
+		</div>
+
+		<div class="row g-4 align-items-start">
+			<div class="col-lg-8">
+				<h1 class="section-title">Custom stitching, alterations, and specialty finishing</h1>
+				<p class="section-lead">Transparent process, clear pricing, and expert fabric guidance to help you choose with confidence.</p>
+
+				<div class="row g-3 metrics-row">
+					<div class="col-sm-6 col-md-4" *ngFor="let metric of serviceMetrics">
+						<div class="metric-card h-100">
+							<div class="metric-label">{{ metric.label }}</div>
+							<div class="metric-value">{{ metric.value }}</div>
+							<div class="metric-helper">{{ metric.helper }}</div>
+						</div>
+					</div>
+				</div>
+
+					<div class="cta-row">
+						<button *ngFor="let action of serviceActions"
+									class="btn"
+									[attr.aria-label]="action.text"
+									[ngClass]="{
+										'btn-glow': action.variant === 'primary',
+										'btn-outline-light': action.variant === 'secondary'
+									}"
+									(click)="scrollTo(action.key)">
+								<i [class]="action.icon"></i>
+								{{ action.text }}
+							</button>
+
+							<!-- Feedback CTA for services page -->
+							<button class="btn btn-outline-light" (click)="openFeedbackForService()">
+								<i class="fas fa-comment-dots"></i>
+								Leave feedback
+							</button>
+					</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="workflow-panel h-100">
+					<h2 class="panel-title">How we work</h2>
+					<ol class="workflow-list">
+						<li *ngFor="let step of processSteps">{{ step }}</li>
+					</ol>
+					<div class="badge express">
+						<i class="fa-solid fa-bolt"></i>
+						Express available (surcharge)
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Action Modal (conditionally rendered) -->
+	<div class="action-modal" *ngIf="modalOpen">
+		<div class="modal-backdrop" (click)="closeModal()"></div>
+		<div class="modal-panel">
+			<button type="button" class="modal-close" aria-label="Close" (click)="closeModal()">✕</button>
+			<div class="modal-body">
+				<h3 *ngIf="modalKey === 'pricing'">Pricing quick view</h3>
+				<h3 *ngIf="modalKey === 'fabrics'">Fabric recommendations</h3>
+
+				<div *ngIf="modalKey === 'pricing'">
+					<p class="muted">Jump to the full pricing table or send a quick enquiry.</p>
+					<div class="modal-actions">
+						<button class="btn btn-glow" (click)="closeAndScroll('pricing')">View Pricing</button>
+						<button class="btn btn-outline-light" (click)="sendWhatsApp('Hi, I would like pricing information for your Punjabi suits.')">Enquire on WhatsApp</button>
+					</div>
+				</div>
+
+				<div *ngIf="modalKey === 'fabrics'">
+					<p class="muted">See recommended fabrics and care notes. You can ask us for fabric samples.</p>
+					<div class="modal-actions">
+						<button class="btn btn-glow" (click)="closeAndScroll('fabrics')">View Fabrics</button>
+						<button class="btn btn-outline-light" (click)="sendWhatsApp('Hi, I would like fabric recommendations for a Patiala suit.')">Enquire on WhatsApp</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Service Categories -->
+	<section class="section-card categories-card mb-4 mb-lg-5">
+		<div class="section-header d-flex align-items-center gap-2 mb-4">
+			<i class="fa-solid fa-layer-group text-accent"></i>
+			<h2 class="section-heading mb-0">Core Service Categories</h2>
+		</div>
+
+		<div class="row g-3">
+			<div class="col-md-6 col-xl-4" *ngFor="let category of serviceCategories">
+				<div class="category-card h-100">
+					<div class="category-group">{{ category.group }}</div>
+					<h3 class="category-title">{{ category.title }}</h3>
+					<p class="category-description">{{ category.description }}</p>
+					<div class="category-price">{{ category.price }}</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Process Highlights -->
+	<section class="section-card process-card mb-4 mb-lg-5">
+		<div class="row g-3">
+			<div class="col-lg-8">
+				<div class="highlight-card h-100">
+					<h3 class="highlight-title">Process &amp; Expectations</h3>
+					<div class="highlight-subtitle">Process Steps</div>
+					<ul class="process-steps">
+						<li *ngFor="let step of processSteps; let i = index">
+							<span class="step-index">{{ i + 1 }}</span>
+							{{ step }}
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="highlight-card h-100">
+					<h3 class="highlight-title">Typical fittings</h3>
+					<div class="highlight-value">1–2 sessions</div>
+					<p class="highlight-copy">For custom suits; alterations usually 0–1.</p>
+					<div class="highlight-footer">Delivery window: customs approx. 7–10 days after measurements. Alterations within 1–3 days depending on work.</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing Table -->
+	<section id="pricing" class="section-card pricing-card mb-4 mb-lg-5">
+		<div class="section-header d-flex align-items-center gap-2 mb-4">
+			<i class="fa-regular fa-clipboard text-accent"></i>
+			<h2 class="section-heading mb-0">Pricing Table</h2>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-dark table-borderless align-middle mb-0">
+				<thead>
+					<tr>
+						<th scope="col">Service</th>
+						<th scope="col" class="text-center">Starting Price</th>
+						<th scope="col">Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let row of pricingRows">
+						<td data-label="Service">{{ row.service }}</td>
+						<td data-label="Starting Price" class="text-center price-cell" [innerHTML]="formatPrice(row.price)"></td>
+						<td data-label="Notes">{{ row.notes }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="express-note mt-3">
+			<i class="fa-solid fa-bolt"></i>
+			{{ expressNote }}
+		</div>
+	</section>
+
+	<!-- Fabric Recommendations -->
+	<section id="fabrics" class="section-card fabrics-card mb-4 mb-lg-5">
+		<div class="section-header d-flex align-items-center gap-2 mb-4">
+			<i class="fa-solid fa-leaf text-accent"></i>
+			<h2 class="section-heading mb-0">Fabric Recommendations</h2>
+		</div>
+
+		<div class="row g-3">
+			<div class="col-md-6" *ngFor="let fabric of fabrics">
+				<div class="fabric-card h-100">
+					<div class="fabric-name">{{ fabric.name }}</div>
+					<p class="fabric-description">{{ fabric.description }}</p>
+					<div class="fabric-care"><span>Care:</span> {{ fabric.care }}</div>
+				</div>
+			</div>
+		</div>
+
+		<ul class="fabric-advice mt-4">
+			<li *ngFor="let tip of fabricAdvice">{{ tip }}</li>
+		</ul>
+	</section>
+
+	<!-- FAQ -->
+	<section class="section-card faq-card mb-4 mb-lg-5">
+		<div class="section-header d-flex align-items-center gap-2 mb-4">
+			<i class="fa-regular fa-circle-question text-accent"></i>
+			<h2 class="section-heading mb-0">Services FAQ</h2>
+		</div>
+
+		<div class="row g-3">
+			<div class="col-md-6" *ngFor="let faq of faqs">
+				<div class="faq-item h-100">
+					<div class="faq-question">{{ faq.question }}</div>
+					<p class="faq-answer">{{ faq.answer }}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Blocks -->
+	<section class="section-card cta-card">
+		<div class="row g-3">
+			<div class="col-12">
+				<div class="cta-item h-100">
+					<div class="cta-eyebrow">{{ ctaBlocks[0].eyebrow }}</div>
+					<div class="cta-headline">{{ ctaBlocks[0].headline }}</div>
+					<button class="btn btn-glow" (click)="goToContact()">
+						<i [class]="ctaBlocks[0].icon"></i>
+						{{ ctaBlocks[0].button }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
