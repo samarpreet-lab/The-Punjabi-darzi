@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { TailoringDataService } from '../services/tailoring-data.service';
 import type { PortfolioItem } from '../shared/services.shared';
 
@@ -17,9 +18,9 @@ type FilterCategory = 'all' | 'simple-suits' | 'patiala-suits' | 'plazo-suits' |
   styleUrl: './portfolio.component.css'
 })
 export class PortfolioComponent {
-  private whatsappNumber = '917589114421';
+  private whatsappNumber = environment.contact.whatsappNumber;
   // Fallback email address to receive enquiries when WhatsApp isn't available
-  private enquiryEmail = 'info@thepunjabidarzi.com';
+  private enquiryEmail = environment.contact.enquiryEmail;
   
   portfolioItems: PortfolioItem[] = [];
   filteredItems: PortfolioItem[] = [];
@@ -296,7 +297,7 @@ export class PortfolioComponent {
   // Compose and open a mailto: link with the same message content as WhatsApp
   // Formspree integration: send enquiry directly via Formspree (no mail client)
   // Requires you to set `formspreeEndpoint` to your Formspree form URL (e.g. https://formspree.io/f/{your-id})
-  private formspreeEndpoint = 'https://formspree.io/f/meorwror'; // <-- replace with your real endpoint
+  private formspreeEndpoint = environment.contact.formspreeEndpoint;
 
   // UI state for email sending
   emailSending = false;

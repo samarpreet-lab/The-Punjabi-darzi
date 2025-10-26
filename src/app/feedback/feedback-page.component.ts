@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { CustomSelectComponent } from '../shared/custom-select/custom-select.component';
 import { PRICING_ROWS, SERVICE_CATEGORIES } from '../shared/services.shared';
 
@@ -48,10 +49,10 @@ export class FeedbackPageComponent {
   portfolio = PORTFOLIO;
 
   // Replace with your Formspree endpoint (eg. https://formspree.io/f/XXXXX)
-  formspreeEndpoint = 'https://formspree.io/f/meorwror';
+  formspreeEndpoint = environment.contact.formspreeEndpoint;
 
   // Replace with boutique WhatsApp number (country code, no +). Eg: 919812345678
-  businessWhatsApp = '917589114421';
+  businessWhatsApp = environment.contact.whatsappNumber;
 
   model: Partial<Feedback> = {
     rating: 5,

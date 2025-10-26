@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { TailoringDataService } from './tailoring-data.service';
 
 @Component({
@@ -110,7 +111,7 @@ export class ServicesComponent {
   modalKey: string | null = null;
 
   // WhatsApp number for enquiries (same format as home component)
-  whatsappNumber = '917589114421';
+  whatsappNumber = environment.contact.whatsappNumber;
 
   openModal(key: string) {
     this.modalKey = key;

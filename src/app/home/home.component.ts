@@ -2,6 +2,7 @@ import { Component, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { TailoringDataService } from '../services/tailoring-data.service';
 
 @Component({
@@ -60,7 +61,7 @@ export class HomeComponent {
 
   // The studio's WhatsApp number in international format without + or leading zeros (example)
   // Replace this with the real number: country code + number (e.g., '91999xxxxxxx')
-  whatsappNumber = '917589114421';
+  whatsappNumber = environment.contact.whatsappNumber;
 
   /**
    * Navigate to contact page with optional service prefill.

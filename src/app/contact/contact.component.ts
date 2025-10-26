@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -11,13 +12,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-  whatsappNumber = '917589114421';
-  studioEmail = 'bhamrasamar02@gmail.com';
+  whatsappNumber = environment.contact.whatsappNumber;
+  studioEmail = environment.contact.studioEmail;
   emailRecipient = this.studioEmail;
   /**
    * Configured Formspree endpoint — POSTs will be sent here when Email is chosen.
    */
-  formspreeEndpoint = 'https://formspree.io/f/meorwror';
+  formspreeEndpoint = environment.contact.formspreeEndpoint;
 
   isSubmitting = false;
 
