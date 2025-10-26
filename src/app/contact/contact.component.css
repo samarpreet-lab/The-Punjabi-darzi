@@ -205,6 +205,47 @@ textarea.form-input {
   font-style: italic;
 }
 
+/* Form Validation Styling */
+.error-message {
+  display: block;
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+.form-input.ng-invalid.ng-touched {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.05);
+}
+
+.form-input.ng-valid.ng-touched {
+  border-color: #4ecdc4;
+}
+
+.form-input:focus.ng-invalid {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.form-input:focus.ng-valid {
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+}
+
+.submit-btn:disabled {
+  background: #666666;
+  color: #999999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-btn:disabled:hover {
+  background: #666666;
+  box-shadow: none;
+  transform: none;
+}
+
 /* Send-method pill toggles */
 
 .send-method-group {

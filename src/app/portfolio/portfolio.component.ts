@@ -169,6 +169,7 @@ export class PortfolioComponent {
   enquiryConsent = false;
 
   // Simple validation helper used by the template to enable/disable Send button
+  // DEPRECATED: Now using Angular form validation instead. This method is kept for backwards compatibility.
   isEnquiryValid(): boolean {
     const e = this.enquiry;
     // basic checks: required fields present
@@ -194,6 +195,7 @@ export class PortfolioComponent {
     return true;
   }
 
+  // DEPRECATED: No longer needed with Angular form validation. Kept for reference.
   isPhoneFormatValid(): boolean {
     const e = this.enquiry;
     const combined = `${e.countryCode || ''}${e.phone || ''}`;

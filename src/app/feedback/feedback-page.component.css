@@ -50,6 +50,27 @@ select::-ms-expand { color: #fff }
 /* Try to ensure options are legible (support varies by browser) */
 select option{background:#fff;color:#111}
 
+/* Form Validation Styling */
+.error{display:block;color:#ff6b6b;font-size:0.85rem;margin-top:0.4rem;font-weight:500}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched{border-color:#ff6b6b;background:rgba(255,107,107,0.05)}
+
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched,
+select.ng-valid.ng-touched{border-color:#4ecdc4}
+
+input:focus.ng-invalid,
+textarea:focus.ng-invalid,
+select:focus.ng-invalid{border-color:#ff6b6b;box-shadow:0 0 0 3px rgba(255,107,107,0.1)}
+
+input:focus.ng-valid,
+textarea:focus.ng-valid,
+select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,0.1)}
+
+.required{color:#ff6b6b}
+
 /* Rating stars: hide native radio controls and style stars as buttons */
 .rating-row .stars{display:flex;gap:10px;align-items:center}
 .star-label{position:relative}

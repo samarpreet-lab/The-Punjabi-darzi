@@ -61,16 +61,32 @@
             </div>
 
             <div class="form-group" *ngIf="formData.sendMethod === 'email'">
-              <input type="email" class="form-input" placeholder="Your email address" [(ngModel)]="formData.senderEmail" name="senderEmail" required />
+              <input type="email" class="form-input" placeholder="Your email address" 
+                [(ngModel)]="formData.senderEmail" name="senderEmail" #emailModel="ngModel"
+                required email />
+              <div class="error-message" *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)">
+                <span *ngIf="emailModel.errors?.['required']">Email is required</span>
+                <span *ngIf="emailModel.errors?.['email']">Please enter a valid email address</span>
+              </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <input type="text" class="form-input" placeholder="Your Name" [(ngModel)]="formData.name" name="name"
-                  required />
+                <input type="text" class="form-input" placeholder="Your Name" 
+                  [(ngModel)]="formData.name" name="name" #nameModel="ngModel"
+                  required minlength="2" />
+                <div class="error-message" *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)">
+                  <span *ngIf="nameModel.errors?.['required']">Name is required</span>
+                  <span *ngIf="nameModel.errors?.['minlength']">Name must be at least 2 characters</span>
+                </div>
               </div>
               <div class="form-group">
-                <input type="tel" class="form-input" placeholder="Phone" [(ngModel)]="formData.phone" name="phone" />
+                <input type="tel" class="form-input" placeholder="Phone" 
+                  [(ngModel)]="formData.phone" name="phone" #phoneModel="ngModel"
+                  pattern="[0-9\s\-\(\)\+]+" />
+                <div class="error-message" *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)">
+                  <span *ngIf="phoneModel.errors?.['pattern']">Please enter a valid phone number</span>
+                </div>
               </div>
             </div>
 
@@ -87,12 +103,22 @@
             </div>
 
             <div class="form-group" *ngIf="formData.service === 'other'">
-              <input type="text" class="form-input" placeholder="Please specify the service" [(ngModel)]="formData.otherService" name="otherService" />
+              <input type="text" class="form-input" placeholder="Please specify the service" 
+                [(ngModel)]="formData.otherService" name="otherService" #otherServiceModel="ngModel"
+                minlength="3" />
+              <div class="error-message" *ngIf="otherServiceModel.invalid && (otherServiceModel.dirty || otherServiceModel.touched)">
+                <span *ngIf="otherServiceModel.errors?.['minlength']">Please provide more detail (at least 3 characters)</span>
+              </div>
             </div>
 
             <div class="form-group">
-              <textarea class="form-input" placeholder="Message" rows="4" [(ngModel)]="formData.message"
-                name="message"></textarea>
+              <textarea class="form-input" placeholder="Message" rows="4" 
+                [(ngModel)]="formData.message" name="message" #messageModel="ngModel"
+                required minlength="10"></textarea>
+              <div class="error-message" *ngIf="messageModel.invalid && (messageModel.dirty || messageModel.touched)">
+                <span *ngIf="messageModel.errors?.['required']">Message is required</span>
+                <span *ngIf="messageModel.errors?.['minlength']">Message must be at least 10 characters</span>
+              </div>
             </div>
 
             <!-- send-method moved to top -->
@@ -101,9 +127,9 @@
               This form will forward to our email or open WhatsApp depending on your selection.
             </p>
 
-            <button type="submit" class="action-btn submit-btn">
+            <button type="submit" class="action-btn submit-btn" [disabled]="!contactForm.valid || isSubmitting">
               <i class="fas fa-paper-plane"></i>
-              <span>Submit Form</span>
+              <span>{{ isSubmitting ? 'Submitting...' : 'Submit Form' }}</span>
             </button>
           </form>
         </div>

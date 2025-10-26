@@ -7,7 +7,7 @@
   </header>
 
   <section id="feedback-form" class="feedback-card">
-    <form (ngSubmit)="sendViaFormspree()" #f="ngForm" novalidate>
+    <form (ngSubmit)="sendViaFormspree()" #feedbackForm="ngForm">
       <div class="row">
         <div class="col form-col">
           <label>Service (required)
@@ -22,29 +22,44 @@
             </div>
           </label>
 
-          <label class="rating-row">Rating (1–5)
+          <label class="rating-row">Rating (1–5) <span class="required">*</span>
             <div class="stars" role="radiogroup" aria-label="Rating">
               <label *ngFor="let r of [1,2,3,4,5]" class="star-label">
                 <input type="radio" name="rating" [value]="r" [(ngModel)]="model.rating" required aria-label="{{r}} stars" />
                 <span class="star" aria-hidden="true">★</span>
               </label>
             </div>
+            <small class="error" *ngIf="!model.rating">
+              Please select a rating
+            </small>
           </label>
 
           <label>Comments (optional)
-            <textarea name="comment" [(ngModel)]="model.comment" rows="4" placeholder="Tip: Mention fabric, fit, or turnaround time."></textarea>
+            <textarea name="comment" #commentModel="ngModel" [(ngModel)]="model.comment" rows="4" placeholder="Tip: Mention fabric, fit, or turnaround time." minlength="3"></textarea>
+            <small class="error" *ngIf="commentModel.invalid && (commentModel.dirty || commentModel.touched)">
+              <span *ngIf="commentModel.errors?.['minlength']">Comments must be at least 3 characters</span>
+            </small>
           </label>
 
           <label>Customer name (optional)
-            <input type="text" name="name" [(ngModel)]="model.name" placeholder="Your name" />
+            <input type="text" name="name" #nameModel="ngModel" [(ngModel)]="model.name" placeholder="Your name" minlength="2" />
+            <small class="error" *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)">
+              <span *ngIf="nameModel.errors?.['minlength']">Name must be at least 2 characters</span>
+            </small>
           </label>
 
           <label>Email for follow-up (optional)
-            <input type="email" name="email" [(ngModel)]="model.email" />
+            <input type="email" name="email" #emailModel="ngModel" [(ngModel)]="model.email" email />
+            <small class="error" *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)">
+              <span *ngIf="emailModel.errors?.['email']">Please enter a valid email address</span>
+            </small>
           </label>
 
           <div class="form-actions">
-            <label class="consent"><input type="checkbox" name="consent" [(ngModel)]="model.consent" required/> <span class="consent-text">I agree my feedback may be displayed on the site</span></label>
+            <label class="consent"><input type="checkbox" name="consent" #consentModel="ngModel" [(ngModel)]="model.consent" required/> <span class="consent-text">I agree my feedback may be displayed on the site</span></label>
+            <small class="error" *ngIf="consentModel.invalid && (consentModel.dirty || consentModel.touched)">
+              <span *ngIf="consentModel.errors?.['required']">You must agree to share your feedback</span>
+            </small>
 
             <div class="actions">
               <button type="button" class="btn-action secondary" (click)="reset()">
@@ -52,12 +67,12 @@
                 <span>Reset</span>
               </button>
 
-              <button type="button" class="btn-action" (click)="sendViaWhatsApp()">
+              <button type="button" class="btn-action" (click)="sendViaWhatsApp()" [disabled]="!model.serviceId || !model.rating">
                 <i class="fa-brands fa-whatsapp icon" aria-hidden="true"></i>
                 <span>Send via WhatsApp</span>
               </button>
 
-              <button type="submit" class="btn-action" [disabled]="submitting() || !f.valid">
+              <button type="submit" class="btn-action" [disabled]="submitting() || !feedbackForm.valid || !model.consent">
                 <i class="fa-solid fa-envelope icon" aria-hidden="true"></i>
                 <span>Send via Email</span>
               </button>

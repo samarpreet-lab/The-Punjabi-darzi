@@ -1182,10 +1182,49 @@
 }
 
 .error {
-  color: #ff8b8b;
-  font-size: 0.82rem;
+  color: #ff6b6b;
+  font-size: 0.85rem;
   margin-top: 0.4rem;
   display: block;
+  font-weight: 500;
+}
+
+.required {
+  color: #ff6b6b;
+}
+
+/* Angular Form Validation States */
+.enquiry-form input.ng-invalid.ng-touched,
+.enquiry-form textarea.ng-invalid.ng-touched,
+.enquiry-form select.ng-invalid.ng-touched {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.05);
+}
+
+.enquiry-form input.ng-valid.ng-touched,
+.enquiry-form textarea.ng-valid.ng-touched,
+.enquiry-form select.ng-valid.ng-touched {
+  border-color: #4ecdc4;
+}
+
+.enquiry-form input:focus.ng-invalid,
+.enquiry-form textarea:focus.ng-invalid,
+.enquiry-form select:focus.ng-invalid {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.enquiry-form input:focus.ng-valid,
+.enquiry-form textarea:focus.ng-valid,
+.enquiry-form select:focus.ng-valid {
+  border-color: #4ecdc4;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+}
+
+.btn:disabled,
+.enquiry-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Mobile responsiveness */

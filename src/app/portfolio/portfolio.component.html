@@ -210,7 +210,7 @@
             <div class="enquiry-columns">
               <!-- LEFT COLUMN: Input Fields -->
               <div class="enquiry-form-column">
-                <div class="enquiry-form">
+                <form #enquiryForm="ngForm" class="enquiry-form">
                   <label class="field">
                     <span class="label">Selected Style</span>
                     <input type="text" [value]="selectedItem()!.title" readonly />
@@ -219,13 +219,16 @@
                   <div class="form-row">
                     <label class="field small">
                       <span class="label">Quantity</span>
-                      <input type="number" [(ngModel)]="enquiry.quantity" min="1" />
+                      <input type="number" [(ngModel)]="enquiry.quantity" name="quantity" min="1" />
                     </label>
 
                     <label class="field small">
                       <span class="label">Your Name <span class="required">*</span></span>
-                      <input name="name" type="text" #nameModel="ngModel" [(ngModel)]="enquiry.name" placeholder="e.g., Jaspreet K." required />
-                      <small class="error" *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)">Please enter your name.</small>
+                      <input name="name" type="text" #nameModel="ngModel" [(ngModel)]="enquiry.name" placeholder="e.g., Jaspreet K." required minlength="2" />
+                      <small class="error" *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)">
+                        <span *ngIf="nameModel.errors?.['required']">Please enter your name.</span>
+                        <span *ngIf="nameModel.errors?.['minlength']">Name must be at least 2 characters.</span>
+                      </small>
                     </label>
                   </div>
 
@@ -242,27 +245,37 @@
                       <span class="label">Phone <span class="required">*</span></span>
                       <input name="phone" type="tel" #phoneModel="ngModel" [(ngModel)]="enquiry.phone" placeholder="98765 43210" required />
                       <small class="helper">Enter local number without country code</small>
-                      <small class="error" *ngIf="(phoneModel.invalid && (phoneModel.dirty || phoneModel.touched))">Please enter a phone number.</small>
-                      <small class="error" *ngIf="!(isPhoneFormatValid()) && (phoneModel.dirty || phoneModel.touched)">Phone must be 7–15 digits including country code.</small>
+                      <small class="error" *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)">
+                        <span *ngIf="phoneModel.errors?.['required']">Please enter a phone number.</span>
+                      </small>
                     </label>
                   </div>
 
                   <label class="field">
                     <span class="label">Email <span class="required">*</span></span>
-                    <input name="email" type="email" #emailModel="ngModel" [(ngModel)]="enquiry.email" placeholder="you@example.com" required />
-                    <small class="error" *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)">Enter a valid email address.</small>
+                    <input name="email" type="email" #emailModel="ngModel" [(ngModel)]="enquiry.email" placeholder="you@example.com" required email />
+                    <small class="error" *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)">
+                      <span *ngIf="emailModel.errors?.['required']">Email is required.</span>
+                      <span *ngIf="emailModel.errors?.['email']">Enter a valid email address.</span>
+                    </small>
                   </label>
 
                   <label class="field">
                     <span class="label">Location (city / country) <span class="required">*</span></span>
-                    <input name="location" type="text" #locationModel="ngModel" [(ngModel)]="enquiry.location" placeholder="e.g., Mukerian, India or Surrey, UK" required />
-                    <small class="error" *ngIf="locationModel.invalid && (locationModel.dirty || locationModel.touched)">Please enter your location (city, country).</small>
+                    <input name="location" type="text" #locationModel="ngModel" [(ngModel)]="enquiry.location" placeholder="e.g., Mukerian, India or Surrey, UK" required minlength="3" />
+                    <small class="error" *ngIf="locationModel.invalid && (locationModel.dirty || locationModel.touched)">
+                      <span *ngIf="locationModel.errors?.['required']">Please enter your location.</span>
+                      <span *ngIf="locationModel.errors?.['minlength']">Location must be at least 3 characters.</span>
+                    </small>
                   </label>
 
                   <label class="field">
                     <span class="label">Custom instructions / measurements <span class="required">*</span></span>
                     <textarea name="notes" rows="4" #notesModel="ngModel" [(ngModel)]="enquiry.notes" minlength="3" required placeholder="e.g., Chest: 38 inches, Waist: 32 inches, Length: 42 inches"></textarea>
-                    <small class="error" *ngIf="notesModel.invalid && (notesModel.dirty || notesModel.touched)">Please provide measurement details or instructions (3+ chars).</small>
+                    <small class="error" *ngIf="notesModel.invalid && (notesModel.dirty || notesModel.touched)">
+                      <span *ngIf="notesModel.errors?.['required']">Please provide measurement details or instructions.</span>
+                      <span *ngIf="notesModel.errors?.['minlength']">Instructions must be at least 3 characters.</span>
+                    </small>
                   </label>
 
                   <!-- Enhanced Visit Options Section -->
@@ -297,7 +310,11 @@
                   <div *ngIf="enquiry.visitOption === 'someone'">
                     <label class="field">
                       <span class="label">Representative name <span class="required">*</span></span>
-                      <input name="repName" type="text" [(ngModel)]="enquiry.representativeName" #repNameModel="ngModel" placeholder="Name of the person who will come" required />
+                      <input name="repName" type="text" [(ngModel)]="enquiry.representativeName" #repNameModel="ngModel" placeholder="Name of the person who will come" required minlength="2" />
+                      <small class="error" *ngIf="repNameModel.invalid && (repNameModel.dirty || repNameModel.touched)">
+                        <span *ngIf="repNameModel.errors?.['required']">Representative name is required.</span>
+                        <span *ngIf="repNameModel.errors?.['minlength']">Name must be at least 2 characters.</span>
+                      </small>
                     </label>
 
                     <label class="field">
@@ -311,7 +328,11 @@
                   <!-- If user is sending fabric, require a pickup/delivery address so the courier can return the finished suit to you. -->
                   <label class="field" *ngIf="enquiry.visitOption === 'send-fabric'">
                     <span class="label">Pickup / Delivery address <span class="required">*</span></span>
-                    <textarea rows="2" [(ngModel)]="enquiry.address" [required]="enquiry.visitOption === 'send-fabric'" placeholder="Recipient name, full address, landmark, city, postcode, country"></textarea>
+                    <textarea rows="2" name="address" #addressModel="ngModel" [(ngModel)]="enquiry.address" [required]="enquiry.visitOption === 'send-fabric'" minlength="10" placeholder="Recipient name, full address, landmark, city, postcode, country"></textarea>
+                    <small class="error" *ngIf="addressModel.invalid && (addressModel.dirty || addressModel.touched)">
+                      <span *ngIf="addressModel.errors?.['required']">Delivery address is required.</span>
+                      <span *ngIf="addressModel.errors?.['minlength']">Please provide a complete address (at least 10 characters).</span>
+                    </small>
                     <small class="helper">We need a full address to receive the fabric and return the finished suit via courier. Include recipient name, a nearby landmark, city, postcode and country.</small>
                   </label>
 
@@ -324,16 +345,16 @@
                   </div>
 
                   <div class="enquiry-actions">
-                    <button class="btn email" [disabled]="!isEnquiryValid()" (click)="sendEnquiryViaEmail()" aria-label="Send via Email">
+                    <button type="button" class="btn email" [disabled]="!enquiryForm.valid || !enquiryConsent" (click)="sendEnquiryViaEmail()" aria-label="Send via Email">
                       <i class="fas fa-envelope"></i>
                       Send via Email
                     </button>
-                    <button class="btn primary" [disabled]="!isEnquiryValid()" (click)="sendEnquiryViaWhatsApp()" aria-label="Send via WhatsApp">
+                    <button type="button" class="btn primary" [disabled]="!enquiryForm.valid || !enquiryConsent" (click)="sendEnquiryViaWhatsApp()" aria-label="Send via WhatsApp">
                       <i class="fab fa-whatsapp"></i>
                       Send via WhatsApp
                     </button>
                   </div>
-                </div>
+                </form>
               </div>
 
               <!-- RIGHT COLUMN: Message Preview -->
