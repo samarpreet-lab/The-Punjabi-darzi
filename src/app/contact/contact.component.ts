@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { FormSubmissionService } from '../core/form-submission.service';
+import { generateWhatsAppLink, openWhatsAppLink } from '../core/whatsapp.utils';
 
 @Component({
   selector: 'app-contact',
@@ -63,8 +64,8 @@ export class ContactComponent {
     } else {
       // fallback: open WhatsApp if form not found
       const message = 'Hi, I would like to inquire about your tailoring services.';
-      const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
+      const url = generateWhatsAppLink(this.whatsappNumber, message);
+      openWhatsAppLink(url);
     }
   }
 
@@ -114,8 +115,8 @@ export class ContactComponent {
 
     if (this.formData.sendMethod === 'whatsapp') {
       const waMessage = `${subject}\n\n${body}`;
-      const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
-      window.open(url, '_blank');
+      const url = generateWhatsAppLink(this.whatsappNumber, waMessage);
+      openWhatsAppLink(url);
     } else {
       // require sender email
       if (!this.formData.senderEmail || !this.formData.senderEmail.includes('@')) {

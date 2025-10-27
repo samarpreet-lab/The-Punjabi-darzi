@@ -39,7 +39,7 @@ export class FormSubmissionService {
     const isEndpointValid =
       endpointUrl &&
       endpointUrl.trim().length > 0 &&
-      !endpointUrl.includes('YOUR_FORM_ID');
+      !endpointUrl.includes('https://formspree.io/f/meorwror');
 
     if (isEndpointValid) {
       try {

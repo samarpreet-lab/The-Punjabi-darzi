@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { CustomSelectComponent } from '../shared/custom-select/custom-select.component';
 import { FormSubmissionService } from '../core/form-submission.service';
+import { generateWhatsAppLink, openWhatsAppLink } from '../core/whatsapp.utils';
 import { PRICING_ROWS, SERVICE_CATEGORIES } from '../shared/services.shared';
 
 export interface Feedback {
@@ -146,8 +147,8 @@ export class FeedbackPageComponent {
     pieces.push(`Rating: ${this.model.rating} ★`);
     if (this.model.comment) pieces.push(`Comments: ${this.model.comment}`);
     const message = pieces.join('\n');
-    const url = `https://wa.me/${this.businessWhatsApp}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    const url = generateWhatsAppLink(this.businessWhatsApp, message);
+    openWhatsAppLink(url);
   }
 
   reset() {

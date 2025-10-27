@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { TailoringDataService } from './tailoring-data.service';
+import { generateWhatsAppLink, openWhatsAppLink } from '../core/whatsapp.utils';
 
 @Component({
   selector: 'app-services',
@@ -141,13 +142,8 @@ export class ServicesComponent {
   // Build a WhatsApp message and open wa.me link
   sendWhatsApp(prefill?: string) {
     const base = prefill || 'Hello, I would like to enquire about your services.';
-    const encoded = encodeURIComponent(base);
-    const waLink = `https://wa.me/${this.whatsappNumber}?text=${encoded}`;
-    try {
-      window.open(waLink, '_blank', 'noopener');
-    } catch (e) {
-      location.href = waLink;
-    }
+    const url = generateWhatsAppLink(this.whatsappNumber, base);
+    openWhatsAppLink(url);
   }
 
   

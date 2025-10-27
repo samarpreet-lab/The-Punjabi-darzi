@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { TailoringDataService } from '../services/tailoring-data.service';
 import { FormSubmissionService } from '../core/form-submission.service';
+import { generateWhatsAppLink, openWhatsAppLink } from '../core/whatsapp.utils';
 import type { PortfolioItem } from '../shared/services.shared';
 
 type FilterCategory = 'all' | 'simple-suits' | 'patiala-suits' | 'plazo-suits' | 'frock-suits' | 
@@ -235,33 +236,33 @@ export class PortfolioComponent {
       return;
     }
 
-  const visitText = this.enquiry.visitOption === 'self'
-    ? 'I will come to the boutique myself'
-    : (this.enquiry.visitOption === 'someone' ? 'Someone will visit on my behalf' : 'I will send the fabric by post/courier');
+    const visitText = this.enquiry.visitOption === 'self'
+      ? 'I will come to the boutique myself'
+      : (this.enquiry.visitOption === 'someone' ? 'Someone will visit on my behalf' : 'I will send the fabric by post/courier');
 
-  let extraInfo = '';
-  if (this.enquiry.visitOption === 'send-fabric') {
-    extraInfo = this.enquiry.address ? `Address: ${this.enquiry.address}` : '';
-  } else if (this.enquiry.visitOption === 'someone') {
-    const rep = this.enquiry.representativeName ? `Representative: ${this.enquiry.representativeName}` : '';
-    const repPhone = this.enquiry.representativePhone ? ` (${this.enquiry.representativePhone})` : '';
-    extraInfo = rep ? `${rep}${repPhone}` : '';
-  }
+    let extraInfo = '';
+    if (this.enquiry.visitOption === 'send-fabric') {
+      extraInfo = this.enquiry.address ? `Address: ${this.enquiry.address}` : '';
+    } else if (this.enquiry.visitOption === 'someone') {
+      const rep = this.enquiry.representativeName ? `Representative: ${this.enquiry.representativeName}` : '';
+      const repPhone = this.enquiry.representativePhone ? ` (${this.enquiry.representativePhone})` : '';
+      extraInfo = rep ? `${rep}${repPhone}` : '';
+    }
 
-  // Build a newline-separated message so WhatsApp shows a structured message preview
-  const message = [
-    `Sat Sri Akal! I'm interested in the '${item.title}' (Qty: ${this.enquiry.quantity}).`,
-    `Name: ${this.enquiry.name}`,
-    `Phone: ${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
-    `Email: ${this.enquiry.email}`,
-    `Location: ${this.enquiry.location}`,
-    visitText,
-    extraInfo,
-    `Notes: ${this.enquiry.notes}`
-  ].filter(Boolean).join('\n');
+    // Build a newline-separated message so WhatsApp shows a structured message preview
+    const message = [
+      `Sat Sri Akal! I'm interested in the '${item.title}' (Qty: ${this.enquiry.quantity}).`,
+      `Name: ${this.enquiry.name}`,
+      `Phone: ${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
+      `Email: ${this.enquiry.email}`,
+      `Location: ${this.enquiry.location}`,
+      visitText,
+      extraInfo,
+      `Notes: ${this.enquiry.notes}`
+    ].filter(Boolean).join('\n');
 
-  const url = `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    const url = generateWhatsAppLink(this.whatsappNumber, message);
+    openWhatsAppLink(url);
     this.isEnquiryOpen.set(false);
     this.closeModal();
   }
