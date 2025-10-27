@@ -35,11 +35,11 @@ export class FormSubmissionService {
     payload: any,
     mailtoFallback?: MailtoFallback
   ): Promise<boolean> {
-    // Check if the endpoint is valid (not empty, not a placeholder)
+    // Check if the endpoint is valid (not empty, not a placeholder like YOUR_FORM_ID)
     const isEndpointValid =
       endpointUrl &&
       endpointUrl.trim().length > 0 &&
-      !endpointUrl.includes('https://formspree.io/f/meorwror');
+      !endpointUrl.includes('YOUR_FORM_ID');
 
     if (isEndpointValid) {
       try {

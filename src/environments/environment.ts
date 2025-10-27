@@ -6,7 +6,7 @@ export const environment = {
   contact: {
     whatsappNumber: '917589114421',
     studioEmail: 'bhamrasamar02@gmail.com',
-    enquiryEmail: 'info@thepunjabidarzi.com',
+    enquiryEmail: 'bhamrasamar02@gmail.com',
     formspreeEndpoint: 'https://formspree.io/f/meorwror'
   }
 };

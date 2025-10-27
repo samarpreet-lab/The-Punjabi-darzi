@@ -1,4 +1,5 @@
-/* Component-level color aliases to the global theme */
+/* ===== Variables: Component-level color aliases to the global theme ===== */
+/* These CSS custom properties are used throughout the Home page styles below. */
 :host {
 	--gold-color: #b88a1e;
 	--primary-color: #b88a1e;
@@ -9,13 +10,15 @@
 	--text-muted: #b8b8d1;
 }
 
-/* Home Page Styles */
+/* ===== Home Page Wrapper ===== */
+/* Section: root wrapper for the Home page */
 .home-page {
   background: var(--site-bg);
   color: var(--text-light);
 }
 
-/* Hero Section */
+/* ===== Hero Section ===== */
+/* Section: top hero area with badge, title, description, stats and image */
 .hero-section {
   padding: 32px 0 40px;
   background: linear-gradient(135deg, rgba(16, 9, 24, 0.98), rgba(30, 22, 34, 0.9));
@@ -107,7 +110,8 @@
   .hero-image img { height: 520px; }
 }
 
-/* Button Styles */
+/* ===== Shared Buttons ===== */
+/* Section: generic button styles used across hero, services, featured and contact sections */
 .btn {
   padding: 12px 24px;
   border-radius: 8px;
@@ -158,7 +162,8 @@
   justify-content: center;
 }
 
-/* Services Section */
+/* ===== Services Section ===== */
+/* Section: service cards grid, icons and pricing */
 .services-section {
   padding: 60px 0;
   margin: 20px;
@@ -235,10 +240,11 @@
   font-size: 1.1rem;
 }
 
-/* Compact WhatsApp action inside service cards */
-/* (reverted compact contact styles) */
+/* ===== Compact Actions ===== */
+/* Section: compact action/button variants used in service cards */
 
-/* Featured Section */
+/* ===== Featured Section ===== */
+/* Section: featured card and its visual surface, badges and images */
 .featured-section {
   padding: 40px 0;
   margin: 20px;
@@ -410,7 +416,8 @@
   .featured-image { padding-left: 24px; }
 }
 
-/* Testimonials Section */
+/* ===== Testimonials Section ===== */
+/* Section: customer testimonial cards and author info */
 .testimonials-section {
   padding: 60px 0;
   margin: 20px;
@@ -463,13 +470,15 @@
   font-weight: 600;
 }
 
-/* Contact Section */
+/* ===== Contact Section ===== */
+/* Section: contact form, quick contact cards and related controls */
 .contact-section {
   padding: 60px 0;
   margin: 20px;
 }
 
-/* Quick Contact Section */
+/* ----- Quick Contact (subsection of Contact) ----- */
+/* Section: quick contact cards, call-to-action buttons and brief contact info */
 .quick-contact-wrap {
   margin-bottom: 48px;
 }
@@ -528,7 +537,8 @@
   padding: 10px 16px;
 }
 
-/* Location Section */
+/* ===== Location / Map Section ===== */
+/* Section: embedded map, map controls and studio location details */
 .location-wrap {
   margin-top: 48px;
 }
@@ -779,7 +789,8 @@
   margin-top: 6px;
 }
 
-/* Responsive Design */
+/* ===== Responsive Rules ===== */
+/* Media queries to adjust layout on smaller viewports */
 @media (max-width: 992px) {
   .hero-title {
     font-size: 2rem;
