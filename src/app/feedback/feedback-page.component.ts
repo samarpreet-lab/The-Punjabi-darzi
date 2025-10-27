@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { CustomSelectComponent } from '../shared/custom-select/custom-select.component';
+import { FormSubmissionService } from '../core/form-submission.service';
 import { PRICING_ROWS, SERVICE_CATEGORIES } from '../shared/services.shared';
 
 export interface Feedback {
@@ -63,7 +64,10 @@ export class FeedbackPageComponent {
   recent = signal<Feedback[]>([]);
   successMessage = signal('');
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private formSubmissionService: FormSubmissionService
+  ) {}
 
   formatPreview(): string {
     const svc = this.services.find(s => s.id === this.model.serviceId)?.title || '';
@@ -77,12 +81,13 @@ export class FeedbackPageComponent {
   async sendViaFormspree() {
     if (!this.model.serviceId || !this.model.rating || !this.model.consent) return;
     this.submitting.set(true);
-      const payload: any = {
+
+    const payload: any = {
       name: this.model.name,
       serviceId: this.model.serviceId,
-      serviceTitle: this.services.find(s=>s.id===this.model.serviceId)?.title,
+      serviceTitle: this.services.find(s => s.id === this.model.serviceId)?.title,
       suitId: this.model.suitId,
-      suitTitle: this.portfolio.find(p=>p.id===this.model.suitId)?.title || (this as any).suitOptions?.find((s: any) => s.id === this.model.suitId)?.title,
+      suitTitle: this.portfolio.find(p => p.id === this.model.suitId)?.title || (this as any).suitOptions?.find((s: any) => s.id === this.model.suitId)?.title,
       rating: this.model.rating,
       comment: this.model.comment,
       email: this.model.email,
@@ -92,31 +97,30 @@ export class FeedbackPageComponent {
     };
 
     try {
-      if (this.formspreeEndpoint && this.formspreeEndpoint.trim().length > 0) {
-        const res = await fetch(this.formspreeEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Formspree error');
-      } else {
-        // fallback: open mail client with prefilled subject/body
-        const subject = `Feedback: ${payload.serviceTitle}${payload.suitTitle ? ' / ' + payload.suitTitle : ''}`;
-        const body = encodeURIComponent(this.formatPreview());
-        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${body}`;
-      }
+      const subject = `Feedback: ${payload.serviceTitle}${payload.suitTitle ? ' / ' + payload.suitTitle : ''}`;
+      const body = this.formatPreview();
+
+      const success = await this.formSubmissionService.submitToFormspree(
+        this.formspreeEndpoint,
+        payload,
+        {
+          recipient: this.services[0] ? this.services[0].title : 'feedback@example.com',
+          subject: subject,
+          body: body
+        }
+      );
 
       // store locally for preview
       const fb: Feedback = { ...(payload as Feedback), id: Date.now().toString() };
-  this.recent.update(a => [fb, ...a]);
+      this.recent.update(a => [fb, ...a]);
       this.successMessage.set('Thanks — your feedback was sent.');
-  this.model = { rating: 5, serviceId: this.services[0]?.id || '', name: '' };
+      this.model = { rating: 5, serviceId: this.services[0]?.id || '', name: '' };
     } catch (err) {
       this.successMessage.set('Failed to send feedback. Try WhatsApp or check Formspree endpoint.');
       console.error(err);
     } finally {
       this.submitting.set(false);
-      setTimeout(()=> this.successMessage.set(''), 5000);
+      setTimeout(() => this.successMessage.set(''), 5000);
     }
   }
 

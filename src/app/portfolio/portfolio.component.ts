@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { TailoringDataService } from '../services/tailoring-data.service';
+import { FormSubmissionService } from '../core/form-submission.service';
 import type { PortfolioItem } from '../shared/services.shared';
 
 type FilterCategory = 'all' | 'simple-suits' | 'patiala-suits' | 'plazo-suits' | 'frock-suits' | 
@@ -177,7 +178,11 @@ export class PortfolioComponent {
     return this.filters.slice(count);
   }
 
-  constructor(private dataService: TailoringDataService, private router: Router) {
+  constructor(
+    private dataService: TailoringDataService,
+    private router: Router,
+    private formSubmissionService: FormSubmissionService
+  ) {
     this.portfolioItems = this.dataService.getPortfolioItems();
     this.filteredItems = this.portfolioItems;
   }
@@ -313,15 +318,6 @@ export class PortfolioComponent {
     // Save preview for success modal
     this.sentMessagePreview = `Subject: ${subject}\n\n${body}`;
 
-    // If the user hasn't configured formspreeEndpoint, fallback to mailto (previous behavior)
-    if (!this.formspreeEndpoint || this.formspreeEndpoint.includes('YOUR_FORM_ID')) {
-      const mailto = `mailto:${this.enquiryEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.open(mailto, '_blank');
-      this.isEnquiryOpen.set(false);
-      this.closeModal();
-      return;
-    }
-
     // Send via Formspree
     this.emailSending = true;
     this.emailError = null;
@@ -340,28 +336,23 @@ export class PortfolioComponent {
         quantity: this.enquiry.quantity
       };
 
-      const res = await fetch(this.formspreeEndpoint, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (!res.ok) {
-        const errText = await res.text();
-        throw new Error(`Failed to send (status ${res.status}): ${errText}`);
-      }
+      const success = await this.formSubmissionService.submitToFormspree(
+        this.formspreeEndpoint,
+        payload,
+        {
+          recipient: this.enquiryEmail,
+          subject: subject,
+          body: body
+        }
+      );
 
       this.emailSent = true;
       this.showEmailSuccessModal = true;
       // Close only the enquiry form modal, keep the parent item modal open so success modal displays
       this.isEnquiryOpen.set(false);
     } catch (err: any) {
-      console.error('Formspree send error', err);
+      console.error('Form submission error', err);
       this.emailError = err?.message || 'Unknown error while sending message.';
-      // fallback to mailto if desired could be done here
     } finally {
       this.emailSending = false;
     }

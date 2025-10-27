@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { FormSubmissionService } from '../core/form-submission.service';
 
 @Component({
   selector: 'app-contact',
@@ -39,7 +40,11 @@ export class ContactComponent {
     sendMethod: 'email'
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private formSubmissionService: FormSubmissionService
+  ) {}
 
   sendWhatsApp(): void {
     // Instead of opening WhatsApp immediately, scroll to the contact form and
@@ -117,50 +122,41 @@ export class ContactComponent {
         alert('Please enter a valid email address to send via Email');
         return;
       }
-      // If a Formspree endpoint is configured, POST the form data there.
-      if (this.formspreeEndpoint && this.formspreeEndpoint.trim() !== '') {
-        this.isSubmitting = true;
-        try {
-          // Formspree prefers a `_replyto` field for the sender's email so replies go to them.
-          const payload = {
-            _subject: subject,
-            name: this.formData.name,
-            _replyto: this.formData.senderEmail,
-            phone: this.formData.phone,
-            service: selectedService,
-            message: this.formData.message,
-            formType: 'General Contact Enquiry'
-          };
 
-          const res = await fetch(this.formspreeEndpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-          });
+      this.isSubmitting = true;
 
-          if (!res.ok) {
-            // try to read error body for debugging
-            let errText = '';
-            try { errText = await res.text(); } catch (e) { /* ignore */ }
-            throw new Error(`Formspree error: ${res.status} ${res.statusText} ${errText}`);
+      try {
+        const payload = {
+          _subject: subject,
+          name: this.formData.name,
+          _replyto: this.formData.senderEmail,
+          phone: this.formData.phone,
+          service: selectedService,
+          message: this.formData.message,
+          formType: 'General Contact Enquiry'
+        };
+
+        const success = await this.formSubmissionService.submitToFormspree(
+          this.formspreeEndpoint,
+          payload,
+          {
+            recipient: this.emailRecipient,
+            subject: subject,
+            body: body,
+            replyTo: this.formData.senderEmail
           }
+        );
 
+        if (success) {
           alert('Thank you — your message was sent successfully. We will be in touch soon.');
-        } catch (err) {
-          console.error(err);
+        } else {
           alert('There was an error sending your message. Falling back to opening your mail client.');
-          // fallback to mailto if Formspree fails
-          const mailto = `mailto:${this.emailRecipient}?cc=${encodeURIComponent(this.formData.senderEmail!)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          window.location.href = mailto;
-        } finally {
-          this.isSubmitting = false;
         }
-      } else {
-        // no Formspree configured — open user's mail client
-        const mailto = `mailto:${this.emailRecipient}?cc=${encodeURIComponent(this.formData.senderEmail!)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
+      } catch (err: any) {
+        console.error(err);
+        alert('There was an error sending your message. Please try again or contact us via WhatsApp.');
+      } finally {
+        this.isSubmitting = false;
       }
     }
 
