@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { environment } from '../../environments/environment';
 import { TailoringDataService } from '../services/tailoring-data.service';
 import { FormSubmissionService } from '../core/form-submission.service';
@@ -15,7 +16,7 @@ type FilterCategory = 'all' | 'simple-suits' | 'patiala-suits' | 'plazo-suits' |
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxIntlTelInputModule],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css'
 })
@@ -63,7 +64,6 @@ export class PortfolioComponent {
     representativeName?: string;
     representativePhone?: string;
     notes: string;
-    countryCode?: string;
   } = {
     quantity: 1,
     name: '',
@@ -74,99 +74,9 @@ export class PortfolioComponent {
     address: '',
     representativeName: '',
     representativePhone: '',
-    notes: '',
-    countryCode: '+91'
+    notes: ''
   };
 
-  // List of country dialing codes and names for the searchable dropdown
-  countries = [
-    { code: '+1', name: 'United States / Canada' },
-    { code: '+7', name: 'Russia' },
-    { code: '+20', name: 'Egypt' },
-    { code: '+27', name: 'South Africa' },
-    { code: '+30', name: 'Greece' },
-    { code: '+31', name: 'Netherlands' },
-    { code: '+32', name: 'Belgium' },
-    { code: '+33', name: 'France' },
-    { code: '+34', name: 'Spain' },
-    { code: '+36', name: 'Hungary' },
-    { code: '+39', name: 'Italy' },
-    { code: '+40', name: 'Romania' },
-    { code: '+44', name: 'United Kingdom' },
-    { code: '+45', name: 'Denmark' },
-    { code: '+46', name: 'Sweden' },
-    { code: '+47', name: 'Norway' },
-    { code: '+48', name: 'Poland' },
-    { code: '+49', name: 'Germany' },
-    { code: '+52', name: 'Mexico' },
-    { code: '+53', name: 'Cuba' },
-    { code: '+54', name: 'Argentina' },
-    { code: '+55', name: 'Brazil' },
-    { code: '+61', name: 'Australia' },
-    { code: '+62', name: 'Indonesia' },
-    { code: '+63', name: 'Philippines' },
-    { code: '+64', name: 'New Zealand' },
-    { code: '+65', name: 'Singapore' },
-    { code: '+66', name: 'Thailand' },
-    { code: '+81', name: 'Japan' },
-    { code: '+82', name: 'South Korea' },
-    { code: '+84', name: 'Vietnam' },
-    { code: '+86', name: 'China' },
-    { code: '+90', name: 'Turkey' },
-    { code: '+91', name: 'India' },
-    { code: '+92', name: 'Pakistan' },
-    { code: '+93', name: 'Afghanistan' },
-    { code: '+94', name: 'Sri Lanka' },
-    { code: '+95', name: 'Myanmar' },
-    { code: '+98', name: 'Iran' },
-    { code: '+212', name: 'Morocco' },
-    { code: '+213', name: 'Algeria' },
-    { code: '+218', name: 'Libya' },
-    { code: '+240', name: 'Equatorial Guinea' },
-    { code: '+351', name: 'Portugal' },
-    { code: '+352', name: 'Luxembourg' },
-    { code: '+353', name: 'Ireland' },
-    { code: '+354', name: 'Iceland' },
-    { code: '+355', name: 'Albania' },
-    { code: '+358', name: 'Finland' },
-    { code: '+370', name: 'Lithuania' },
-    { code: '+371', name: 'Latvia' },
-    { code: '+372', name: 'Estonia' },
-    { code: '+376', name: 'Andorra' },
-    { code: '+380', name: 'Ukraine' },
-    { code: '+381', name: 'Serbia' },
-    { code: '+385', name: 'Croatia' },
-    { code: '+386', name: 'Slovenia' },
-    { code: '+387', name: 'Bosnia & Herzegovina' },
-    { code: '+420', name: 'Czech Republic' },
-    { code: '+421', name: 'Slovakia' },
-    { code: '+852', name: 'Hong Kong' },
-    { code: '+853', name: 'Macao' },
-    { code: '+855', name: 'Cambodia' },
-    { code: '+856', name: 'Laos' },
-    { code: '+880', name: 'Bangladesh' },
-    { code: '+886', name: 'Taiwan' },
-    { code: '+962', name: 'Jordan' },
-    { code: '+963', name: 'Syria' },
-    { code: '+964', name: 'Iraq' },
-    { code: '+965', name: 'Kuwait' },
-    { code: '+966', name: 'Saudi Arabia' },
-    { code: '+971', name: 'United Arab Emirates' },
-    { code: '+972', name: 'Israel' },
-    { code: '+973', name: 'Bahrain' },
-    { code: '+974', name: 'Qatar' },
-    { code: '+975', name: 'Bhutan' },
-    { code: '+976', name: 'Mongolia' },
-    { code: '+977', name: 'Nepal' },
-    { code: '+998', name: 'Uzbekistan' }
-  ];
-
-  // When the user types/selects a country string in the country input, parse the leading code
-  setCountryFromInput(value: string): void {
-    if (!value) return;
-    const m = value.match(/(\+\d{1,4})/);
-    if (m) this.enquiry.countryCode = m[1];
-  }
   // user consent for storing/using PII in the enquiry
   enquiryConsent = false;
 
@@ -217,7 +127,7 @@ export class PortfolioComponent {
 
   sendWhatsAppInquiry(item: PortfolioItem): void {
     // open the enquiry modal (modal-on-modal)
-    this.enquiry = { quantity: 1, name: '', phone: '', email: '', location: '', visitOption: 'self', address: '', representativeName: '', representativePhone: '', notes: '', countryCode: '+91' };
+    this.enquiry = { quantity: 1, name: '', phone: '', email: '', location: '', visitOption: 'self', address: '', representativeName: '', representativePhone: '', notes: '' };
     this.isEnquiryOpen.set(true);
   }
 
@@ -253,7 +163,7 @@ export class PortfolioComponent {
     const message = [
       `Sat Sri Akal! I'm interested in the '${item.title}' (Qty: ${this.enquiry.quantity}).`,
       `Name: ${this.enquiry.name}`,
-      `Phone: ${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
+      `Phone: ${this.enquiry.phone}`,
       `Email: ${this.enquiry.email}`,
       `Location: ${this.enquiry.location}`,
       visitText,
@@ -308,7 +218,7 @@ export class PortfolioComponent {
     const body = [
       `Sat Sri Akal! I'm interested in the '${item.title}' (Qty: ${this.enquiry.quantity}).`,
       `Name: ${this.enquiry.name}`,
-      `Phone: ${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
+      `Phone: ${this.enquiry.phone}`,
       `Email: ${this.enquiry.email}`,
       `Location: ${this.enquiry.location}`,
       visitText,
@@ -329,7 +239,7 @@ export class PortfolioComponent {
         message: body,
         name: this.enquiry.name,
         email: this.enquiry.email,
-        phone: `${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
+        phone: this.enquiry.phone,
         location: this.enquiry.location,
         formType: 'Portfolio Item Enquiry',
         itemTitle: item.title,

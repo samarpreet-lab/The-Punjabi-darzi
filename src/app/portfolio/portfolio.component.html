@@ -233,22 +233,22 @@
                   </div>
 
                   <div class="form-row phone-row">
-                    <label class="field small phone-select">
-                      <span class="label">Country code</span>
-                      <input list="country-list" name="countryInput" [(ngModel)]="enquiry.countryCode" (ngModelChange)="setCountryFromInput($event)" />
-                      <datalist id="country-list">
-                        <option *ngFor="let c of countries" [value]="c.code + ' ' + c.name">{{c.code}} {{c.name}}</option>
-                      </datalist>
-                    </label>
+                    <ngx-intl-tel-input
+                      [(ngModel)]="enquiry.phone"
+                      name="phoneInput"
+                      #phoneModel="ngModel"
+                      [preferredCountries]="['in', 'us', 'gb']"
+                      [enableAutoCountrySelect]="true"
+                      [separateDialCode]="false"
+                      [required]="true"
+                      placeholder="Phone number"
+                      class="field phone-input"
+                    ></ngx-intl-tel-input>
 
-                    <label class="field small phone-input">
-                      <span class="label">Phone <span class="required">*</span></span>
-                      <input name="phone" type="tel" #phoneModel="ngModel" [(ngModel)]="enquiry.phone" placeholder="98765 43210" required />
-                      <small class="helper">Enter local number without country code</small>
-                      <small class="error" *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)">
-                        <span *ngIf="phoneModel.errors?.['required']">Please enter a phone number.</span>
-                      </small>
-                    </label>
+                    <small class="error" *ngIf="phoneModel.invalid && (phoneModel.dirty || phoneModel.touched)">
+                      <span *ngIf="phoneModel.errors?.['required']">Please enter a phone number.</span>
+                      <span *ngIf="phoneModel.errors?.['validatePhoneNumber']">Please enter a valid phone number.</span>
+                    </small>
                   </div>
 
                   <label class="field">
@@ -382,7 +382,7 @@
                     </div>
                     <div class="preview-item">
                       <span class="preview-label">Phone</span>
-                      <span class="preview-value">{{enquiry.countryCode}} {{enquiry.phone || '—'}}</span>
+                      <span class="preview-value">{{enquiry.phone || '—'}}</span>
                     </div>
                     <div class="preview-item">
                       <span class="preview-label">Email</span>

@@ -1402,3 +1402,127 @@
 .email-success-content {
   font-family: inherit;
 }
+
+/* --- ngx-intl-tel-input styling for dark theme --- */
+
+/* Main container and input wrapper */
+::ng-deep .ngx-intl-tel-input {
+  width: 100%;
+}
+
+::ng-deep .ngx-intl-tel-input.ng-untouched .form-control {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+::ng-deep .ngx-intl-tel-input .form-control {
+  background: rgba(15, 11, 18, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #fff !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 10px !important;
+  font-size: 0.95rem !important;
+  transition: all 0.2s ease !important;
+  font-family: inherit !important;
+  height: auto !important;
+  min-height: 44px !important;
+}
+
+::ng-deep .ngx-intl-tel-input .form-control:focus,
+::ng-deep .ngx-intl-tel-input .form-control:focus-visible {
+  outline: none !important;
+  border-color: rgba(255, 193, 7, 0.3) !important;
+  background: rgba(15, 11, 18, 0.8) !important;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.08) !important;
+}
+
+/* International input (ITI) dropdown styling */
+::ng-deep .iti {
+  width: 100%;
+  border: none !important;
+}
+
+::ng-deep .iti__flag-container {
+  background: transparent !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+::ng-deep .iti__selected-flag {
+  padding: 0.75rem 0.5rem !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+::ng-deep .iti__flag {
+  background-image: url('https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.7/flags/1x1.min.css');
+  background-size: contain;
+  width: 24px !important;
+  height: 16px !important;
+}
+
+::ng-deep .iti__country-list {
+  background: linear-gradient(180deg, #1a1320 0%, #251428 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 10px !important;
+  max-height: 300px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+  margin-top: 0.25rem !important;
+}
+
+::ng-deep .iti__country {
+  background: transparent !important;
+  padding: 0.6rem 0.85rem !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  color: var(--muted) !important;
+  font-size: 0.95rem !important;
+}
+
+::ng-deep .iti__country:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+}
+
+::ng-deep .iti__country.iti__highlight {
+  background: rgba(255, 193, 7, 0.1) !important;
+  color: #fff !important;
+}
+
+::ng-deep .iti__country-name,
+::ng-deep .iti__dial-code {
+  color: inherit !important;
+}
+
+/* Placeholder text styling */
+::ng-deep .ngx-intl-tel-input .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Validation states */
+::ng-deep .ngx-intl-tel-input.ng-invalid.ng-touched .form-control,
+::ng-deep .ngx-intl-tel-input.is-invalid .form-control {
+  border-color: #ff6b6b !important;
+  background: rgba(255, 107, 107, 0.05) !important;
+}
+
+::ng-deep .ngx-intl-tel-input.ng-valid.ng-touched .form-control {
+  border-color: #4ecdc4 !important;
+}
+
+::ng-deep .ngx-intl-tel-input.ng-invalid.ng-touched .form-control:focus,
+::ng-deep .ngx-intl-tel-input.is-invalid .form-control:focus {
+  border-color: #ff6b6b !important;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1) !important;
+}
+
+::ng-deep .ngx-intl-tel-input.ng-valid.ng-touched .form-control:focus {
+  border-color: #4ecdc4 !important;
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1) !important;
+}
+
+/* Disabled state */
+::ng-deep .ngx-intl-tel-input .form-control:disabled {
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: var(--muted) !important;
+  cursor: not-allowed !important;
+}
