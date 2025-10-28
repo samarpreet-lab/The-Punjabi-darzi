@@ -57,33 +57,7 @@
 		</div>
 	</section>
 
-	<!-- Action Modal (conditionally rendered) -->
-	<div class="action-modal" *ngIf="modalOpen">
-		<div class="modal-backdrop" (click)="closeModal()"></div>
-		<div class="modal-panel">
-			<button type="button" class="modal-close" aria-label="Close" (click)="closeModal()">✕</button>
-			<div class="modal-body">
-				<h3 *ngIf="modalKey === 'pricing'">Pricing quick view</h3>
-				<h3 *ngIf="modalKey === 'fabrics'">Fabric recommendations</h3>
-
-				<div *ngIf="modalKey === 'pricing'">
-					<p class="muted">Jump to the full pricing table or send a quick enquiry.</p>
-					<div class="modal-actions">
-						<button class="btn btn-glow" (click)="closeAndScroll('pricing')">View Pricing</button>
-						<button class="btn btn-outline-light" (click)="sendWhatsApp('Hi, I would like pricing information for your Punjabi suits.')">Enquire on WhatsApp</button>
-					</div>
-				</div>
-
-				<div *ngIf="modalKey === 'fabrics'">
-					<p class="muted">See recommended fabrics and care notes. You can ask us for fabric samples.</p>
-					<div class="modal-actions">
-						<button class="btn btn-glow" (click)="closeAndScroll('fabrics')">View Fabrics</button>
-						<button class="btn btn-outline-light" (click)="sendWhatsApp('Hi, I would like fabric recommendations for a Patiala suit.')">Enquire on WhatsApp</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Action Preview modal removed — CTA buttons call scrollTo() directly now -->
 
 	<!-- Service Categories -->
 	<section class="section-card categories-card mb-4 mb-lg-5">

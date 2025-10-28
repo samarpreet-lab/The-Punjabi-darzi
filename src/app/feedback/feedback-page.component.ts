@@ -64,6 +64,7 @@ export class FeedbackPageComponent {
   submitting = signal(false);
   recent = signal<Feedback[]>([]);
   successMessage = signal('');
+  showSuccessModal = signal(false);
 
   constructor(
     private route: ActivatedRoute,
@@ -82,6 +83,7 @@ export class FeedbackPageComponent {
   async sendViaFormspree() {
     if (!this.model.serviceId || !this.model.rating || !this.model.consent) return;
     this.submitting.set(true);
+    this.successMessage.set('');
 
     const payload: any = {
       name: this.model.name,
@@ -101,13 +103,14 @@ export class FeedbackPageComponent {
       const subject = `Feedback: ${payload.serviceTitle}${payload.suitTitle ? ' / ' + payload.suitTitle : ''}`;
       const body = this.formatPreview();
 
-      const success = await this.formSubmissionService.submitToFormspree(
+      await this.formSubmissionService.submitToFormspree(
         this.formspreeEndpoint,
         payload,
         {
-          recipient: this.services[0] ? this.services[0].title : 'feedback@example.com',
+          recipient: environment.contact.studioEmail,
           subject: subject,
-          body: body
+          body: body,
+          replyTo: this.model.email
         }
       );
 
@@ -115,10 +118,11 @@ export class FeedbackPageComponent {
       const fb: Feedback = { ...(payload as Feedback), id: Date.now().toString() };
       this.recent.update(a => [fb, ...a]);
       this.successMessage.set('Thanks — your feedback was sent.');
+      this.showSuccessModal.set(true);
       this.model = { rating: 5, serviceId: this.services[0]?.id || '', name: '' };
-    } catch (err) {
-      this.successMessage.set('Failed to send feedback. Try WhatsApp or check Formspree endpoint.');
-      console.error(err);
+    } catch (error) {
+      this.successMessage.set('Failed to send feedback. Try WhatsApp or check your mail client.');
+      console.error('Feedback submission error:', error);
     } finally {
       this.submitting.set(false);
       setTimeout(() => this.successMessage.set(''), 5000);
@@ -154,5 +158,9 @@ export class FeedbackPageComponent {
   reset() {
     this.model = { rating: 5, serviceId: this.services[0].id };
     this.successMessage.set('');
+  }
+
+  closeSuccessModal(): void {
+    this.showSuccessModal.set(false);
   }
 }

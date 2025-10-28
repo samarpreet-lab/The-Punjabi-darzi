@@ -11,13 +11,13 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class App {
   // Mobile navigation state
-  protected navOpen = signal(false);
+  navOpen = signal(false);
 
-  protected toggleNav(): void {
+  toggleNav(): void {
     this.navOpen.update((open) => !open);
   }
 
-  protected closeNav(): void {
+  closeNav(): void {
     this.navOpen.set(false);
   }
 }

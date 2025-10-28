@@ -10,8 +10,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'portfolio', component: PortfolioComponent },
-  // testimonials route removed
-  // fabric-guide route removed
   { path: 'contact', component: ContactComponent },
   { path: 'feedback', component: FeedbackPageComponent },
   { path: '**', redirectTo: '/home' }

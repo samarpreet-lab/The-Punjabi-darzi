@@ -100,4 +100,18 @@
       </li>
     </ul>
   </section>
+
+  <!-- Success modal (shown after email submission) -->
+  <div class="feedback-success-overlay" *ngIf="showSuccessModal()" (click)="closeSuccessModal()">
+    <div class="feedback-success-modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeSuccessModal()" aria-label="Close"><i class="fas fa-times"></i></button>
+      <div class="feedback-success-content">
+        <h3>Thank you!</h3>
+        <p>Your feedback has been sent successfully. We appreciate your time and will use it to improve our services.</p>
+        <div class="feedback-success-actions">
+          <button class="btn primary" (click)="closeSuccessModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

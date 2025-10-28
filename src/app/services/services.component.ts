@@ -107,36 +107,16 @@ export class ServicesComponent {
     }
   ];
 
-  // Modal state for action previews
-  modalOpen = false;
-  modalKey: string | null = null;
+  // (Modal preview removed) action preview modal state and helpers were removed as they are unused.
 
   // WhatsApp number for enquiries (same format as home component)
   whatsappNumber = environment.contact.whatsappNumber;
 
-  openModal(key: string) {
-    this.modalKey = key;
-    this.modalOpen = true;
-  }
-
-  closeModal() {
-    this.modalOpen = false;
-    this.modalKey = null;
-  }
 
   // Scroll helper used by modal 'View section' button
   scrollTo(id: string) {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // Close modal then scroll to a section. Small delay ensures modal DOM is removed
-  // so scrolling can target layout position correctly.
-  closeAndScroll(id: string) {
-    this.modalOpen = false;
-    this.modalKey = null;
-    // allow Angular to remove modal from DOM
-    setTimeout(() => this.scrollTo(id), 40);
   }
 
   // Build a WhatsApp message and open wa.me link

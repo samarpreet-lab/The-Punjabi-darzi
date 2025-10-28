@@ -33,19 +33,6 @@ export class HomeComponent {
   // These are category-style items: { group, title, description, price, icon? }
   services: Array<{ group: string; title: string; description: string; price: string; icon?: string }> = [];
 
-  testimonials = [
-    {
-      text: 'Perfect fit and fast work was executed. Delivered before the event!',
-      author: 'Harpreet Kaur',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face'
-    },
-    {
-      text: 'They matched my fabrics out to a tee. Great finishing and service.',
-      author: 'Simran Gill',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face'
-    }
-  ];
-
   get contactServices() {
     return this.services.map(s => s.title);
   }

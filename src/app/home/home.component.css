@@ -416,60 +416,6 @@
   .featured-image { padding-left: 24px; }
 }
 
-/* ===== Testimonials Section ===== */
-/* Section: customer testimonial cards and author info */
-.testimonials-section {
-  padding: 60px 0;
-  margin: 20px;
-}
-
-.testimonials-section h2 {
-  color: var(--text-light);
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 40px;
-}
-
-.testimonial-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 20px;
-  height: 100%;
-}
-
-.quote-icon {
-  color: var(--gold-color);
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.testimonial-text {
-  color: var(--text-light);
-  font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.author-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.author-name {
-  color: var(--text-light);
-  font-weight: 600;
-}
-
 /* ===== Contact Section ===== */
 /* Section: contact form, quick contact cards and related controls */
 .contact-section {
@@ -816,7 +762,6 @@
   .hero-section,
   .services-section,
   .featured-section,
-  .testimonials-section,
   .contact-section {
     margin: 10px;
   }
@@ -860,11 +805,6 @@
 
   .services-section .service-card {
     margin-bottom: 18px; /* slightly larger to create breathing room */
-  }
-
-  /* Add spacing between testimonial cards when stacked */
-  .testimonials-section .row > [class*="col-"] {
-    margin-bottom: 16px;
   }
 
   /* Give featured buttons some bottom margin so the image doesn't sit flush */

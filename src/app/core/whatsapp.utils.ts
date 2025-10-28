@@ -1,15 +1,4 @@
-/**
- * Utility functions for generating and opening WhatsApp links.
- * Centralizes WhatsApp link construction and opening logic.
- */
 
-/**
- * Generates a WhatsApp wa.me URL with an encoded message.
- *
- * @param phoneNumber - The phone number (without + sign, e.g., '917589114421')
- * @param message - The message text to pre-fill in WhatsApp
- * @returns The complete wa.me URL with encoded message parameter
- */
 export function generateWhatsAppLink(phoneNumber: string, message: string): string {
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -18,8 +7,6 @@ export function generateWhatsAppLink(phoneNumber: string, message: string): stri
 /**
  * Opens a WhatsApp link in a new browser tab/window.
  * Uses window.open with fallback to location.href for browsers that block pop-ups.
- *
- * @param url - The WhatsApp wa.me URL to open
  */
 export function openWhatsAppLink(url: string): void {
   try {

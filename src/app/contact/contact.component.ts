@@ -137,7 +137,7 @@ export class ContactComponent {
           formType: 'General Contact Enquiry'
         };
 
-        const success = await this.formSubmissionService.submitToFormspree(
+        await this.formSubmissionService.submitToFormspree(
           this.formspreeEndpoint,
           payload,
           {
@@ -148,13 +148,11 @@ export class ContactComponent {
           }
         );
 
-        if (success) {
-          alert('Thank you — your message was sent successfully. We will be in touch soon.');
-        } else {
-          alert('There was an error sending your message. Falling back to opening your mail client.');
-        }
-      } catch (err: any) {
-        console.error(err);
+        // SUCCESS: Show success alert
+        alert('Thank you — your message was sent successfully. We will be in touch soon.');
+      } catch (error) {
+        // FAILURE: Show error alert (only if fetch failed AND no fallback occurred)
+        console.error('Form submission failed:', error);
         alert('There was an error sending your message. Please try again or contact us via WhatsApp.');
       } finally {
         this.isSubmitting = false;

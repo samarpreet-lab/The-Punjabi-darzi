@@ -276,7 +276,6 @@ export class PortfolioComponent {
   emailSending = false;
   emailSent = false;
   emailError: string | null = null;
-  sentMessagePreview = '';
   showEmailSuccessModal = false;
 
   async sendEnquiryViaEmail(): Promise<void> {
@@ -316,9 +315,6 @@ export class PortfolioComponent {
       `Notes: ${this.enquiry.notes}`
     ].filter(Boolean).join('\n');
 
-    // Save preview for success modal
-    this.sentMessagePreview = `Subject: ${subject}\n\n${body}`;
-
     // Send via Formspree
     this.emailSending = true;
     this.emailError = null;
@@ -337,13 +333,14 @@ export class PortfolioComponent {
         quantity: this.enquiry.quantity
       };
 
-      const success = await this.formSubmissionService.submitToFormspree(
+      await this.formSubmissionService.submitToFormspree(
         this.formspreeEndpoint,
         payload,
         {
           recipient: this.enquiryEmail,
           subject: subject,
-          body: body
+          body: body,
+          replyTo: this.enquiry.email
         }
       );
 
@@ -351,9 +348,9 @@ export class PortfolioComponent {
       this.showEmailSuccessModal = true;
       // Close only the enquiry form modal, keep the parent item modal open so success modal displays
       this.isEnquiryOpen.set(false);
-    } catch (err: any) {
-      console.error('Form submission error', err);
-      this.emailError = err?.message || 'Unknown error while sending message.';
+    } catch (error) {
+      console.error('Form submission error:', error);
+      this.emailError = (error as Error)?.message || 'Unknown error while sending message.';
     } finally {
       this.emailSending = false;
     }
