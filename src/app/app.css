@@ -1,3 +1,7 @@
+/* ================================================================
+   GLOBAL STYLES & CSS VARIABLES
+   ================================================================ */
+
 :host {
 	display: block;
 	min-height: 100vh;
@@ -8,6 +12,12 @@
   --accent-gold: #b88a1e;
 }
 
+
+/* ================================================================
+   HEADER NAVIGATION
+   ================================================================ */
+
+/* Global navigation container - sticky header */
 .global-nav {
     position: sticky;
     top: 0;
@@ -16,7 +26,10 @@
     background: linear-gradient(180deg, rgba(9, 6, 16, 0.85), rgba(9, 6, 16, 0.75));
     backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-}.nav-bar {
+}
+
+/* Navigation bar container - main layout */
+.nav-bar {
 	max-width: 1140px;
 	margin: 0 auto;
 	padding: 0px 12px;
@@ -26,6 +39,10 @@
 	position: relative;
 }
 
+
+/* BRAND LOGO AND NAME */
+
+/* Brand wrapper container */
 .brand-wrap {
 	display: flex;
 	align-items: center;
@@ -33,6 +50,7 @@
 	justify-self: start;
 }
 
+/* Brand link and text styling */
 .brand {
 	display: flex;
 	align-items: center;
@@ -44,8 +62,8 @@
 	cursor: pointer;
 }
 
+/* Logo container - display image directly without circular badge */
 .brand-logo {
-	/* Use image directly instead of circular badge for header too */
 	width: auto;
 	height: auto;
 	border-radius: 0;
@@ -56,17 +74,17 @@
 	color: inherit;
 }
 
-/* Logo image sizing: ensure an image inside .brand-logo fits the circular container */
+/* Logo image sizing - fits container and maintains aspect ratio */
 .brand-logo .brand-img,
 .brand-logo img.brand-img {
     display: block;
     width: 100%;
     height: 100px;
     object-fit: contain;
-    border-radius: inherit; /* keep circular crop */
+    border-radius: inherit;
 }
 
-/* small variant used in footer */
+/* Small variant used in footer */
 .brand-img.small {
     width: 36px;
     height: 36px;
@@ -80,20 +98,16 @@
 	display: block;
 }
 
-@media (max-width: 768px) {
-	.brand-img {
-		width: 44px;
-	}
-	.brand-img.small {
-		width: 32px;
-	}
-}
-
+/* Brand name color - accent gold */
 .brand-name {
 	font-size: 1.1rem;
 	color: var(--accent-gold);
 }
 
+
+/* MOBILE HAMBURGER MENU TOGGLE */
+
+/* Hamburger menu button - mobile only */
 .nav-toggle {
 	display: none;
 	width: 44px;
@@ -109,11 +123,13 @@
 	transition: background 0.2s ease, border-color 0.2s ease;
 }
 
+/* Hamburger button hover state */
 .nav-toggle:hover {
 	background: rgba(212, 175, 55, 0.14);
 	border-color: rgba(212, 175, 55, 0.45);
 }
 
+/* Hamburger menu bars - individual lines */
 .nav-toggle span {
 	display: block;
 	width: 22px;
@@ -123,29 +139,38 @@
 	transition: transform 0.22s ease, opacity 0.22s ease;
 }
 
+/* Spacing between hamburger lines */
 .nav-toggle span + span {
 	margin-top: 5px;
 }
 
+/* Hamburger menu open state - top bar rotates up */
 .nav-toggle.is-open span:nth-child(1) {
 	transform: translateY(7px) rotate(45deg);
 }
 
+/* Hamburger menu open state - middle bar disappears */
 .nav-toggle.is-open span:nth-child(2) {
 	opacity: 0;
 }
 
+/* Hamburger menu open state - bottom bar rotates down */
 .nav-toggle.is-open span:nth-child(3) {
 	transform: translateY(-7px) rotate(-45deg);
 }
 
+
+/* NAVIGATION MENU LINKS */
+
+/* Center column containing navigation links */
 .nav-center {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	grid-column: 2 / 3; /* center column */
+	grid-column: 2 / 3;
 }
 
+/* Navigation links list - horizontal layout with pill-shaped background */
 .nav-links {
 	display: flex;
 	list-style: none;
@@ -158,10 +183,12 @@
 	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 14px 24px rgba(5, 2, 12, 0.35);
 }
 
+/* Individual nav list items */
 .nav-links li {
 	display: flex;
 }
 
+/* Navigation link styling */
 .nav-links a {
 	display: inline-flex;
 	align-items: center;
@@ -176,21 +203,28 @@
 	cursor: pointer;
 }
 
+/* Nav link icons */
 .nav-links a i {
 	font-size: 0.95rem;
 }
 
+/* Nav link hover state */
 .nav-links a:hover {
 	background: rgba(212, 175, 55, 0.12);
 	color: var(--accent-gold, #d4af37);
 }
 
+/* Nav link active state */
 .nav-links a.active {
 	background: linear-gradient(135deg, var(--accent-gold, #d4af37), #f0c860);
 	color: #1b0f2a;
 	box-shadow: 0 10px 20px rgba(212, 175, 55, 0.35);
 }
 
+
+/* CALL-TO-ACTION BUTTON */
+
+/* CTA button styling - golden gradient with shadow */
 .nav-cta {
 	display: inline-flex;
 	align-items: center;
@@ -207,17 +241,26 @@
 	cursor: pointer;
 }
 
+/* CTA button hover state - lift up with enhanced shadow */
 .nav-cta:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 18px 30px rgba(212, 175, 55, 0.45);
 }
 
+
+/* MAIN CONTENT AREA */
+
+/* Main content container with responsive padding */
 .app-content {
-	/* reduce top padding so content sits closer to the sticky nav */
 	padding: 8px 0 48px;
 }
 
-/* Footer styles */
+
+/* ================================================================
+   FOOTER SECTION
+   ================================================================ */
+
+/* Footer container - dark gradient background */
 .site-footer {
 	margin-top: 36px;
 	background: linear-gradient(180deg, rgba(9,6,16,0.96), rgba(13,9,20,0.98));
@@ -225,6 +268,7 @@
 	color: rgba(255,255,255,0.9);
 }
 
+/* Footer main content grid layout */
 .footer-inner {
 	max-width: 1140px;
 	margin: 0 auto;
@@ -235,6 +279,7 @@
 	align-items: start;
 }
 
+/* Footer column heading styling */
 .footer-col h4 {
 	margin: 0 0 12px 0;
 	font-size: 1rem;
@@ -242,14 +287,23 @@
 	font-weight: 700;
 }
 
+/* Adjust footer column heading letter spacing */
+.footer-inner .footer-col h4 {
+	letter-spacing: 0.01em;
+}
+
+
+/* FOOTER BRAND SECTION */
+
+/* Brand small container - flex layout for logo and info */
 .brand-small {
 	display: flex;
 	gap: 12px;
 	align-items: center;
 }
 
+/* Brand logo in footer - display image without circular badge */
 .brand-small .brand-logo {
-	/* In footer, show the full logo image instead of a circular badge */
 	width: auto;
 	height: auto;
 	border-radius: 0;
@@ -260,53 +314,65 @@
 	color: inherit;
 }
 
-/* Ensure footer logo image shows full artwork and is not cropped */
+/* Footer logo image sizing - maintain aspect ratio */
 .brand-small .brand-logo img.brand-img.small {
-    width: 56px; /* adjust as needed */
+    width: 56px;
     height: auto;
     object-fit: contain;
     border-radius: 0;
     display: block;
 }
 
+/* Brand name styling */
 .brand-name {
 	font-weight: 800;
 	font-size: 1.05rem;
 	color: var(--accent-gold);
 }
 
+/* Brand tagline/description text */
 .brand-tag {
 	margin-top: 4px;
 	color: rgba(255,255,255,0.7);
 	font-size: 0.92rem;
 }
 
+/* Owner name styling */
 .owner-line {
 	margin-top: 8px;
 	color: rgba(255,255,255,0.9);
 	font-weight: 600;
 }
 
+
+/* FOOTER LOCATION PILL */
+
+/* Location information styled as a pill/badge */
 .location-pill {
-		margin-top: 20px;
-		display: inline-flex;
-		gap: 12px;
-		align-items: center;
-		padding: 12px 22px;
-		border-radius: 28px;
-		background: rgba(255,255,255,0.02);
-		border: 1px solid rgba(184,138,30,0.14);
-		color: rgba(255,255,255,0.9);
-		width: fit-content;
-		box-shadow: 0 6px 18px rgba(11,7,15,0.45);
-		font-size: 1rem;
+	margin-top: 20px;
+	display: inline-flex;
+	gap: 12px;
+	align-items: center;
+	padding: 12px 22px;
+	border-radius: 28px;
+	background: rgba(255,255,255,0.02);
+	border: 1px solid rgba(184,138,30,0.14);
+	color: rgba(255,255,255,0.9);
+	width: fit-content;
+	box-shadow: 0 6px 18px rgba(11,7,15,0.45);
+	font-size: 1rem;
 }
 
+/* Location pill icon styling */
 .location-pill i {
 	color: var(--accent-gold);
 	font-size: 1.05rem;
 }
 
+
+/* FOOTER LINKS AND COLUMNS */
+
+/* Footer column list styling */
 .footer-col ul {
 	list-style: none;
 	padding: 0;
@@ -316,21 +382,24 @@
 	gap: 10px;
 }
 
+/* Footer link styling */
 .footer-col a {
 	color: rgba(255,255,255,0.85);
 	text-decoration: none;
 	display: inline-flex;
 	gap: 10px;
 	align-items: center;
-	cursor: pointer; /* show pointer so links feel clickable */
+	cursor: pointer;
 }
 
+/* Footer link icons - centered and color adjusted */
 .footer-col a i {
 	width: 20px;
 	text-align: center;
 	color: rgba(255,255,255,0.65);
 }
 
+/* Footer link hover state - background highlight and color change */
 .footer-col a:hover {
 	color: var(--accent-gold);
 	text-decoration: none;
@@ -339,7 +408,10 @@
 	border-radius: 10px;
 }
 
-/* social links styling inside footer resources */
+
+/* FOOTER SOCIAL MEDIA LINKS */
+
+/* Social media links container */
 .social-links {
 	display: flex;
 	flex-direction: column;
@@ -348,6 +420,7 @@
 	margin: 0;
 }
 
+/* Social media link styling */
 .social-links a {
 	display: inline-flex;
 	gap: 10px;
@@ -356,15 +429,21 @@
 	border-radius: 10px;
 }
 
+/* Social media link icons */
 .social-links a i {
 	font-size: 1.05rem;
 	color: rgba(255,255,255,0.85);
 }
 
+/* Social media link icon hover state */
 .social-links a:hover i {
 	color: var(--accent-gold);
 }
 
+
+/* FOOTER BOTTOM BAR */
+
+/* Bottom footer section - copyright and policies */
 .footer-bottom {
 	max-width: 1140px;
 	margin: 0 auto;
@@ -377,36 +456,22 @@
 	font-size: 0.92rem;
 }
 
+/* Footer bottom policy links */
 .footer-bottom .policies a {
-		color: rgba(255,255,255,0.65);
-		text-decoration: none;
+	color: rgba(255,255,255,0.65);
+	text-decoration: none;
 }
 
 .footer-inner .footer-col h4 {
 	letter-spacing: 0.01em;
 }
 
-@media (max-width: 860px) {
-	.footer-inner {
-		grid-template-columns: 1fr 1fr;
-	}
-}
 
-@media (max-width: 520px) {
-	.footer-inner {
-		grid-template-columns: 1fr;
-		gap: 18px;
-		padding: 20px 12px;
-	}
+/* ================================================================
+   RESPONSIVE MEDIA QUERIES
+   ================================================================ */
 
-	.footer-bottom {
-		flex-direction: column;
-		gap: 8px;
-		padding-bottom: 22px;
-		text-align: center;
-	}
-}
-
+/* LARGE SCREENS - Adjust navigation spacing */
 @media (max-width: 1024px) {
 	.nav-bar {
 		padding: 0 16px;
@@ -428,15 +493,23 @@
 	}
 }
 
+/* MEDIUM SCREENS - Adjust logo and nav scaling */
 @media (max-width: 768px) {
+	.brand-img {
+		width: 44px;
+	}
+	.brand-img.small {
+		width: 32px;
+	}
+
 	.global-nav {
 		position: static;
 		padding: 12px 0 10px;
 	}
 
-	/* make header a normal stacked flex layout on smaller screens */
+	/* Make header a normal stacked flex layout on smaller screens */
 	.nav-bar {
-		display: flex; /* override grid */
+		display: flex;
 		flex-direction: row;
 		gap: 12px;
 		align-items: center;
@@ -449,7 +522,7 @@
 		justify-content: flex-start;
 	}
 
-	/* Improved mobile toggle: larger hit area, three-bar hamburger and clear open/close animation */
+	/* Mobile hamburger toggle - larger hit area with improved styling */
 	.nav-toggle {
 		display: inline-flex;
 		align-items: center;
@@ -466,7 +539,7 @@
 		transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 	}
 
-	/* three centered bars */
+	/* Three centered hamburger bars */
 	.nav-toggle span {
 		display: block;
 		position: absolute;
@@ -494,7 +567,7 @@
 		outline-offset: 2px;
 	}
 
-	/* open state: X */
+	/* Hamburger menu open state - X shape */
 	.nav-toggle.is-open span:nth-child(1) {
 		top: 50%;
 		transform: translate(-50%, -50%) rotate(45deg);
@@ -509,17 +582,17 @@
 		transform: translate(-50%, -50%) rotate(-45deg);
 	}
 
+	/* Hide navigation center in default state */
 	.nav-center {
 		width: 100%;
 		display: none;
 	}
 
-	/* floating centered mobile menu panel - use fixed so it always stacks above page content
-	   (prevents overlap with transformed elements inside content like active filter pills) */
+	/* Mobile menu panel - fixed floating panel above content */
 	.nav-center.mobile-open {
 		display: block;
 		position: fixed;
-		top: 80px; /* place right below header; adjust based on actual header height */
+		top: 80px;
 		left: 50%;
 		transform: translateX(-50%);
 		width: min(360px, 94%);
@@ -528,9 +601,10 @@
 		padding: 10px;
 		border: 1px solid rgba(255,255,255,0.08);
 		box-shadow: 0 18px 40px rgba(0,0,0,0.75), 0 6px 16px rgba(5,2,12,0.6);
-		z-index: 10000; /* very high so it appears above all page content */
+		z-index: 10000;
 	}
 
+	/* Mobile menu links - vertical stack */
 	.nav-links {
 		flex-direction: column;
 		gap: 8px;
@@ -548,8 +622,7 @@
 		background: transparent;
 	}
 
-	/* Keep CTA compact in header row; when mobile menu opens it will be shown in the stack */
-	/* When the mobile menu is open, show CTA inside the panel (it will also remain in header) */
+	/* CTA button in mobile menu */
 	.nav-center.mobile-open .nav-cta {
 		display: inline-flex;
 		width: 100%;
@@ -565,15 +638,5 @@
 
 	.app-content {
 		padding-top: 16px;
-	}
-}
-
-@media (max-width: 520px) {
-	.brand-name {
-		font-size: 1rem;
-	}
-
-	.nav-links a {
-		font-size: 0.9rem;
 	}
 }
