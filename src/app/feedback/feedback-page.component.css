@@ -1,5 +1,12 @@
+/* ================================================================
+   FEEDBACK PAGE COMPONENT STYLES
+   ================================================================ */
 
-/* Match global site theme: dark purple/navy backgrounds and gold accent */
+/* ================================================================
+   CONTAINER & LAYOUT
+   ================================================================ */
+
+/* Main feedback shell container - dark themed background */
 .feedback-shell{
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   padding: 22px;
@@ -8,102 +15,452 @@
   min-height: 100vh;
 }
 
+/* Row layout - flex container for columns */
+.row{
+  display:flex;
+  gap:18px;
+}
+
+/* Column layout - flexible width */
+.col{
+  flex:1;
+}
+
+/* Form column - minimum width constraint */
+.form-col{
+  min-width:320px;
+}
+
+/* Preview column - fixed width */
+.preview-col{
+  width:360px;
+}
+
+/* ================================================================
+   HEADER SECTION
+   ================================================================ */
+
+/* Feedback header container - title and CTA buttons */
 .feedback-header{
-  display:flex;justify-content:space-between;align-items:center;padding:18px;border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px;
+  border-radius:12px;
   background: linear-gradient(90deg, rgba(22,16,35,0.9), rgba(16,11,27,0.88));
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);margin-bottom:18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  margin-bottom:18px;
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-.feedback-header h1{margin:0;font-size:20px;color:var(--accent-gold)}
-.feedback-header p{margin:4px 0 0;color:rgba(255,255,255,0.8)}
-.header-ctas{display:flex;gap:8px}
-.btn-primary{background: linear-gradient(135deg, var(--accent-gold), #bb8a1b); color:#1b0f2a; padding:8px 12px;border-radius:8px;border:none;text-decoration:none}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.9);padding:8px 12px;border-radius:8px}
-.btn-secondary{background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.92);padding:8px 12px;border-radius:8px;border:none}
-.feedback-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-.row{display:flex;gap:18px}
-.col{flex:1}
-.form-col{min-width:320px}
-.preview-col{width:360px}
+/* Header title - gold accent color */
+.feedback-header h1{
+  margin:0;
+  font-size:20px;
+  color:var(--accent-gold);
+}
 
-label{display:block;margin-bottom:12px;font-size:14px;color:rgba(255,255,255,0.9)}
+/* Header subtitle/description text */
+.feedback-header p{
+  margin:4px 0 0;
+  color:rgba(255,255,255,0.8);
+}
 
-/* Inputs / selects / textarea base styles */
-select,input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:inherit}
+/* Header CTA buttons container */
+.header-ctas{
+  display:flex;
+  gap:8px;
+}
 
-/* Provide a wrapper to style select arrow and avoid clipping issues */
-.select-wrapper{position:relative}
-.select-wrapper select{ -webkit-appearance:none; -moz-appearance:none; appearance:none; padding-right:34px; background: linear-gradient(180deg, rgba(9,6,16,0.95), rgba(22,16,35,0.96)); color: #fff; border:1px solid rgba(255,255,255,0.06); position:relative; z-index:1000}
-.select-wrapper::after{content:"\25BE"; position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#fff; pointer-events:none}
+/* ================================================================
+   CARD STYLING
+   ================================================================ */
 
-/* Try to style native options where the browser permits it; fallback may vary by browser/OS */
-select option{ background: rgba(16,11,27,0.98); color: #fff }
-/* Ensure focused text remains white in Firefox */
-select:-moz-focusring { color: transparent; text-shadow: 0 0 0 #fff }
-/* IE/Edge expand arrow color tweak */
-select::-ms-expand { color: #fff }
+/* Feedback card container - subtle gradient background */
+.feedback-card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:18px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.02);
+}
 
-/* If parent containers apply clipping, raise wrapper z-index when active */
-.select-wrapper[aria-expanded="true"]{ z-index:1200 }
+/* ================================================================
+   BUTTON STYLES
+   ================================================================ */
 
-/* Try to ensure options are legible (support varies by browser) */
-select option{background:#fff;color:#111}
+/* Primary button - solid golden gradient */
+.btn-primary{
+  background: linear-gradient(135deg, var(--accent-gold), #bb8a1b);
+  color:#1b0f2a;
+  padding:8px 12px;
+  border-radius:8px;
+  border:none;
+  text-decoration:none;
+}
 
-/* Form Validation Styling */
-.error{display:block;color:#ff6b6b;font-size:0.85rem;margin-top:0.4rem;font-weight:500}
+/* Ghost button - transparent with border */
+.btn-ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.9);
+  padding:8px 12px;
+  border-radius:8px;
+}
 
-input.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-touched,
-select.ng-invalid.ng-touched{border-color:#ff6b6b;background:rgba(255,107,107,0.05)}
-
-input.ng-valid.ng-touched,
-textarea.ng-valid.ng-touched,
-select.ng-valid.ng-touched{border-color:#4ecdc4}
-
-input:focus.ng-invalid,
-textarea:focus.ng-invalid,
-select:focus.ng-invalid{border-color:#ff6b6b;box-shadow:0 0 0 3px rgba(255,107,107,0.1)}
-
-input:focus.ng-valid,
-textarea:focus.ng-valid,
-select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,0.1)}
-
-.required{color:#ff6b6b}
-
-/* Rating stars: hide native radio controls and style stars as buttons */
-.rating-row .stars{display:flex;gap:10px;align-items:center}
-.star-label{position:relative}
-.star-label input[type="radio"]{position:absolute;opacity:0;pointer-events:none;height:0;width:0}
-.star{display:inline-block;padding:10px 12px;min-width:44px;text-align:center;background:rgba(255,255,255,0.02);border-radius:8px;color:rgba(255,255,255,0.18);font-size:20px;transition:transform .12s ease,color .12s ease,background .12s ease;box-shadow:0 6px 14px rgba(0,0,0,0.45);user-select:none}
-.star-label:hover .star{color:var(--accent-gold);transform:translateY(-3px);background:rgba(204,160,44,0.06)}
-.star-label input[type="radio"]:checked + .star{color:var(--accent-gold);background:rgba(204,160,44,0.10);transform:translateY(-2px) scale(1.03);box-shadow:0 10px 24px rgba(0,0,0,0.55)}
-.preview-box{background:linear-gradient(180deg, rgba(16,11,27,0.6), rgba(22,16,35,0.6));padding:12px;border-radius:8px;min-height:120px;overflow:auto;border:1px solid rgba(255,255,255,0.02)}
-.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
-.recent-list{list-style:none;padding:0;margin:12px 0}
-.recent-list li{padding:12px;border-radius:8px;background:linear-gradient(180deg, rgba(16,11,27,0.5), rgba(22,16,35,0.45));margin-bottom:8px;border:1px solid rgba(255,255,255,0.02)}
-.meta{font-size:13px;color:var(--accent-gold)}
-.comment{margin:6px 0 0;color:rgba(255,255,255,0.9)}
-.consent{display:flex;align-items:center;gap:8px}
-.consent{display:flex;align-items:center;gap:10px}
-.consent input[type="checkbox"]{width:18px;height:18px;border-radius:4px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.02);accent-color:var(--accent-gold)}
-.consent .consent-text{font-size:14px;color:rgba(255,255,255,0.9)}
-
-/* Form actions layout: consent on left, buttons on right */
-.form-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
-.form-actions .actions{margin:0;display:flex;gap:10px}
+/* Secondary button - subtle background */
+.btn-secondary{
+  background:rgba(255,255,255,0.03);
+  color:rgba(255,255,255,0.92);
+  padding:8px 12px;
+  border-radius:8px;
+  border:none;
+}
 
 /* Unified action button styles */
-.btn-action{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:rgba(255,255,255,0.95);font-weight:600;cursor:pointer;transition:transform .08s ease,box-shadow .08s ease}
-.btn-action .icon{width:18px;height:18px;display:inline-block;margin-right:6px;color:var(--accent-gold)}
-.btn-action:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.45)}
-.btn-action.primary{background: linear-gradient(135deg, var(--accent-gold), #bb8a1b); color:#1b0f2a; border:none}
-.btn-action.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.9)}
-.btn-action[disabled]{opacity:0.6;cursor:not-allowed;transform:none}
+.btn-action{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color:rgba(255,255,255,0.95);
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .08s ease,box-shadow .08s ease;
+}
 
-.success{margin-top:10px;padding:8px;border-radius:8px;background:linear-gradient(90deg,var(--accent-gold),#bb8a1b);color:#1b0f2a}
+/* Action button icon */
+.btn-action .icon{
+  width:18px;
+  height:18px;
+  display:inline-block;
+  margin-right:6px;
+  color:var(--accent-gold);
+}
 
-/* Success Modal Styles */
+/* Action button hover state */
+.btn-action:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,0.45);
+}
+
+/* Action button primary variant */
+.btn-action.primary{
+  background: linear-gradient(135deg, var(--accent-gold), #bb8a1b);
+  color:#1b0f2a;
+  border:none;
+}
+
+/* Action button secondary variant */
+.btn-action.secondary{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.9);
+}
+
+/* Action button disabled state */
+.btn-action[disabled]{
+  opacity:0.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* ================================================================
+   FORM STYLING
+   ================================================================ */
+
+/* Form label styling */
+label{
+  display:block;
+  margin-bottom:12px;
+  font-size:14px;
+  color:rgba(255,255,255,0.9);
+}
+
+/* Form inputs base styles - select, input, textarea */
+select,
+input,
+textarea{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:rgba(255,255,255,0.02);
+  color:inherit;
+}
+
+/* SELECT DROPDOWN CUSTOMIZATION */
+
+/* Select wrapper - provides container for custom arrow */
+.select-wrapper{
+  position:relative;
+}
+
+/* Select element inside wrapper - remove native appearance */
+.select-wrapper select{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  padding-right:34px;
+  background: linear-gradient(180deg, rgba(9,6,16,0.95), rgba(22,16,35,0.96));
+  color: #fff;
+  border:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  z-index:1000;
+}
+
+/* Custom dropdown arrow using ::after pseudo-element */
+.select-wrapper::after{
+  content:"\25BE";
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#fff;
+  pointer-events:none;
+}
+
+/* Style select options - browser support varies */
+select option{
+  background: rgba(16,11,27,0.98);
+  color: #fff;
+}
+
+/* Firefox specific - ensure focused text remains white */
+select:-moz-focusring{
+  color: transparent;
+  text-shadow: 0 0 0 #fff;
+}
+
+/* IE/Edge expand arrow color */
+select::-ms-expand{
+  color: #fff;
+}
+
+/* Raise wrapper z-index when active to prevent clipping */
+.select-wrapper[aria-expanded="true"]{
+  z-index:1200;
+}
+
+/* Fallback option styling for better legibility */
+select option{
+  background:#fff;
+  color:#111;
+}
+
+/* ================================================================
+   FORM VALIDATION STYLING
+   ================================================================ */
+
+/* Error message text - red color */
+.error{
+  display:block;
+  color:#ff6b6b;
+  font-size:0.85rem;
+  margin-top:0.4rem;
+  font-weight:500;
+}
+
+/* Invalid input after interaction - red border with tint */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched{
+  border-color:#ff6b6b;
+  background:rgba(255,107,107,0.05);
+}
+
+/* Valid input after interaction - teal border */
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched,
+select.ng-valid.ng-touched{
+  border-color:#4ecdc4;
+}
+
+/* Invalid input on focus - red glow */
+input:focus.ng-invalid,
+textarea:focus.ng-invalid,
+select:focus.ng-invalid{
+  border-color:#ff6b6b;
+  box-shadow:0 0 0 3px rgba(255,107,107,0.1);
+}
+
+/* Valid input on focus - teal glow */
+input:focus.ng-valid,
+textarea:focus.ng-valid,
+select:focus.ng-valid{
+  border-color:#4ecdc4;
+  box-shadow:0 0 0 3px rgba(78,205,196,0.1);
+}
+
+/* Required field indicator - red asterisk */
+.required{
+  color:#ff6b6b;
+}
+
+/* ================================================================
+   RATING STARS
+   ================================================================ */
+
+/* Stars container - flex layout */
+.rating-row .stars{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+/* Star label wrapper - contains hidden radio and visible star */
+.star-label{
+  position:relative;
+}
+
+/* Hide native radio button */
+.star-label input[type="radio"]{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+  height:0;
+  width:0;
+}
+
+/* Star styling - clickable star button */
+.star{
+  display:inline-block;
+  padding:10px 12px;
+  min-width:44px;
+  text-align:center;
+  background:rgba(255,255,255,0.02);
+  border-radius:8px;
+  color:rgba(255,255,255,0.18);
+  font-size:20px;
+  transition:transform .12s ease,color .12s ease,background .12s ease;
+  box-shadow:0 6px 14px rgba(0,0,0,0.45);
+  user-select:none;
+}
+
+/* Star hover state - lift and highlight */
+.star-label:hover .star{
+  color:var(--accent-gold);
+  transform:translateY(-3px);
+  background:rgba(204,160,44,0.06);
+}
+
+/* Star checked/selected state - golden appearance */
+.star-label input[type="radio"]:checked + .star{
+  color:var(--accent-gold);
+  background:rgba(204,160,44,0.10);
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 10px 24px rgba(0,0,0,0.55);
+}
+
+/* ================================================================
+   PREVIEW & DISPLAY ELEMENTS
+   ================================================================ */
+
+/* Preview box - display area for feedback preview */
+.preview-box{
+  background:linear-gradient(180deg, rgba(16,11,27,0.6), rgba(22,16,35,0.6));
+  padding:12px;
+  border-radius:8px;
+  min-height:120px;
+  overflow:auto;
+  border:1px solid rgba(255,255,255,0.02);
+}
+
+/* Action buttons container - aligned to right */
+.actions{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:8px;
+}
+
+/* Recent feedback list */
+.recent-list{
+  list-style:none;
+  padding:0;
+  margin:12px 0;
+}
+
+/* Recent list item - feedback entry */
+.recent-list li{
+  padding:12px;
+  border-radius:8px;
+  background:linear-gradient(180deg, rgba(16,11,27,0.5), rgba(22,16,35,0.45));
+  margin-bottom:8px;
+  border:1px solid rgba(255,255,255,0.02);
+}
+
+/* Metadata text - small gold accent */
+.meta{
+  font-size:13px;
+  color:var(--accent-gold);
+}
+
+/* Comment/feedback text */
+.comment{
+  margin:6px 0 0;
+  color:rgba(255,255,255,0.9);
+}
+
+/* ================================================================
+   FORM CONSENT & ACTIONS
+   ================================================================ */
+
+/* Consent checkbox container */
+.consent{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Consent checkbox input */
+.consent input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  border-radius:4px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.02);
+  accent-color:var(--accent-gold);
+}
+
+/* Consent text label */
+.consent .consent-text{
+  font-size:14px;
+  color:rgba(255,255,255,0.9);
+}
+
+/* Form actions layout - consent left, buttons right */
+.form-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:8px;
+}
+
+/* Form actions buttons container */
+.form-actions .actions{
+  margin:0;
+  display:flex;
+  gap:10px;
+}
+
+/* Success message styling */
+.success{
+  margin-top:10px;
+  padding:8px;
+  border-radius:8px;
+  background:linear-gradient(90deg,var(--accent-gold),#bb8a1b);
+  color:#1b0f2a;
+}
+
+/* ================================================================
+   SUCCESS MODAL
+   ================================================================ */
+
+/* Success overlay - full screen backdrop */
 .feedback-success-overlay {
   position: fixed;
   inset: 0;
@@ -116,6 +473,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   backdrop-filter: blur(4px);
 }
 
+/* Success modal container */
 .feedback-success-modal {
   width: 100%;
   max-width: 600px;
@@ -128,6 +486,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   animation: slideUp 0.3s ease-out;
 }
 
+/* Success modal slide-up animation */
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -139,6 +498,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   }
 }
 
+/* Modal close button */
 .feedback-success-modal .modal-close {
   position: absolute;
   right: 16px;
@@ -158,17 +518,20 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   z-index: 50;
 }
 
+/* Modal close button hover - rotate animation */
 .feedback-success-modal .modal-close:hover {
   background: rgba(255, 255, 255, 0.06);
   transform: rotate(90deg);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Success content area */
 .feedback-success-content {
   font-family: inherit;
   text-align: center;
 }
 
+/* Success heading */
 .feedback-success-content h3 {
   margin: 0 0 0.75rem;
   font-size: 1.6rem;
@@ -176,6 +539,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   font-weight: 700;
 }
 
+/* Success description text */
 .feedback-success-content p {
   margin: 0 0 1.5rem;
   color: rgba(255, 255, 255, 0.85);
@@ -183,6 +547,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   line-height: 1.6;
 }
 
+/* Success modal action buttons */
 .feedback-success-actions {
   display: flex;
   gap: 0.8rem;
@@ -190,6 +555,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   flex-wrap: wrap;
 }
 
+/* Success modal button base styling */
 .feedback-success-actions .btn {
   padding: 0.85rem 1.75rem;
   border-radius: 10px;
@@ -204,6 +570,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   transition: all 0.2s ease;
 }
 
+/* Success modal primary button - golden */
 .feedback-success-actions .btn.primary {
   background: linear-gradient(135deg, #ffd966 0%, #ffc107 100%);
   color: #000;
@@ -211,11 +578,13 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   box-shadow: 0 6px 20px rgba(255, 193, 7, 0.25);
 }
 
+/* Success modal primary button hover */
 .feedback-success-actions .btn.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 193, 7, 0.35);
 }
 
+/* Success modal secondary button */
 .feedback-success-actions .btn:not(.primary) {
   background: transparent;
   color: rgba(255, 255, 255, 0.75);
@@ -223,6 +592,7 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   box-shadow: none;
 }
 
+/* Success modal secondary button hover */
 .feedback-success-actions .btn:not(.primary):hover {
   background: rgba(255, 255, 255, 0.02);
   color: #fff;
@@ -230,7 +600,98 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-@media (max-width: 640px) {
+/* ================================================================
+   RESPONSIVE MEDIA QUERIES
+   ================================================================ */
+
+/* LARGE SCREENS - Collapse two-column to single column */
+@media (max-width:900px){
+  .row{
+    flex-direction:column;
+  }
+
+  .preview-col{
+    width:auto;
+  }
+
+  .form-actions{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .form-actions .actions{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  .form-actions .actions button{
+    flex:0 0 auto;
+  }
+}
+
+/* TABLET SCREENS - Full width columns and stacked layout */
+@media (max-width:640px) {
+  .feedback-shell{
+    padding:16px;
+  }
+
+  .form-col,
+  .preview-col{
+    width:100%;
+    min-width:0;
+  }
+
+  .row{
+    gap:12px;
+  }
+
+  /* Stack consent above actions */
+  .form-actions{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+  }
+
+  .consent{
+    order:0;
+  }
+
+  .form-actions .actions{
+    order:1;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+
+  /* Full-width action buttons */
+  .btn-action{
+    width:100%;
+    box-sizing:border-box;
+    min-width:0;
+    padding:12px 14px;
+  }
+
+  .btn-action .icon{
+    margin-right:8px;
+  }
+
+  /* Preview box - scrollable with max height */
+  .preview-box{
+    max-height:260px;
+    overflow:auto;
+    padding:10px;
+  }
+
+  /* Larger touch-friendly stars */
+  .star{
+    min-width:52px;
+    padding:12px 14px;
+    font-size:22px;
+  }
+
+  /* Success modal adjustments */
   .feedback-success-modal {
     max-width: 95%;
     padding: 1.5rem;
@@ -250,45 +711,31 @@ select:focus.ng-valid{border-color:#4ecdc4;box-shadow:0 0 0 3px rgba(78,205,196,
   }
 }
 
-@media (max-width:900px){
-  .row{flex-direction:column}
-  .preview-col{width:auto}
-  .form-actions{flex-direction:column;align-items:flex-start}
-  .form-actions .actions{width:100%;justify-content:flex-start}
-  .form-actions .actions button{flex:0 0 auto}
-}
-
-/* Mobile-specific improvements to prevent buttons overflowing and to
-   improve touch targets. Stack consent and actions and make action buttons
-   full-width on small devices. Also ensure preview box can scroll without
-   pushing buttons off-screen. */
-@media (max-width:640px) {
-  .feedback-shell{padding:16px}
-  .form-col, .preview-col{width:100%;min-width:0}
-  .row{gap:12px}
-
-  /* Move consent above actions and make actions stretch */
-  .form-actions{display:flex;flex-direction:column;align-items:stretch;gap:10px}
-  .consent{order:0}
-  .form-actions .actions{order:1;display:flex;flex-direction:column;gap:10px;width:100%}
-
-  /* Make each action button take full width and avoid min-width overflow */
-  .btn-action{width:100%;box-sizing:border-box;min-width:0;padding:12px 14px}
-  .btn-action .icon{margin-right:8px}
-
-  /* Reduce preview height if it's very tall but allow scrolling */
-  .preview-box{max-height:260px;overflow:auto;padding:10px}
-
-  /* Make stars and rating controls larger and more tappable */
-  .star{min-width:52px;padding:12px 14px;font-size:22px}
-}
-
+/* SMALL PHONES - Extra padding and touch targets */
 @media (max-width:420px){
-  .feedback-shell{padding:12px}
-  .header-ctas{gap:6px}
-  .feedback-header h1{font-size:18px}
-  .preview-box{max-height:200px}
-  .star{min-width:48px;padding:10px 12px}
-  .btn-action{padding:11px 12px;border-radius:10px}
-}
+  .feedback-shell{
+    padding:12px;
+  }
 
+  .header-ctas{
+    gap:6px;
+  }
+
+  .feedback-header h1{
+    font-size:18px;
+  }
+
+  .preview-box{
+    max-height:200px;
+  }
+
+  .star{
+    min-width:48px;
+    padding:10px 12px;
+  }
+
+  .btn-action{
+    padding:11px 12px;
+    border-radius:10px;
+  }
+}
