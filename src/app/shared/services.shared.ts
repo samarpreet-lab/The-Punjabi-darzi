@@ -468,5 +468,4 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   }
 ];
 
-// Explicit named exports to help some build tools/compilers that inspect module exports
-// Note: PortfolioItem and PORTFOLIO_ITEMS are exported where they are declared above.
+

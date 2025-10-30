@@ -17,9 +17,6 @@ export class ContactComponent {
   whatsappNumber = environment.contact.whatsappNumber;
   studioEmail = environment.contact.studioEmail;
   emailRecipient = this.studioEmail;
-  /**
-   * Configured Formspree endpoint — POSTs will be sent here when Email is chosen.
-   */
   formspreeEndpoint = environment.contact.formspreeEndpoint;
 
   isSubmitting = false;
