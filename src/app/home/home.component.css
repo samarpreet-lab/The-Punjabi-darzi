@@ -1,5 +1,12 @@
-/* ===== Variables: Component-level color aliases to the global theme ===== */
-/* These CSS custom properties are used throughout the Home page styles below. */
+/* ================================================================
+   HOME PAGE COMPONENT STYLES
+   ================================================================ */
+
+/* ================================================================
+   CSS CUSTOM PROPERTIES / VARIABLES
+   ================================================================ */
+
+/* Component-level color aliases to global theme - used throughout home page styles */
 :host {
 	--gold-color: #b88a1e;
 	--primary-color: #b88a1e;
@@ -10,15 +17,22 @@
 	--text-muted: #b8b8d1;
 }
 
-/* ===== Home Page Wrapper ===== */
-/* Section: root wrapper for the Home page */
+/* ================================================================
+   HOME PAGE WRAPPER
+   ================================================================ */
+
+/* Root wrapper for the home page - dark background */
 .home-page {
   background: var(--site-bg);
   color: var(--text-light);
 }
 
-/* ===== Hero Section ===== */
-/* Section: top hero area with badge, title, description, stats and image */
+
+/* ================================================================
+   HERO SECTION
+   ================================================================ */
+
+/* Hero section container - top area with badge, title, description, stats and image */
 .hero-section {
   padding: 32px 0 40px;
   background: linear-gradient(135deg, rgba(16, 9, 24, 0.98), rgba(30, 22, 34, 0.9));
@@ -27,6 +41,7 @@
   margin: 12px 16px 20px;
 }
 
+/* Hero badge - premium/featured label */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -40,6 +55,7 @@
   margin-bottom: 20px;
 }
 
+/* Hero title - main headline */
 .hero-title {
   font-size: 2.4rem;
   font-weight: 700;
@@ -48,6 +64,7 @@
   color: var(--text-light);
 }
 
+/* Hero description - subtitle text */
 .hero-description {
   font-size: 1.05rem;
   color: var(--text-muted);
@@ -55,22 +72,26 @@
   line-height: 1.7;
 }
 
+/* Hero stats - container for stat items */
 .hero-stats {
   display: flex;
   gap: 34px;
   margin-bottom: 26px;
 }
 
+/* Individual stat item */
 .stat-item {
   text-align: left;
 }
 
+/* Stat label text */
 .stat-label {
   font-size: 0.9rem;
   color: var(--text-muted);
   margin-bottom: 4px;
 }
 
+/* Stat value - large number */
 .stat-value {
   font-size: 1.8rem;
   font-weight: 700;
@@ -78,24 +99,28 @@
   line-height: 1;
 }
 
+/* Stat subtext */
 .stat-sub {
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 2px;
 }
 
+/* Hero buttons container */
 .hero-buttons {
   display: flex;
   gap: 14px;
   align-items: center;
 }
 
+/* Hero image container */
 .hero-image {
   display: flex;
   align-items: stretch;
   justify-content: center;
 }
 
+/* Hero image styling with shadow */
 .hero-image img {
   border-radius: 16px;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
@@ -105,13 +130,19 @@
   display: block;
 }
 
-/* Keep image slightly offset on large screens for a magazine look */
+/* Large screens - increase image height for magazine look */
 @media (min-width: 1200px) {
-  .hero-image img { height: 520px; }
+  .hero-image img { 
+    height: 520px; 
+  }
 }
 
-/* ===== Shared Buttons ===== */
-/* Section: generic button styles used across hero, services, featured and contact sections */
+
+/* ================================================================
+   BUTTON STYLES
+   ================================================================ */
+
+/* Generic button base styles - used across hero, services, featured and contact sections */
 .btn {
   padding: 12px 24px;
   border-radius: 8px;
@@ -125,17 +156,20 @@
   gap: 8px;
 }
 
+/* Primary button - solid golden gradient */
 .btn-primary {
   background: linear-gradient(180deg, var(--gold-color), #d4a924);
   color: var(--site-bg);
 }
 
+/* Primary button hover - darker gold with lift effect */
 .btn-primary:hover {
   background: #d4a924;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(184, 138, 30, 0.3);
 }
 
+/* Outline button - transparent with border */
 .btn-outline {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.14);
@@ -143,13 +177,14 @@
   padding: 12px 20px;
 }
 
+/* Outline button hover - gold accent */
 .btn-outline:hover {
   border-color: var(--gold-color);
   color: var(--gold-color);
   background: rgba(184, 138, 30, 0.06);
 }
 
-/* Compact primary button variant for service cards */
+/* Compact button variant - smaller size for cards */
 .btn-compact {
   padding: 8px 12px;
   font-size: 0.95rem;
@@ -157,22 +192,29 @@
   margin-top:10px;
 }
 
+/* Full-width button - spans entire container */
 .btn-block {
   width: 100%;
   justify-content: center;
 }
 
-/* ===== Services Section ===== */
-/* Section: service cards grid, icons and pricing */
+
+/* ================================================================
+   SERVICES SECTION
+   ================================================================ */
+
+/* Services section container */
 .services-section {
   padding: 60px 0;
   margin: 20px;
 }
 
+/* Section header - title and icon */
 .section-header {
   margin-bottom: 40px;
 }
 
+/* Section header heading */
 .section-header h2 {
   color: var(--text-light);
   font-size: 1.8rem;
@@ -182,10 +224,12 @@
   gap: 12px;
 }
 
+/* Section header icon - gold accent */
 .section-header h2 i {
   color: var(--gold-color);
 }
 
+/* Service card - individual service offering */
 .service-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -197,17 +241,20 @@
   height: 100%;
 }
 
+/* Service card hover - lift with shadow and gold border */
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   border-color: var(--gold-color);
 }
 
+/* Service card highlight variant - gold accent */
 .service-card.highlight {
   border-color: var(--gold-color);
   background: rgba(184, 138, 30, 0.1);
 }
 
+/* Service icon - circular gold badge */
 .service-icon {
   width: 60px;
   height: 60px;
@@ -221,6 +268,7 @@
   font-size: 1.5rem;
 }
 
+/* Service card heading */
 .service-card h3 {
   color: var(--text-light);
   font-size: 1.3rem;
@@ -228,39 +276,43 @@
   margin-bottom: 15px;
 }
 
+/* Service description text */
 .service-description {
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
+/* Service price - gold accent */
 .service-price {
   color: var(--gold-color);
   font-weight: 700;
   font-size: 1.1rem;
 }
 
-/* ===== Compact Actions ===== */
-/* Section: compact action/button variants used in service cards */
 
-/* ===== Featured Section ===== */
-/* Section: featured card and its visual surface, badges and images */
+/* ================================================================
+   FEATURED SECTION
+   ================================================================ */
+
+/* Featured section container */
 .featured-section {
   padding: 40px 0;
   margin: 20px;
 }
 
-/* Featured card surface: stronger contrast, soft inset border and deep shadow for depth */
+/* Featured card - showcase product/service with stronger contrast and depth */
 .featured-card {
   background: linear-gradient(180deg, rgba(24,16,26,0.9), rgba(17,10,20,0.9));
   border: 1px solid rgba(255,255,255,0.03);
   border-radius: 18px;
   padding: 40px;
-  position: relative; /* allow absolutely positioned elements like badge */
+  position: relative;
   box-shadow: 0 20px 60px rgba(4,0,20,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
   overflow: hidden;
 }
 
+/* Featured badge - highlight tag */
 .featured-badge {
   background: var(--gold-color);
   color: var(--site-bg);
@@ -272,18 +324,18 @@
   margin-bottom: 15px;
 }
 
-/* Made-to-order badge attached to the featured headline */
+/* Featured headline with badge */
 .featured-headline {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* Made-to-order badge - prominent pill with gradient */
 .mto-badge {
-  /* prominent pill badge */
   display: inline-block;
   background: linear-gradient(135deg, rgba(248,201,91,1), rgba(241,169,12,1));
-  color: #12081c; /* dark text for contrast */
+  color: #12081c;
   border: 1px solid rgba(212,175,55,0.14);
   padding: 10px 16px;
   border-radius: 28px;
@@ -297,7 +349,103 @@
   z-index: 30;
 }
 
-/* Mobile adjustments: keep badge inline and prevent wrapping */
+/* Featured title - main headline */
+.featured-title {
+  color: var(--text-light);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 8px 0 14px;
+}
+
+/* Featured summary - description text */
+.featured-summary {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+}
+
+/* Featured metadata list */
+.featured-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px 0;
+  color: var(--text-muted);
+}
+
+/* Metadata list item */
+.featured-meta li {
+  margin-bottom: 8px;
+}
+
+/* Metadata label - bold white */
+.featured-meta strong {
+  color: var(--text-light);
+  margin-right: 6px;
+}
+
+/* Featured details container */
+.featured-details {
+  margin-bottom: 20px;
+}
+
+/* Individual detail item */
+.detail-item {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Detail label - bold white */
+.detail-item strong {
+  color: var(--text-light);
+}
+
+/* Featured price - gold accent */
+.featured-price {
+  color: var(--gold-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Featured buttons container */
+.featured-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Featured image container */
+.featured-image img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+}
+
+/* Featured photo - main image with shadow */
+.featured-photo {
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  border: 6px solid rgba(0,0,0,0.12);
+  object-fit: cover;
+}
+
+/* Portfolio tooltip - microcopy explaining stock */
+.portfolio-tooltip {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Large screens - image visual offset */
+@media (min-width: 992px) {
+  .featured-image { 
+    padding-left: 24px; 
+  }
+}
+
+/* Tablet screens - adjust badge positioning */
 @media (max-width: 768px) {
   .featured-headline {
     display: flex;
@@ -310,19 +458,16 @@
   .mto-badge {
     position: static;
     display: inline-block;
-    margin-left: auto; /* push to right when space allows */
+    margin-left: auto;
     padding: 6px 10px;
     font-size: 0.78rem;
     border-radius: 18px;
-    white-space: nowrap; /* prevent wrapping into multiple lines */
+    white-space: nowrap;
     box-shadow: none;
     right: auto;
     top: auto;
   }
-}
 
-/* Make badge inline below title on small screens to avoid overlap */
-@media (max-width: 768px) {
   .mto-badge {
     position: static;
     display: inline-block;
@@ -332,103 +477,42 @@
     color: var(--gold-color);
     border: 1px solid rgba(184,138,30,0.18);
   }
-  .featured-card { padding: 24px; }
-  .featured-title { font-size: 1.6rem; }
+
+  .featured-card { 
+    padding: 24px; 
+  }
+
+  .featured-title { 
+    font-size: 1.6rem; 
+  }
+
+  .mto-badge { 
+    padding: 5px 8px; 
+    font-size: 0.8rem; 
+  }
+
+  .portfolio-tooltip { 
+    font-size: 0.8rem; 
+  }
 }
 
-/* Microcopy beneath the portfolio button explaining no ready stock */
-.portfolio-tooltip {
-  display: block;
-  margin-top: 8px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
 
-.featured-title {
-  color: var(--text-light);
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 8px 0 14px;
-}
+/* ================================================================
+   CONTACT SECTION - QUICK CONTACT
+   ================================================================ */
 
-.featured-summary {
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 18px;
-  font-size: 1.05rem;
-}
-
-.featured-meta {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 22px 0;
-  color: var(--text-muted);
-}
-.featured-meta li {
-  margin-bottom: 8px;
-}
-.featured-meta strong {
-  color: var(--text-light);
-  margin-right: 6px;
-}
-
-.featured-details {
-  margin-bottom: 20px;
-}
-
-.detail-item {
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-.detail-item strong {
-  color: var(--text-light);
-}
-
-.featured-price {
-  color: var(--gold-color);
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
-.featured-buttons {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.featured-image img {
-  border-radius: 12px;
-  width: 100%;
-  height: auto;
-}
-
-.featured-photo {
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-  border: 6px solid rgba(0,0,0,0.12);
-  object-fit: cover;
-}
-
-/* Slight layout tweak for large screens: make image visually offset */
-@media (min-width: 992px) {
-  .featured-image { padding-left: 24px; }
-}
-
-/* ===== Contact Section ===== */
-/* Section: contact form, quick contact cards and related controls */
+/* Contact section container */
 .contact-section {
   padding: 60px 0;
   margin: 20px;
 }
 
-/* ----- Quick Contact (subsection of Contact) ----- */
-/* Section: quick contact cards, call-to-action buttons and brief contact info */
+/* Quick contact wrapper */
 .quick-contact-wrap {
   margin-bottom: 48px;
 }
 
+/* Contact section heading */
 .contact-heading {
   color: var(--text-light);
   font-size: 1.8rem;
@@ -439,22 +523,26 @@
   gap: 12px;
 }
 
+/* Contact heading icon - gold accent */
 .contact-heading i {
   color: var(--gold-color);
 }
 
+/* Contact lead text - intro paragraph */
 .contact-lead {
   color: var(--text-muted);
   font-size: 1rem;
   margin-bottom: 28px;
 }
 
+/* Quick contact grid layout */
 .quick-contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
+/* Quick contact card */
 .quick-contact-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -463,6 +551,7 @@
   text-align: left;
 }
 
+/* Quick contact card heading */
 .quick-contact-card h3 {
   color: var(--text-light);
   font-size: 1.2rem;
@@ -470,12 +559,14 @@
   margin-bottom: 6px;
 }
 
+/* Quick contact card description */
 .quick-contact-card .card-desc {
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: 16px;
 }
 
+/* WhatsApp button in quick contact - full width */
 .btn-wa-quick {
   width: 100%;
   justify-content: center;
@@ -483,12 +574,16 @@
   padding: 10px 16px;
 }
 
-/* ===== Location / Map Section ===== */
-/* Section: embedded map, map controls and studio location details */
+/* ================================================================
+   CONTACT SECTION - FORM & STUDIO INFO
+   ================================================================ */
+
+/* Location wrapper - map section */
 .location-wrap {
   margin-top: 48px;
 }
 
+/* Location map container */
 .location-map {
   width: 100%;
   height: 280px;
@@ -500,39 +595,41 @@
   margin-bottom: 16px;
 }
 
+/* Location map iframe */
 .location-map iframe {
   width: 100%;
   height: 100%;
   border: 0;
 }
 
+/* Location hours text */
 .location-hours {
   color: var(--text-muted);
   font-size: 0.95rem;
   margin: 0;
 }
 
-/* Add gap between contact columns (desktop) and ensure stacked columns have space on mobile */
-/* Target only the top-level row inside the contact section (direct child of container) so nested rows
-   within the form (like .row inside the contact form) retain their normal Bootstrap/grid behavior. */
+/* Contact section row layout - controls column widths and spacing */
 .contact-section > .container > .row {
-  /* Use a controlled flex layout on desktop so the two cards sit side-by-side */
   display: flex;
   gap: 24px;
   flex-wrap: nowrap;
   align-items: flex-start;
 }
 
+/* Contact form column - 66% width */
 .contact-section > .container > .row > .col-lg-8 {
   flex: 0 0 calc(66.666666% - 12px);
   max-width: calc(66.666666% - 12px);
 }
 
+/* Studio info column - 33% width */
 .contact-section > .container > .row > .col-lg-4 {
   flex: 0 0 calc(33.333333% - 12px);
   max-width: calc(33.333333% - 12px);
 }
 
+/* Contact form card heading */
 .contact-form-card h3,
 .studio-info-card h3 {
   color: var(--text-light);
@@ -541,10 +638,12 @@
   margin-bottom: 25px;
 }
 
+/* Form group container */
 .form-group {
   margin-bottom: 20px;
 }
 
+/* Form control input/textarea base */
 .form-control {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--border-color);
@@ -555,10 +654,12 @@
   width: 100%;
 }
 
+/* Form control placeholder text */
 .form-control::placeholder {
   color: var(--text-muted);
 }
 
+/* Form control focus state - gold border with glow */
 .form-control:focus {
   outline: none;
   border-color: var(--gold-color);
@@ -566,7 +667,7 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Styled select to match form controls and ensure options are readable on dark backgrounds */
+/* Form select styling - match form controls */
 .form-select {
   appearance: none;
   -webkit-appearance: none;
@@ -579,6 +680,7 @@
   width: 100%;
 }
 
+/* Form select focus state */
 .form-select:focus {
   outline: none;
   border-color: var(--gold-color);
@@ -586,16 +688,22 @@
   background: rgba(255,255,255,0.08);
 }
 
-/* Option styling — limited by browser, but color helps in many browsers */
+/* Form select option styling - dark background with light text */
 .form-select option {
-  color: #111; /* use dark text for the dropdown options so they appear on light backgrounds */
-  background: #fff; /* ensures options panel uses light background where supported */
+  color: #111;
+  background: #fff;
 }
 
-/* Custom dropdown styles (replaces native select for pixel-perfect theme) */
+/* ================================================================
+   CUSTOM DROPDOWN
+   ================================================================ */
+
+/* Custom dropdown wrapper */
 .custom-dropdown-wrap {
   position: relative;
 }
+
+/* Custom dropdown toggle button */
 .custom-dropdown-toggle {
   width: 100%;
   text-align: left;
@@ -610,10 +718,14 @@
   justify-content: space-between;
   cursor: pointer;
 }
+
+/* Custom dropdown caret icon */
 .custom-dropdown-toggle .caret {
   margin-left: 12px;
   opacity: 0.9;
 }
+
+/* Custom dropdown menu - floating options */
 .custom-dropdown-menu {
   position: absolute;
   left: 0;
@@ -629,43 +741,55 @@
   max-height: 220px;
   overflow: auto;
 }
+
+/* Custom dropdown menu item */
 .custom-dropdown-item {
   padding: 10px 14px;
   cursor: pointer;
 }
+
+/* Custom dropdown item hover state */
 .custom-dropdown-item:hover {
   background: rgba(16,9,24,0.06);
 }
+
+/* Custom dropdown first item - bold */
 .custom-dropdown .custom-dropdown-item:first-of-type {
   font-weight: 600;
 }
+
+/* Custom dropdown open state - gold border */
 .custom-dropdown.open .custom-dropdown-toggle {
   border-color: var(--gold-color);
   box-shadow: 0 4px 18px rgba(184,138,30,0.12);
 }
 
+/* Studio hours section */
 .studio-hours {
   margin-bottom: 20px;
 }
 
+/* Individual hour item */
 .hours-item {
   color: var(--text-muted);
   margin-bottom: 8px;
 }
 
+/* Hours label - bold white */
 .hours-item strong {
   color: var(--text-light);
 }
 
+/* Studio map section */
 .studio-map {
   margin-bottom: 12px;
 }
 
-/* Responsive iframe wrapper for the embedded map */
+/* Responsive map wrapper - maintains 16:9 aspect ratio */
 .map-wrap {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 */
+  padding-top: 56.25%;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
@@ -673,6 +797,7 @@
   border: 1px solid rgba(0,0,0,0.06);
 }
 
+/* Map iframe - absolute positioning inside wrapper */
 .map-wrap iframe {
   position: absolute;
   top: 0;
@@ -682,7 +807,7 @@
   border: 0;
 }
 
-/* Small white callout button in the top-left of the map */
+/* Map overlay - positioned buttons on map */
 .map-wrap .map-overlay {
   position: absolute;
   left: 12px;
@@ -690,6 +815,7 @@
   z-index: 20;
 }
 
+/* View larger button - white callout on map */
 .view-larger {
   background: #ffffff;
   color: #111;
@@ -701,8 +827,12 @@
   cursor: pointer;
 }
 
-.view-larger:hover { transform: translateY(-2px); }
+/* View larger button hover */
+.view-larger:hover { 
+  transform: translateY(-2px); 
+}
 
+/* Map actions container */
 .map-actions {
   display: flex;
   align-items: center;
@@ -710,6 +840,7 @@
   margin-top: 10px;
 }
 
+/* Map action link - gold accent button */
 .map-actions .open-link {
   display: inline-flex;
   align-items: center;
@@ -724,41 +855,79 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
+/* Map action link hover */
 .map-actions .open-link:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 24px rgba(184,138,30,0.12);
   background: rgba(184,138,30,0.12);
 }
 
+/* Studio note - small helper text */
 .studio-note {
   color: var(--text-muted);
   margin-top: 6px;
 }
 
-/* ===== Responsive Rules ===== */
-/* Media queries to adjust layout on smaller viewports */
+
+/* ================================================================
+   RESPONSIVE MEDIA QUERIES
+   ================================================================ */
+
+/* Large tablet / small desktop - 992px breakpoint */
 @media (max-width: 992px) {
-  .hero-title {
-    font-size: 2rem;
+  /* Hero section adjustments for smaller screens */
+  .hero-section {
+    padding: 48px 24px;
   }
-  .hero-image{
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  /* Hero image - add margin for spacing */
+  .hero-image {
     margin-top: 20px;
   }
-  
-  .hero-stats {
-    gap: 20px;
+
+  /* Services grid - 2 columns instead of 3 */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
+
+  .service-card {
+    margin-bottom: 15px;
+  }
+
+  /* Featured grid - 2 columns */
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .featured-card {
     padding: 25px;
   }
- .service-card {
-    margin-bottom: 15px;
+
+  /* Contact form and studio info stack vertically */
+  .contact-section > .container > .row {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .contact-section > .container > .row > .col-lg-8,
+  .contact-section > .container > .row > .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Quick contact grid - 2 columns */
+  .quick-contact-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-
+/* Tablet - 768px breakpoint */
 @media (max-width: 768px) {
+  /* Reduce global margins for smaller tablets */
   .hero-section,
   .services-section,
   .featured-section,
@@ -766,7 +935,67 @@
     margin: 10px;
   }
 
-  /* On small screens, allow contact columns to wrap and take full width */
+  /* Hero section - smaller padding and typography */
+  .hero-section {
+    padding: 40px 20px;
+    min-height: 450px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+
+  .hero-stat-value {
+    font-size: 2rem;
+  }
+
+  /* Hero stats - stack vertically */
+  .hero-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Hero buttons - stack vertically */
+  .hero-cta-buttons {
+    flex-direction: column;
+  }
+
+  .hero-cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Services section - single column */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 32px 24px;
+    margin-bottom: 18px;
+  }
+
+  /* Featured section - single column */
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-card {
+    gap: 12px;
+  }
+
+  .featured-buttons {
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+
+  /* Quick contact - single column */
+  .quick-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact section - responsive column layout */
   .contact-section .row {
     flex-wrap: wrap;
   }
@@ -775,63 +1004,20 @@
   .contact-section .row > .col-lg-4 {
     flex: 0 0 100%;
     max-width: 100%;
-  }
-  
-  .hero-title {
-    font-size: 1.8rem;
-  }
-  
-  .hero-stats {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-  }
-  
-  .btn {
-    justify-content: center;
-  }
-  
-  .featured-buttons {
-    flex-direction: column;
-  }
-
-  /* Ensure service cards have clear vertical spacing when stacked on mobile */
-  .services-section .row > [class*="col-"] {
-    margin-bottom: 14px;
-  }
-
-  .services-section .service-card {
-    margin-bottom: 18px; /* slightly larger to create breathing room */
-  }
-
-  /* Give featured buttons some bottom margin so the image doesn't sit flush */
-  .featured-buttons {
-    margin-bottom: 12px;
-  }
-
-  /* Mobile-specific fixes for contact/studio column layout */
-  .contact-section > .container > .row {
-    display: block; /* stack cards vertically on mobile */
-  }
-
-  .contact-section > .container > .row > .col-lg-8,
-  .contact-section > .container > .row > .col-lg-4 {
-    flex: none;
-    width: 100%;
-    max-width: 100%;
     margin-bottom: 18px;
   }
 
-  /* Reduce padding inside cards on small screens */
   .contact-form-card,
   .studio-info-card {
     padding: 18px;
   }
 
-  /* Prevent the map overlay button from overflowing the container on very narrow screens */
+  /* Location map - reduce height */
+  .location-map {
+    height: 220px;
+  }
+
+  /* Map overlay button - smaller positioning */
   .map-wrap .map-overlay {
     left: 8px;
     top: 8px;
@@ -842,8 +1028,266 @@
     font-size: 0.9rem;
   }
 
-  /* Ensure the portfolio microcopy and badge don't crowd the layout on small screens */
-  .mto-badge { padding: 5px 8px; font-size: 0.8rem; }
-  .portfolio-tooltip { font-size: 0.8rem; }
+  /* Form controls - full width with better spacing */
+  .form-control,
+  .form-select,
+  .custom-dropdown-toggle {
+    padding: 14px 12px;
+    font-size: 1rem;
+  }
+
+  /* Button text sizing */
+  .btn {
+    font-size: 0.95rem;
+    justify-content: center;
+  }
+
+  /* Badge and microcopy - smaller on tablets */
+  .mto-badge {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+
+  .portfolio-tooltip {
+    font-size: 0.8rem;
+  }
+
+  /* Services grid - ensure proper spacing */
+  .services-section .row > [class*="col-"] {
+    margin-bottom: 14px;
+  }
+}
+
+/* Small mobile - 640px breakpoint */
+@media (max-width: 640px) {
+  /* Global padding reduction */
+  .home-wrapper {
+    padding-top: 20px;
+  }
+
+  /* Hero section - minimal padding */
+  .hero-section {
+    padding: 32px 16px;
+    min-height: 380px;
+    gap: 24px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .hero-stats {
+    gap: 20px;
+  }
+
+  .hero-stat {
+    flex: 1;
+  }
+
+  .hero-stat-value {
+    font-size: 1.6rem;
+  }
+
+  /* Section headings - smaller */
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Service cards - horizontal layout */
+  .service-card {
+    padding: 24px 20px;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .service-info {
+    flex: 1;
+  }
+
+  .service-info h3 {
+    font-size: 1rem;
+  }
+
+  /* Featured cards - compact */
+  .featured-card {
+    gap: 12px;
+  }
+
+  .featured-image {
+    height: 180px;
+  }
+
+  /* Quick contact cards - stacked */
+  .quick-contact-card {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .quick-contact-card h3 {
+    font-size: 1rem;
+  }
+
+  /* Location map - smaller height */
+  .location-map {
+    height: 200px;
+  }
+
+  /* Form sections - tighter spacing */
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-control,
+  .form-select,
+  .custom-dropdown-toggle {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Studio info - single column layout */
+  .studio-info-card {
+    gap: 24px;
+  }
+
+  /* Buttons - reduce padding */
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra small mobile - 420px breakpoint */
+@media (max-width: 420px) {
+  /* Minimal padding and spacing */
+  .home-wrapper {
+    padding-top: 12px;
+  }
+
+  /* Hero section - ultra-compact */
+  .hero-section {
+    padding: 24px 12px;
+    min-height: 320px;
+  }
+
+  .hero-title {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .hero-stats {
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .hero-stat-value {
+    font-size: 1.4rem;
+  }
+
+  /* Section headings - very small */
+  .section-header h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  /* Service cards - single column */
+  .service-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.6rem;
+  }
+
+  .service-info h3 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .service-info p {
+    font-size: 0.8rem;
+  }
+
+  /* Featured cards - very compact */
+  .featured-card {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .featured-image {
+    height: 150px;
+  }
+
+  .featured-badge {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+
+  /* Quick contact cards - minimal padding */
+  .quick-contact-card {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .quick-contact-card h3 {
+    font-size: 0.95rem;
+  }
+
+  /* Form - ultra-compact */
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-control,
+  .form-select,
+  .custom-dropdown-toggle {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+
+  /* Buttons - smallest size */
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+
+  .btn-compact {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  /* Location map - minimal height */
+  .location-map {
+    height: 180px;
+    margin-bottom: 12px;
+  }
+
+  /* Hours item - single line */
+  .hours-item {
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+  }
 }
 
