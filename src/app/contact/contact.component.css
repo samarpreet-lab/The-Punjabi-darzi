@@ -1,14 +1,21 @@
-/* Contact Component Styles */
+/* ================================================================
+   CONTACT COMPONENT STYLES
+   ================================================================ */
 
+/* ================================================================
+   CONTAINER & LAYOUT
+   ================================================================ */
+
+/* Main contact container - full height with dark background */
 .contact-container {
   min-height: 100vh;
   background: #100918;
   padding: 3rem 2rem;
   color: #ffffff;
-  /* Ensure this doesn't create a stacking context that blocks fixed nav */
   overflow: visible;
 }
 
+/* Two-column layout container - left form, right info */
 .contact-layout {
   max-width: 1400px;
   margin: 0 auto;
@@ -17,13 +24,22 @@
   gap: 2rem;
 }
 
-/* Left Section */
+
+/* ================================================================
+   LEFT SECTION - CONTACT FORM & INFO
+   ================================================================ */
+
+/* Left section container */
 .left-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+
+/* CARD STYLING - Common styles for all cards */
+
+/* Card containers - dark background with border */
 .contact-card,
 .contact-form-card,
 .info-card,
@@ -32,10 +48,9 @@
   border-radius: 16px;
   padding: 2rem;
   border: 1px solid #2a2130;
-  /* Remove backdrop-filter to prevent stacking context issues with nav menu */
-  /* backdrop-filter: blur(10px); */
 }
 
+/* Card header styling - pill-shaped header with gold accent */
 .card-header,
 .form-header,
 .studio-header {
@@ -53,12 +68,17 @@
   width: fit-content;
 }
 
+/* Card header icons */
 .card-header i,
 .form-header i,
 .studio-header i {
   font-size: 1rem;
 }
 
+
+/* TYPOGRAPHY - Headings and descriptions */
+
+/* Section title styling */
 .section-title {
   font-size: 2rem;
   font-weight: 700;
@@ -66,6 +86,7 @@
   color: #ffffff;
 }
 
+/* Section description text */
 .section-description,
 .form-description {
   font-size: 1rem;
@@ -74,7 +95,12 @@
   margin-bottom: 2rem;
 }
 
-/* Buttons */
+
+/* ================================================================
+   BUTTONS & ACTION ELEMENTS
+   ================================================================ */
+
+/* Base action button styling */
 .action-btn {
   display: flex;
   align-items: center;
@@ -91,38 +117,41 @@
   margin-bottom: 1rem;
 }
 
+/* WhatsApp button - golden background */
 .whatsapp-btn {
   background: #b88a1e;
   color: #100918;
 }
 
-/* Make the WhatsApp icon bigger and bolder where used */
+/* WhatsApp button icon - larger and bolder */
 .whatsapp-btn i,
 .whatsapp-btn svg {
   font-size: 1.45rem;
-  /* larger icon */
   line-height: 1;
   font-weight: 800;
-  /* bolder for font icons where supported */
 }
 
+/* WhatsApp button hover state */
 .whatsapp-btn:hover {
   background: #a67b1a;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(184, 138, 30, 0.3);
 }
 
+/* Submit button - golden background */
 .submit-btn {
   background: #b88a1e;
   color: #100918;
   margin-top: 1rem;
 }
 
+/* Submit button hover state */
 .submit-btn:hover {
   background: #a67b1a;
   transform: translateY(-2px);
 }
 
+/* Phone link button styling */
 .phone-link {
   display: inline-flex;
   align-items: center;
@@ -140,6 +169,7 @@
   justify-content: center;
 }
 
+/* Phone link hover state */
 .phone-link:hover {
   background: #a67b1a;
   transform: translateY(-2px);
@@ -147,15 +177,37 @@
   color: #100918;
 }
 
+/* Phone link icon */
 .phone-link i {
   font-size: 1.2rem;
 }
 
-/* Form Styles */
+/* Submit button disabled state */
+.submit-btn:disabled {
+  background: #666666;
+  color: #999999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Submit button disabled hover state */
+.submit-btn:disabled:hover {
+  background: #666666;
+  box-shadow: none;
+  transform: none;
+}
+
+
+/* ================================================================
+   FORM STYLING
+   ================================================================ */
+
+/* Form body container */
 .form-body {
   margin-top: 1.5rem;
 }
 
+/* Form row - two-column layout */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -163,10 +215,12 @@
   margin-bottom: 1rem;
 }
 
+/* Individual form group */
 .form-group {
   margin-bottom: 1rem;
 }
 
+/* Form input field styling */
 .form-input {
   width: 100%;
   padding: 1rem 1.5rem;
@@ -178,26 +232,31 @@
   transition: all 0.3s ease;
 }
 
+/* Form input focus state - highlight with gold border */
 .form-input:focus {
   outline: none;
   border-color: #b88a1e;
   background: #120814;
 }
 
+/* Form input placeholder text */
 .form-input::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 
+/* Form select options - dark background */
 .form-input option {
   background: #100918;
   color: #ffffff;
 }
 
+/* Textarea - resizable with minimum height */
 textarea.form-input {
   resize: vertical;
   min-height: 120px;
 }
 
+/* Form note text - small gray italic text */
 .form-note {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.5);
@@ -205,7 +264,12 @@ textarea.form-input {
   font-style: italic;
 }
 
-/* Form Validation Styling */
+
+/* ================================================================
+   FORM VALIDATION STYLING
+   ================================================================ */
+
+/* Error message text - red color for invalid fields */
 .error-message {
   display: block;
   color: #ff6b6b;
@@ -214,20 +278,24 @@ textarea.form-input {
   font-weight: 500;
 }
 
+/* Invalid input field after interaction - red border with red tint */
 .form-input.ng-invalid.ng-touched {
   border-color: #ff6b6b;
   background: rgba(255, 107, 107, 0.05);
 }
 
+/* Valid input field after interaction - teal border */
 .form-input.ng-valid.ng-touched {
   border-color: #4ecdc4;
 }
 
+/* Invalid input field on focus - red glow */
 .form-input:focus.ng-invalid {
   border-color: #ff6b6b;
   box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
+/* Valid input field on focus - teal glow */
 .form-input:focus.ng-valid {
   border-color: #4ecdc4;
   box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
@@ -246,32 +314,34 @@ textarea.form-input {
   transform: none;
 }
 
-/* Send-method pill toggles */
 
+/* ================================================================
+   SEND METHOD TOGGLE PILLS
+   ================================================================ */
+
+/* Send method group container */
 .send-method-group {
   margin-bottom: 1rem;
-  /* ensure some breathing room under the group */
   margin-right: 10px;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  /* space between label text and pills */
 }
 
+/* Send methods pill container */
 .send-methods {
   display: inline-flex;
   gap: 0.9rem;
-  /* slightly larger gap between pills for clarity */
   align-items: center;
   margin-left: 0.5rem;
-  /* small offset so pills don't butt against the label */
 }
 
-/* Each label contains a hidden native radio and a visible pill (.label-text) */
+/* Individual send option - radio button wrapper */
 .send-option {
   display: inline-block;
 }
 
+/* Hide native radio button */
 .send-option input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -279,6 +349,7 @@ textarea.form-input {
   height: 0;
 }
 
+/* Custom pill label for radio button */
 .send-option .label-text {
   display: inline-flex;
   align-items: center;
@@ -294,7 +365,7 @@ textarea.form-input {
   justify-content: center;
 }
 
-/* If a send-method pill contains a WhatsApp icon, make it more prominent */
+/* WhatsApp icon in send method pill - larger and bolder */
 .send-option .label-text .wh-icon,
 .send-option .label-text svg.wh-icon,
 .send-option .label-text i.wh-icon {
@@ -302,7 +373,7 @@ textarea.form-input {
   font-weight: 800;
 }
 
-/* custom circular indicator inside the pill */
+/* Custom circular indicator inside the pill - unselected state */
 .send-option .label-text::before {
   content: '';
   display: inline-block;
@@ -313,44 +384,55 @@ textarea.form-input {
   background: transparent;
 }
 
-/* checked state: pill turns gold, text dark, indicator becomes black */
+/* Send method pill checked state - golden background with dark text */
 .send-option input[type="radio"]:checked+.label-text {
   background: #b88a1e;
   color: #100918;
 }
 
-
+/* Send method pill checked state - filled white indicator */
 .send-option input[type="radio"]:checked+.label-text::before {
-  /* when selected, the circular indicator should be white */
   background: #ffffff;
   border-color: #ffffff;
 }
 
+/* Send method pill hover state - slight lift */
 .send-option .label-text:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.045);
 }
 
+/* Send method pill focus state - gold glow */
 .send-option input[type="radio"]:focus+.label-text {
   box-shadow: 0 0 0 3px rgba(184, 138, 30, 0.12);
 }
 
-/* Right Section */
+
+/* ================================================================
+   RIGHT SECTION - INFORMATION & LOCATION
+   ================================================================ */
+
+/* Right section container */
 .right-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Business Hours */
+
+/* BUSINESS HOURS CARD */
+
+/* Business hours card - gold gradient background */
 .business-hours-card {
   background: linear-gradient(135deg, rgba(184, 138, 30, 0.1) 0%, rgba(184, 138, 30, 0.05) 100%);
 }
 
+/* Business hours content area */
 .hours-content {
   margin-top: 1.5rem;
 }
 
+/* Individual hours item - day and time display */
 .hours-item {
   display: flex;
   justify-content: space-between;
@@ -359,24 +441,31 @@ textarea.form-input {
   border-bottom: 1px solid #2a2130;
 }
 
+/* Last hours item - no bottom border */
 .hours-item:last-child {
   border-bottom: none;
 }
 
+/* Day of week styling */
 .day {
   font-weight: 600;
   color: #ffffff;
 }
 
+/* Time styling */
 .time {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Location Card */
+
+/* LOCATION CARD & MAP */
+
+/* Location card container */
 .location-card {
   flex: 1;
 }
 
+/* Map container - embedded map styling */
 .map-container {
   margin: 1.5rem 0;
   border-radius: 12px;
@@ -384,11 +473,13 @@ textarea.form-input {
   border: 2px solid #2a2130;
 }
 
+/* Map iframe - desaturated and darkened */
 .map-container iframe {
   display: block;
   filter: grayscale(20%) brightness(0.9);
 }
 
+/* Location action buttons container */
 .location-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -396,6 +487,7 @@ textarea.form-input {
   margin: 1.5rem 0;
 }
 
+/* Base location button styling */
 .location-btn {
   display: flex;
   align-items: center;
@@ -409,6 +501,7 @@ textarea.form-input {
   transition: all 0.3s ease;
 }
 
+/* Google Maps button - golden background */
 .maps-btn {
   background: #b88a1e;
   color: #100918;
@@ -421,12 +514,14 @@ textarea.form-input {
   gap: 0.5rem;
 }
 
+/* Google Maps button hover state */
 .maps-btn:hover {
   background: #a67b1a;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(184, 138, 30, 0.25);
 }
 
+/* Navigation button - golden background */
 .nav-btn {
   background: #b88a1e;
   color: #100918;
@@ -439,17 +534,22 @@ textarea.form-input {
   gap: 0.5rem;
 }
 
+/* Navigation button hover state */
 .nav-btn:hover {
   background: #a67b1a;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(184, 138, 30, 0.25);
 }
 
-/* Address Section */
+
+/* ADDRESS SECTION */
+
+/* Address section container */
 .address-section {
   margin-top: 1.5rem;
 }
 
+/* Address section heading */
 .address-title {
   font-size: 1.2rem;
   font-weight: 600;
@@ -457,6 +557,7 @@ textarea.form-input {
   color: #ffffff;
 }
 
+/* Individual address item - icon and text */
 .address-item {
   display: flex;
   align-items: center;
@@ -465,12 +566,14 @@ textarea.form-input {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Address item icon - golden color */
 .address-item i {
   color: #b88a1e;
   font-size: 1rem;
   min-width: 20px;
 }
 
+/* Address landmark note - small italic helper text */
 .landmark-note {
   margin-top: 1rem;
   font-size: 0.875rem;
@@ -478,7 +581,10 @@ textarea.form-input {
   font-style: italic;
 }
 
-/* Visit Studio Card */
+
+/* VISIT STUDIO CARD */
+
+/* Visit studio card - centered with gold accent */
 .visit-studio-card {
   background: rgba(184, 138, 30, 0.1);
   border: 2px solid rgba(184, 138, 30, 0.3);
@@ -486,12 +592,18 @@ textarea.form-input {
   padding: 1.5rem;
 }
 
+/* Studio header in visit card */
 .studio-header {
   margin: 0 auto;
   font-size: 1.1rem;
 }
 
-/* Responsive Design */
+
+/* ================================================================
+   RESPONSIVE MEDIA QUERIES
+   ================================================================ */
+
+/* LARGE SCREENS - Single column layout */
 @media (max-width: 1024px) {
   .contact-layout {
     grid-template-columns: 1fr;
@@ -502,6 +614,7 @@ textarea.form-input {
   }
 }
 
+/* TABLET SCREENS - Adjust padding and font sizes */
 @media (max-width: 640px) {
   .contact-container {
     padding: 2rem 1rem;
@@ -530,7 +643,7 @@ textarea.form-input {
   }
 }
 
-/* Extra-small phones: improve touch targets and stacking */
+/* SMALL PHONES - Touch-friendly targets and improved spacing */
 @media (max-width: 420px) {
   .contact-container {
     padding: 1.25rem 0.8rem;
@@ -558,7 +671,7 @@ textarea.form-input {
     line-height: 1.5;
   }
 
-  /* Make action buttons larger and more tappable */
+  /* Action buttons - larger touch targets */
   .action-btn {
     padding: 1rem 1.25rem;
     font-size: 1.02rem;
@@ -579,7 +692,7 @@ textarea.form-input {
     font-size: 1rem;
   }
 
-  /* Ensure form inputs are comfortably tappable */
+  /* Form inputs - comfortable tap area */
   .form-input {
     padding: 0.9rem 1rem;
     font-size: 1rem;
@@ -589,7 +702,7 @@ textarea.form-input {
     min-height: 100px;
   }
 
-  /* Stack location actions and make buttons full width */
+  /* Location action buttons - full width stack */
   .location-actions {
     grid-template-columns: 1fr;
   }
@@ -601,13 +714,13 @@ textarea.form-input {
     border-radius: 10px;
   }
 
-  /* Reduce map height to fit smaller screens */
+  /* Embedded map - reduce height on small screens */
   .map-container iframe {
     height: 200px;
     width: 100%;
   }
 
-  /* Tighten margins for preview spacing */
+  /* Form row spacing */
   .form-row {
     gap: 0.75rem;
   }
