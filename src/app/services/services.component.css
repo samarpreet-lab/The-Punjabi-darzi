@@ -1,21 +1,45 @@
+/* ================================================================
+   CSS VARIABLES & THEME CONFIGURATION
+   ================================================================ */
+
 :host {
 	--page-bg: #0e0818;
+	/* main page background - very dark purple */
 	--card-bg: linear-gradient(145deg, rgba(32, 22, 44, 0.92), rgba(17, 10, 27, 0.92));
+	/* card gradient background */
 	--card-border: rgba(255, 255, 255, 0.06);
+	/* subtle card borders */
 	--accent: #f5b83c;
+	/* primary accent - gold */
 	--accent-strong: #f1a90c;
+	/* darker gold for hover states */
 	--muted: #c3c0d9;
+	/* muted text color */
 	--text: #f5f4ff;
+	/* primary text color - white */
 	--badge-bg: rgba(245, 184, 60, 0.18);
+	/* badge background - transparent gold */
 	--badge-border: rgba(245, 184, 60, 0.45);
+	/* badge border - semi-opaque gold */
 	--surface-soft: rgba(255, 255, 255, 0.04);
+	/* soft background surfaces */
 	--surface-highlight: linear-gradient(135deg, rgba(86, 57, 116, 0.35), rgba(86, 57, 116, 0.1));
+	/* highlighted surface gradient */
 }
+
+/* ================================================================
+   SERVICES PAGE MAIN CONTAINER
+   ================================================================ */
 
 .services-page {
 	color: var(--text);
 }
 
+/* ================================================================
+   SECTION CARDS & PANELS
+   ================================================================ */
+
+/* Generic section card - standard card styling for all sections */
 .section-card {
 	background: var(--card-bg);
 	border: 1px solid var(--card-border);
@@ -24,10 +48,16 @@
 	box-shadow: 0 24px 64px rgba(4, 0, 20, 0.4);
 }
 
+/* Overview card - larger padding for main header sections */
 .overview-card {
 	padding: 32px;
 }
 
+/* ================================================================
+   TYPOGRAPHY & TEXT STYLES
+   ================================================================ */
+
+/* Section tag - uppercase badge indicator */
 .section-tag {
 	display: inline-flex;
 	align-items: center;
@@ -44,26 +74,46 @@
 	margin-bottom: 22px;
 }
 
+/* Section tag icon */
 .section-tag i {
 	font-size: 0.85rem;
 }
 
+/* Main section title - large heading */
 .section-title {
 	font-size: 1.9rem;
 	font-weight: 700;
 	margin-bottom: 14px;
 }
 
+/* Section lead text - introduction paragraph */
 .section-lead {
 	color: var(--muted);
 	font-size: 1rem;
 	margin-bottom: 24px;
 }
 
+/* Secondary heading - smaller than main title */
+.section-heading {
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+/* Accent text - gold highlighted text */
+.text-accent {
+	color: var(--accent);
+}
+
+/* ================================================================
+   METRICS & STATISTICS
+   ================================================================ */
+
+/* Metrics row container */
 .metrics-row {
 	margin-bottom: 26px;
 }
 
+/* Individual metric card */
 .metric-card {
 	background: var(--surface-soft);
 	border-radius: 18px;
@@ -71,6 +121,7 @@
 	padding: 18px 20px;
 }
 
+/* Metric label - field name */
 .metric-label {
 	font-size: 0.85rem;
 	color: var(--muted);
@@ -79,23 +130,31 @@
 	margin-bottom: 6px;
 }
 
+/* Metric value - large number */
 .metric-value {
 	font-size: 1.3rem;
 	font-weight: 700;
 }
 
+/* Metric helper text - additional info */
 .metric-helper {
 	font-size: 0.9rem;
 	color: var(--muted);
 	margin-top: 6px;
 }
 
+/* ================================================================
+   BUTTONS & CALL-TO-ACTION
+   ================================================================ */
+
+/* CTA row container - button wrapper */
 .cta-row {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
 }
 
+/* Base button styling - all buttons */
 .btn {
 	border-radius: 999px;
 	padding: 12px 22px;
@@ -108,32 +167,58 @@
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Button icon */
 .btn i {
 	font-size: 1rem;
 }
 
+/* Gold glow button - primary action */
 .btn-glow {
 	background: linear-gradient(135deg, #f8c95b, var(--accent-strong));
 	color: #12081c;
 	box-shadow: 0 15px 30px rgba(245, 184, 60, 0.35);
 }
 
+/* Gold glow hover - lift and brighten */
 .btn-glow:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 18px 36px rgba(245, 184, 60, 0.45);
 }
 
+/* Outline light button - secondary action */
 .btn-outline-light {
 	background: transparent;
 	border: 1px solid rgba(255, 255, 255, 0.22);
 	color: var(--text);
 }
 
+/* Outline light hover - accent on hover */
 .btn-outline-light:hover {
 	border-color: var(--accent);
 	color: var(--accent);
 }
 
+/* CTA item button styling - buttons within CTA cards */
+.cta-item .btn,
+.cta-item.alt .btn {
+	background: linear-gradient(135deg, #f8c95b, var(--accent-strong));
+	color: #12081c;
+	box-shadow: 0 15px 30px rgba(245, 184, 60, 0.35);
+	border: none;
+}
+
+/* CTA item button hover */
+.cta-item .btn:hover,
+.cta-item.alt .btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 18px 36px rgba(245, 184, 60, 0.45);
+}
+
+/* ================================================================
+   WORKFLOW & PROCESS LISTS
+   ================================================================ */
+
+/* Workflow panel - process container */
 .workflow-panel {
 	background: var(--surface-soft);
 	border-radius: 18px;
@@ -144,12 +229,14 @@
 	gap: 18px;
 }
 
+/* Panel title - heading inside panel */
 .panel-title {
 	font-size: 1.1rem;
 	font-weight: 600;
 	margin-bottom: 0;
 }
 
+/* Workflow list - ordered steps */
 .workflow-list {
 	list-style: none;
 	padding: 0;
@@ -159,15 +246,158 @@
 	color: var(--muted);
 }
 
+/* Workflow list item - individual step */
 .workflow-list li {
 	padding: 8px 0;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+/* Last workflow item - no border */
 .workflow-list li:last-child {
 	border-bottom: none;
 }
 
+/* Process steps - numbered steps list */
+.process-steps {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: grid;
+	gap: 10px;
+}
+
+/* Process step item - step container with icon */
+.process-steps li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	background: rgba(255, 255, 255, 0.03);
+	border-radius: 14px;
+	padding: 10px 14px;
+	color: var(--muted);
+}
+
+/* Step index - numbered circle badge */
+.step-index {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: rgba(245, 184, 60, 0.18);
+	color: var(--accent);
+	font-weight: 700;
+	font-size: 0.85rem;
+	flex-shrink: 0;
+}
+
+/* ================================================================
+   SERVICE CATEGORY CARDS
+   ================================================================ */
+
+/* Category card - service offering card */
+.category-card {
+	background: var(--surface-soft);
+	border-radius: 18px;
+	padding: 24px;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Category card hover - lift and shadow */
+.category-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 16px 38px rgba(12, 2, 32, 0.4);
+}
+
+/* Category group - service category label */
+.category-group {
+	font-size: 0.85rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin-bottom: 8px;
+}
+
+/* Category title - service name */
+.category-title {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+/* Category description - service details */
+.category-description {
+	color: var(--muted);
+	font-size: 0.95rem;
+	margin-bottom: 14px;
+}
+
+/* Category price - pricing display */
+.category-price {
+	color: var(--accent);
+	font-weight: 700;
+	font-size: 1rem;
+}
+
+/* ================================================================
+   HIGHLIGHT & FEATURED CARDS
+   ================================================================ */
+
+/* Highlight card - featured content container */
+.highlight-card {
+	background: var(--surface-soft);
+	border-radius: 18px;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	padding: 24px;
+	height: 100%;
+}
+
+/* Highlight title - featured title */
+.highlight-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 14px;
+}
+
+/* Highlight subtitle - featured subtitle */
+.highlight-subtitle {
+	font-size: 0.9rem;
+	color: var(--muted);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	margin-bottom: 12px;
+}
+
+/* Highlight value - featured value/number */
+.highlight-value {
+	font-size: 1.4rem;
+	font-weight: 700;
+	margin-bottom: 12px;
+}
+
+/* Highlight copy - featured description text */
+.highlight-copy {
+	color: var(--muted);
+	margin-bottom: 18px;
+}
+
+/* Highlight footer - featured footer text */
+.highlight-footer {
+	font-size: 0.9rem;
+	color: var(--muted);
+	line-height: 1.5;
+	background: rgba(255, 255, 255, 0.03);
+	border-radius: 14px;
+	padding: 12px;
+}
+
+/* ================================================================
+   BADGES & SPECIAL INDICATORS
+   ================================================================ */
+
+/* Express badge - special service indicator */
 .badge.express {
 	align-self: flex-start;
 	background: rgba(94, 67, 146, 0.35);
@@ -180,153 +410,12 @@
 	color: var(--text);
 }
 
-.badge.express i { color: var(--accent); }
-
-.section-heading {
-	font-size: 1.4rem;
-	font-weight: 600;
-}
-
-.text-accent { color: var(--accent); }
-
-.category-card {
-	background: var(--surface-soft);
-	border-radius: 18px;
-	padding: 24px;
-	border: 1px solid rgba(255, 255, 255, 0.06);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.category-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 16px 38px rgba(12, 2, 32, 0.4);
-}
-
-.category-group {
-	font-size: 0.85rem;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--muted);
-	margin-bottom: 8px;
-}
-
-.category-title {
-	font-size: 1.2rem;
-	font-weight: 600;
-	margin-bottom: 10px;
-}
-
-.category-description {
-	color: var(--muted);
-	font-size: 0.95rem;
-	margin-bottom: 14px;
-}
-
-.category-price {
+/* Express badge icon - gold accent */
+.badge.express i {
 	color: var(--accent);
-	font-weight: 700;
-	font-size: 1rem;
 }
 
-.highlight-card {
-	background: var(--surface-soft);
-	border-radius: 18px;
-	border: 1px solid rgba(255, 255, 255, 0.05);
-	padding: 24px;
-	height: 100%;
-}
-
-.highlight-title {
-	font-size: 1.1rem;
-	font-weight: 600;
-	margin-bottom: 14px;
-}
-
-.highlight-subtitle {
-	font-size: 0.9rem;
-	color: var(--muted);
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-	margin-bottom: 12px;
-}
-
-.process-steps {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	display: grid;
-	gap: 10px;
-}
-
-.process-steps li {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	background: rgba(255, 255, 255, 0.03);
-	border-radius: 14px;
-	padding: 10px 14px;
-	color: var(--muted);
-}
-
-.step-index {
-	width: 28px;
-	height: 28px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	background: rgba(245, 184, 60, 0.18);
-	color: var(--accent);
-	font-weight: 700;
-	font-size: 0.85rem;
-}
-
-.highlight-value {
-	font-size: 1.4rem;
-	font-weight: 700;
-	margin-bottom: 12px;
-}
-
-.highlight-copy {
-	color: var(--muted);
-	margin-bottom: 18px;
-}
-
-.highlight-footer {
-	font-size: 0.9rem;
-	color: var(--muted);
-	line-height: 1.5;
-	background: rgba(255, 255, 255, 0.03);
-	border-radius: 14px;
-	padding: 12px;
-}
-
-.table-dark {
-	--bs-table-bg: transparent;
-	--bs-table-color: var(--text);
-}
-
-.table thead th {
-	text-transform: uppercase;
-	font-size: 0.8rem;
-	letter-spacing: 0.08em;
-	color: var(--muted);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.table tbody tr {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.table tbody tr:last-child {
-	border-bottom: none;
-}
-
-.table tbody td {
-	padding: 16px 14px;
-	font-size: 0.95rem;
-}
-
+/* Express note - informational note about express services */
 .express-note {
 	margin-top: 16px;
 	background: rgba(94, 67, 146, 0.3);
@@ -339,10 +428,16 @@
 	color: var(--muted);
 }
 
+/* Express note icon */
 .express-note i {
 	color: var(--accent);
 }
 
+/* ================================================================
+   FABRIC & CARE INFORMATION
+   ================================================================ */
+
+/* Fabric card - fabric type/care information */
 .fabric-card {
 	background: var(--surface-soft);
 	border-radius: 18px;
@@ -350,18 +445,21 @@
 	padding: 22px;
 }
 
+/* Fabric name - fabric type title */
 .fabric-name {
 	font-size: 1.1rem;
 	font-weight: 600;
 	margin-bottom: 10px;
 }
 
+/* Fabric description - fabric details */
 .fabric-description {
 	color: var(--muted);
 	font-size: 0.95rem;
 	margin-bottom: 14px;
 }
 
+/* Fabric care - care instruction badge */
 .fabric-care {
 	display: inline-flex;
 	gap: 8px;
@@ -374,6 +472,7 @@
 	font-weight: 600;
 }
 
+/* Fabric advice list - care instructions */
 .fabric-advice {
 	list-style: none;
 	margin: 0;
@@ -382,6 +481,7 @@
 	gap: 10px;
 }
 
+/* Fabric advice item - individual care instruction */
 .fabric-advice li {
 	background: rgba(255, 255, 255, 0.03);
 	border-radius: 14px;
@@ -389,6 +489,11 @@
 	color: var(--muted);
 }
 
+/* ================================================================
+   FAQ & INFORMATION CARDS
+   ================================================================ */
+
+/* FAQ item - frequently asked question container */
 .faq-item {
 	background: var(--surface-soft);
 	border-radius: 18px;
@@ -396,16 +501,23 @@
 	padding: 22px;
 }
 
+/* FAQ question - question text */
 .faq-question {
 	font-weight: 600;
 	margin-bottom: 10px;
 }
 
+/* FAQ answer - answer text */
 .faq-answer {
 	color: var(--muted);
 	margin: 0;
 }
 
+/* ================================================================
+   CTA ITEMS & CALL-TO-ACTION CARDS
+   ================================================================ */
+
+/* CTA item - call-to-action card container */
 .cta-item {
 	background: var(--surface-soft);
 	border-radius: 18px;
@@ -416,12 +528,13 @@
 	gap: 18px;
 }
 
+/* CTA item alternative - alternate styling */
 .cta-item.alt {
-	/* Use same surface background as the primary cta-item for consistent color */
 	background: var(--surface-soft);
 	border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* CTA eyebrow - small uppercase text above headline */
 .cta-eyebrow {
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
@@ -429,44 +542,51 @@
 	color: var(--muted);
 }
 
+/* CTA headline - main call-to-action text */
 .cta-headline {
 	font-size: 1.1rem;
 	font-weight: 600;
 	flex: 1;
 }
 
+/* CTA item button alignment */
 .cta-item .btn {
 	align-self: flex-start;
 }
 
-/* Ensure CTA buttons inside cta cards use the same gold gradient and shadow */
-.cta-item .btn,
-.cta-item.alt .btn {
-	background: linear-gradient(135deg, #f8c95b, var(--accent-strong));
-	color: #12081c;
-	box-shadow: 0 15px 30px rgba(245, 184, 60, 0.35);
-	border: none;
+/* ================================================================
+   TABLE & PRICING TABLE STYLES
+   ================================================================ */
+
+/* Table dark theme - dark mode table */
+.table-dark {
+	--bs-table-bg: transparent;
+	--bs-table-color: var(--text);
 }
 
-.cta-item .btn:hover,
-.cta-item.alt .btn:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 18px 36px rgba(245, 184, 60, 0.45);
-}
-
-/* Table responsive improvements */
+/* Table wrapper - responsive container */
 .table-responsive {
 	border-radius: 16px;
 	overflow: hidden;
 }
 
-/* Improved Pricing Table Styles */
+/* Pricing card table responsive - gradient background */
 .pricing-card .table-responsive {
 	background: linear-gradient(180deg, rgba(18,8,20,0.6), rgba(10,6,14,0.6));
 	border: 1px solid rgba(255,255,255,0.04);
 	box-shadow: 0 12px 36px rgba(4,0,20,0.5);
 }
 
+/* Table header - column headers */
+.table thead th {
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	letter-spacing: 0.08em;
+	color: var(--muted);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Pricing card table header styling */
 .pricing-card .table thead th {
 	background: rgba(255,255,255,0.02);
 	color: var(--muted);
@@ -474,31 +594,55 @@
 	border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
+/* Table body row - data rows */
+.table tbody tr {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Last table row - no bottom border */
+.table tbody tr:last-child {
+	border-bottom: none;
+}
+
+/* Table body cell - table data */
+.table tbody td {
+	padding: 16px 14px;
+	font-size: 0.95rem;
+}
+
+/* Pricing card table body cell styling */
 .pricing-card .table tbody td {
 	padding: 18px 22px;
 	vertical-align: middle;
 	color: var(--text);
 }
 
-/* Zebra rows for better readability */
+/* Zebra striping - alternate row backgrounds */
 .pricing-card .table tbody tr:nth-child(odd) {
 	background: rgba(255,255,255,0.01);
 }
 
+/* Table row hover - highlight on hover */
 .pricing-card .table tbody tr:hover {
 	background: linear-gradient(90deg, rgba(245,184,60,0.03), rgba(255,255,255,0.02));
 	transform: translateY(-2px);
 	box-shadow: 0 8px 28px rgba(4,0,20,0.45);
 }
 
-/* Emphasize price column */
+/* Price column - second column highlighting */
 .pricing-card .table tbody td:nth-child(2) {
 	color: var(--accent);
 	font-weight: 700;
 	font-size: 1rem;
 }
 
-/* Price parts styling */
+/* Notes column - third column muted */
+.pricing-card .table tbody td:nth-child(3) {
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+/* Price cell - price display container */
 .price-cell .price-prefix {
 	display: block;
 	font-size: 0.72rem;
@@ -507,17 +651,20 @@
 	margin-bottom: 2px;
 }
 
+/* Price amount - price value display */
 .price-cell .price-amount {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
 }
 
+/* Price value - numeric price */
 .price-cell .price-val {
 	font-weight: 800;
 	color: var(--accent);
 }
 
+/* Price range separator - dash between prices */
 .price-cell .price-range-sep {
 	font-size: 0.85rem;
 	opacity: 0.95;
@@ -525,83 +672,147 @@
 	letter-spacing: -0.02em;
 }
 
-/* Tighter range styling on mobile */
-@media (max-width: 768px) {
-	.price-cell .price-amount { gap: 4px; }
-	.price-cell .price-range-sep { margin: 0 2px; font-size: 0.9rem; }
-	.price-cell .price-prefix { font-size: 0.64rem; }
-}
-
-/* Notes column muted and slightly smaller */
-.pricing-card .table tbody td:nth-child(3) {
-	color: var(--muted);
-	font-size: 0.95rem;
-}
-
-/* Make header icon and heading align with design */
+/* Pricing card header icon styling */
 .pricing-card .section-header i {
 	font-size: 1.05rem;
 	color: var(--accent);
 }
 
-/* Tighten table on small screens while keeping card look */
-@media (max-width: 768px) {
-	.pricing-card .table tbody td {
-		padding: 14px 16px;
-	}
+/* ================================================================
+   MODAL DIALOGS
+   ================================================================ */
 
-	.pricing-card .table tbody tr {
-		box-shadow: none;
-	}
+/* Action modal - fixed overlay modal */
+.action-modal {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1200;
 }
 
-/* Responsive adjustments */
+/* Modal backdrop - semi-transparent background */
+.modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(6, 3, 10, 0.7);
+}
+
+/* Modal panel - modal content box */
+.modal-panel {
+	position: relative;
+	background: var(--card-bg);
+	border: 1px solid var(--card-border);
+	border-radius: 16px;
+	padding: 20px;
+	width: min(720px, 94%);
+	z-index: 1210;
+	box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+/* Modal close button - close control */
+.modal-close {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+	background: transparent;
+	color: var(--muted);
+	border: none;
+	font-size: 1.1rem;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 8px;
+	z-index: 1220;
+	pointer-events: auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+}
+
+/* Modal close focus state - accessibility */
+.modal-close:focus {
+	outline: 3px solid rgba(245,184,60,0.18);
+	outline-offset: 2px;
+}
+
+/* Modal body heading */
+.modal-body h3 {
+	margin-top: 0;
+}
+
+/* Modal actions - button row in modal footer */
+.modal-actions {
+	display: flex;
+	gap: 12px;
+	margin-top: 18px;
+}
+
+/* ================================================================
+   RESPONSIVE DESIGN - TABLET (max-width: 991px)
+   ================================================================ */
+
 @media (max-width: 991px) {
+	/* Overview card alignment - left align for tablet */
 	.overview-card {
 		text-align: left;
 	}
 
+	/* Workflow panel spacing - add top margin for breathing room */
 	.workflow-panel {
 		margin-top: 6px;
 	}
 
-	/* Make table more readable on tablets */
+	/* Table optimization - more readable padding on tablets */
 	.table tbody td {
 		padding: 18px 16px;
 		font-size: 0.9rem;
 	}
 }
 
+/* ================================================================
+   RESPONSIVE DESIGN - MOBILE TABLET (max-width: 768px)
+   ================================================================ */
+
 @media (max-width: 768px) {
+	/* Section cards - reduced padding for smaller screens */
 	.section-card {
 		padding: 22px;
 	}
 
+	/* Overview card - slightly larger padding than standard section */
 	.overview-card {
 		padding: 24px;
 	}
 
+	/* Section title - scale down from desktop */
 	.section-title {
 		font-size: 1.65rem;
 	}
 
+	/* Section tag - reduce margin for mobile */
 	.section-tag {
 		margin-bottom: 16px;
 	}
 
+	/* Metrics row - tighter spacing */
 	.metrics-row {
 		margin-bottom: 20px;
 	}
 
+	/* CTA row - vertical stacking on mobile */
 	.cta-row {
 		flex-direction: column;
 		align-items: stretch;
 	}
 
+	/* Button alignment - center content in full-width buttons */
 	.btn {
 		justify-content: center;
 	}
 
+	/* Card padding - reduce padding on all information cards */
 	.fabric-card,
 	.faq-item,
 	.category-card,
@@ -609,12 +820,16 @@
 		padding: 18px;
 	}
 
-	/* Transform table into card layout on mobile */
+	/* ========== TABLE TO CARD TRANSFORMATION ==========
+	   Convert table layout to card-based layout on mobile */
+
+	/* Remove table responsive wrapper styling */
 	.table-responsive {
 		background: transparent;
 		border: none;
 	}
 
+	/* Convert all table elements to block display */
 	.table,
 	.table thead,
 	.table tbody,
@@ -624,12 +839,14 @@
 		display: block;
 	}
 
+	/* Hide table header row - use data attributes instead */
 	.table thead tr {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
 
+	/* Table rows become card containers */
 	.table tbody tr {
 		background: var(--surface-soft);
 		border-radius: 10px;
@@ -643,10 +860,12 @@
 		gap: 2px 6px;
 	}
 
+	/* Last row - no bottom margin */
 	.table tbody tr:last-child {
 		margin-bottom: 0;
 	}
 
+	/* Table cells - individual data display */
 	.table tbody td {
 		border: none;
 		position: relative;
@@ -654,6 +873,7 @@
 		font-size: 0.88rem;
 	}
 
+	/* Cell label from data attribute - mimic table headers */
 	.table tbody td:before {
 		content: attr(data-label);
 		display: block;
@@ -666,9 +886,7 @@
 		opacity: 0.95;
 	}
 
-	/* Style the price cell specially */
-	/* Make price label and value inline to save vertical space */
-	/* place the price in the top-right cell */
+	/* Price cell - position in top right, highlight with gold */
 	.table tbody td:nth-child(2) {
 		grid-column: 2 / 3;
 		grid-row: 1 / 2;
@@ -687,6 +905,7 @@
 		word-break: break-word;
 	}
 
+	/* Price label styling */
 	.table tbody td:nth-child(2):before {
 		display: inline-block;
 		margin-right: 6px;
@@ -696,7 +915,7 @@
 		letter-spacing: 0.06em;
 	}
 
-	/* Add spacing between service name and notes */
+	/* Service name cell - top left, bold for emphasis */
 	.table tbody td:first-child {
 		grid-column: 1 / 2;
 		grid-row: 1 / 2;
@@ -706,6 +925,7 @@
 		line-height: 1.05;
 	}
 
+	/* Notes cell - full width, second row, muted color */
 	.table tbody td:last-child {
 		grid-column: 1 / 3;
 		grid-row: 2 / 3;
@@ -713,82 +933,47 @@
 		font-size: 0.84rem;
 		line-height: 1.18;
 		margin-top: 1px;
-		/* allow notes to wrap and show fully */
 		max-height: none;
 		overflow: visible;
 	}
 
-	/* make the service label (before) take less space so titles can fit more compactly */
-	.table tbody td:before { font-size: 0.65rem; }
+	/* Cell label sizing - compact labels */
+	.table tbody td:before {
+		font-size: 0.65rem;
+	}
 
-	/* tighter radius and padding for visual compactness */
-	.table tbody tr { border-radius: 8px; padding: 5px 6px; }
+	/* Row card styling - tight radius and padding */
+	.table tbody tr {
+		border-radius: 8px;
+		padding: 5px 6px;
+	}
 
-	/* Slightly tighter section spacing so list shows more items */
-	.pricing-card { padding-bottom: 6px; }
+	/* Pricing card spacing - tighter layout */
+	.pricing-card {
+		padding-bottom: 6px;
+	}
 }
 
+/* ================================================================
+   RESPONSIVE DESIGN - SMALL PHONE (max-width: 576px)
+   ================================================================ */
+
 @media (max-width: 576px) {
+	/* Page margins - minimal on smallest screens */
 	.services-page {
 		padding-left: 8px;
 		padding-right: 8px;
 	}
 
+	/* Section card radius - maintain rounded appearance */
 	.section-card {
 		border-radius: 18px;
 	}
 
+	/* Metric and list item sizing - slightly larger for readability */
 	.metric-card,
 	.fabric-advice li,
 	.process-steps li {
 		font-size: 0.9rem;
 	}
 }
-
-/* Modal styles */
-.action-modal {
-	position: fixed;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 1200;
-}
-.modal-backdrop {
-	position: absolute;
-	inset: 0;
-	background: rgba(6, 3, 10, 0.7);
-}
-.modal-panel {
-	position: relative;
-	background: var(--card-bg);
-	border: 1px solid var(--card-border);
-	border-radius: 16px;
-	padding: 20px;
-	width: min(720px, 94%);
-	z-index: 1210;
-	box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-.modal-close {
-	position: absolute;
-	right: 12px;
-	top: 10px;
-	background: transparent;
-	color: var(--muted);
-	border: none;
-	font-size: 1.1rem;
-	cursor: pointer;
-	padding: 8px;
-	border-radius: 8px;
-	z-index: 1220; /* ensure above panel content */
-	pointer-events: auto;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-.modal-close:focus {
-	outline: 3px solid rgba(245,184,60,0.18);
-	outline-offset: 2px;
-}
-.modal-body h3 { margin-top: 0; }
-.modal-actions { display: flex; gap: 12px; margin-top: 18px; }
