@@ -1,21 +1,32 @@
-/* --- Portfolio styles: refined for the darker purple theme --- */
+/* ================================================================
+   CSS VARIABLES & THEME CONFIGURATION
+   ================================================================ */
 
+/* Root color palette - Dark purple theme with gold accent */
 :root {
   --bg-1: #140f19;
-  /* very dark */
+  /* very dark - primary background */
   --bg-2: #251428;
-  /* deep purple */
+  /* deep purple - secondary background */
   --panel: #1f1726;
-  /* panel dark */
+  /* panel dark - card/panel backgrounds */
   --muted: rgba(255, 255, 255, 0.65);
+  /* muted text - secondary content */
   --muted-2: rgba(255, 255, 255, 0.5);
+  /* muted text 2 - tertiary content */
   --accent: #ffc107;
-  /* saffron */
+  /* saffron/gold - primary accent color */
   --card-accent: #2b1530;
-  /* dark card footer */
+  /* dark card footer - dark card backgrounds */
   --cta-grad: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  /* purple gradient - call-to-action buttons */
 }
 
+/* ================================================================
+   PORTFOLIO CONTAINER & MAIN LAYOUT
+   ================================================================ */
+
+/* Main portfolio container - full viewport with gradient background */
 .portfolio-container {
   min-height: 100vh;
   background: radial-gradient(1200px 600px at 10% 10%, rgba(255, 255, 255, 0.02), transparent 10%), linear-gradient(180deg, var(--bg-1), var(--bg-2));
@@ -23,11 +34,15 @@
   padding: 2.5rem 2rem 4rem;
 }
 
-/* header panel */
+/* ================================================================
+   PORTFOLIO HEADER & TITLE SECTION
+   ================================================================ */
+
+/* Header panel - two column grid with title and filters */
 .portfolio-header {
   max-width: 1200px;
   margin: 0 auto 2rem;
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04));
   border: 1px solid rgba(255, 255, 255, 0.03);
@@ -36,27 +51,19 @@
   /* left column fixed, right column fluid */
   gap: 1rem;
   align-items: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* Improve Explore header spacing and typography */
-.portfolio-header .title-wrap h1 {
-  font-size: 1.6rem;
-  line-height: 1.15;
-  margin-bottom: 0.4rem;
-}
-
-.portfolio-header .title-wrap .subtitle {
-  max-width: 420px;
-  color: var(--muted-2);
-  font-size: 0.98rem;
-}
-
-.portfolio-header .left {
+/* Header left section - icon and title/subtitle */
+.portfolio-header .left,
+.header-left {
   display: flex;
   gap: 1rem;
   align-items: center;
+  padding-right: 0.5rem;
 }
 
+/* Header icon - gold badge background */
 .header-icon {
   background: rgba(255, 193, 7, 0.12);
   color: var(--accent);
@@ -68,29 +75,34 @@
   font-size: 1.05rem;
 }
 
-.portfolio-header .title-wrap {
+/* Title wrapper - flex column for title and subtitle */
+.portfolio-header .title-wrap,
+.title-wrap {
   display: flex;
   flex-direction: column;
 }
 
-.portfolio-header h1 {
+/* Portfolio header main title */
+.portfolio-header h1,
+.portfolio-header .title-wrap h1 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
   font-weight: 700;
 }
 
-.portfolio-header p {
+/* Portfolio header subtitle text */
+.portfolio-header p,
+.portfolio-header .subtitle {
   margin: 0;
+  max-width: 420px;
   color: var(--muted-2);
-  font-size: 0.9rem
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
-.header-left {
-  display: flex;
-  gap: 1rem;
-  align-items: center
-}
-
+/* Header badge - item count or status indicator */
 .header-badge {
   background: rgba(255, 255, 255, 0.03);
   padding: 0.45rem 0.65rem;
@@ -99,167 +111,30 @@
   font-weight: 700;
   display: inline-flex;
   gap: 0.5rem;
-  align-items: center
+  align-items: center;
 }
 
+/* Header right section - filter controls */
+.portfolio-header .header-right,
 .header-right {
   display: flex;
   align-items: center;
   overflow: visible;
-  position: relative
-}
-
-/* Filters */
-.filter-bar {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center
-}
-
-/* horizontal scroll wrapper to keep pills on one row on larger screens */
-.filter-scroll {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  overflow-x: auto;
-  padding-bottom: 2px;
-  padding-left: 6px;
-  padding-right: 18px;
-  max-width: 100%;
-  /* keep scroll area within the header-right */
-  scroll-snap-type: x proximity;
-}
-
-/* filter scroll: allow wrapping so pills move to next line when space is limited */
-.filter-btn {
-  padding: 0.5rem 0.95rem;
-  height: auto;
-  min-height: 44px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--muted);
-  font-weight: 700;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-}
-/* More button specific */
-.more-btn {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.email-success-actions .btn:not(.primary) {
-  background: transparent;
-  color: var(--muted-2);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: none;
-  padding: 0.7rem 1rem;
-  border-radius: 10px;
-}
-.email-success-actions .btn:not(.primary):hover {
-  background: rgba(255, 255, 255, 0.02);
-  color: #fff;
-  transform: translateY(-2px);
-}
-.email-success-modal, .email-success-content {
-  font-family: inherit;
-}
-/* Mobile filters modal */
-.filters-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 10010
-}
-
-.filters-modal {
-  width: 100%;
-  max-width: 420px;
-  background: linear-gradient(180deg, #171018 0%, #221225 100%);
-  border-radius: 12px;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-}
-
-.filters-modal h3 {
-  margin: 0 0 0.6rem;
-  color: #fff
-}
-
-.filters-modal .modal-close {
-  position: absolute;
-  right: 12px;
-  top: 12px;
-}
-
-.filters-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-top: 0.5rem
-}
-
-.filters-list .filter-btn {
-  justify-content: flex-start;
-  padding: 0.65rem 0.9rem;
-  border-radius: 10px
-}
-
-/* Hide desktop-only list on small screens, show on larger */
-.desktop-only {
-  display: none
-}
-
-.mobile-only {
-  display: inline-flex
-}
-
-.filter-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px
-}
-
-.filter-label {
-  display: inline-block
-}
-
-.portfolio-header .filter-bar .filter-btn.active,
-.filter-btn.active {
-  background: linear-gradient(180deg, #ffd966 0%, #ffc107 100%) !important;
-  color: #1a1625 !important;
-  border: 1px solid rgba(0, 0, 0, 0.18) !important;
-  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.18), 0 1px 0 rgba(255, 255, 255, 0.04) inset !important;
-  transform: translateY(-2px);
   position: relative;
 }
 
-.portfolio-header .filter-bar .filter-btn.active i,
-.filter-btn.active i {
-  color: #1a1625 !important
+/* ================================================================
+   FILTER BAR & CATEGORY PILLS
+   ================================================================ */
+
+/* Filter bar container */
+.filter-bar {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
 }
 
-/* Ensure focus/pressed states keep the gold look (override global focus styles) */
-.filter-btn:focus,
-.filter-btn:active,
-.filter-btn:focus-visible {
-  background: linear-gradient(180deg, #ffd966 0%, #ffc107 100%) !important;
-  color: #1a1625 !important;
-  outline: none !important;
-  box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.12);
-}
-
-.filter-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-}
-
-/* subtle edge fade to indicate horizontal scroll area inside header-right */
+/* Filter scroll wrapper - horizontal scrollable or wrapping pill container */
 .filter-scroll {
   display: flex;
   gap: 0.6rem;
@@ -271,28 +146,95 @@
   padding-left: 6px;
   padding-right: 6px;
   max-width: 100%;
-  /* keep scroll area within the header-right */
 }
 
-/* grid */
+/* Filter button - category pill styling */
+.filter-btn {
+  padding: 0.5rem 0.95rem;
+  height: auto;
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  cursor: pointer;
+}
+
+/* More button - shows additional filters on mobile */
+.more-btn {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Filter button active state - gold highlight */
+.portfolio-header .filter-bar .filter-btn.active,
+.filter-btn.active {
+  background: linear-gradient(180deg, #ffd966 0%, #ffc107 100%) !important;
+  color: #1a1625 !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.18), 0 1px 0 rgba(255, 255, 255, 0.04) inset !important;
+  transform: translateY(-2px);
+  position: relative;
+}
+
+/* Active filter icon color */
+.portfolio-header .filter-bar .filter-btn.active i,
+.filter-btn.active i {
+  color: #1a1625 !important;
+}
+
+/* Filter button focus states - maintain active appearance */
+.filter-btn:focus,
+.filter-btn:active,
+.filter-btn:focus-visible {
+  background: linear-gradient(180deg, #ffd966 0%, #ffc107 100%) !important;
+  color: #1a1625 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.12);
+}
+
+/* Filter button hover state - lift up with shadow */
+.filter-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+/* Filter button icon and label */
+.filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+}
+
+.filter-label {
+  display: inline-block;
+}
+
+/* Show/hide filters based on screen size */
+.desktop-only {
+  display: none;
+}
+
+.mobile-only {
+  display: inline-flex;
+}
+
+/* ================================================================
+   PORTFOLIO GRID LAYOUT
+   ================================================================ */
+
+/* Portfolio grid - responsive 3-column layout */
 .portfolio-grid {
   max-width: 1200px;
   margin: 1.4rem auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem
+  gap: 1.2rem;
 }
 
-/* Slightly increase spacing under header filters and make left column feel like a panel */
-.portfolio-header {
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-
-.portfolio-header .header-left {
-  padding-right: 0.5rem;
-}
-
+/* Portfolio card - image + metadata container */
 .portfolio-card {
   border-radius: 14px;
   overflow: hidden;
@@ -301,17 +243,21 @@
   transition: transform .28s ease, box-shadow .28s ease;
 }
 
+/* Card hover animation - lift and shadow */
 .portfolio-card:hover {
   transform: translateY(-8px);
 }
 
+/* Card image container - fixed height with overflow hidden */
 .card-image {
   width: 100%;
   height: 160px;
   overflow: hidden;
   background: #0e0b0f;
+  border-radius: 12px 12px 0 0;
 }
 
+/* Card image - cover object-fit for responsive images */
 .card-image img {
   width: 100%;
   height: 100%;
@@ -319,7 +265,7 @@
   display: block;
 }
 
-
+/* Card content footer - title and metadata */
 .card-content {
   background: linear-gradient(180deg, #311433 0%, #291227 100%);
   padding: 0.85rem 1rem;
@@ -333,31 +279,32 @@
   justify-content: center;
 }
 
+/* Card content title */
 .card-content h3 {
   margin: 0 0 0.25rem;
   font-size: 0.98rem;
   font-weight: 700;
 }
 
+/* Card subtitle - category or service type */
 .card-subtitle {
   margin: 0;
   color: var(--muted-2);
   font-size: 0.82rem;
 }
 
-/* make thumbnails visually inset like design */
-.portfolio-card .card-image {
-  border-radius: 12px 12px 0 0;
-}
-
-/* no results */
+/* No results message */
 .no-results {
   text-align: center;
   color: var(--muted-2);
   padding: 2rem;
 }
 
-/* modal: refined two-column layout, pricing box, fabric pills, info grid */
+/* ================================================================
+   PORTFOLIO DETAIL MODAL - MAIN LAYOUT
+   ================================================================ */
+
+/* Modal overlay - backdrop behind modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -369,6 +316,7 @@
   padding: 1rem;
 }
 
+/* Modal content container - two column detail view */
 .modal-content {
   position: relative;
   width: 100%;
@@ -383,25 +331,21 @@
   overflow-y: auto;
 }
 
+/* Modal body - two column grid for image and details */
 .modal-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  align-items: start
+  align-items: stretch;
 }
 
-.modal-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  align-items: stretch
-}
-
+/* Modal left section - image display */
 .modal-image-section {
   display: flex;
   align-items: stretch;
 }
 
+/* Modal main image - large portfolio image */
 .modal-main-image {
   width: 100%;
   height: 100%;
@@ -411,188 +355,7 @@
   max-height: none;
 }
 
-.modal-details-section {
-  color: #fff;
-  padding: 0.25rem 0.5rem
-}
-
-.modal-header-info {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  justify-content: space-between
-}
-
-.modal-header-info h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.6rem
-}
-
-.item-details-btn {
-  background: rgba(255, 193, 7, 0.12);
-  color: var(--accent);
-  border-radius: 18px;
-  padding: 0.45rem 0.85rem;
-  border: none;
-  font-weight: 700
-}
-
-.modal-description {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 1rem
-}
-
-.pricing-box {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 1rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04));
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  margin: 0.75rem 0
-}
-
-.pricing-box i {
-  color: var(--accent);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 0.5rem;
-  border-radius: 8px
-}
-
-.pricing-text {
-  color: var(--muted);
-  font-size: 0.95rem
-}
-
-.fabric-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap
-}
-
-.fabric-tag {
-  padding: 0.45rem 0.9rem;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 999px;
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.02)
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
-  margin-top: 0.8rem
-}
-
-.info-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.04));
-  padding: 0.9rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.03)
-}
-
-.info-title {
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.35rem
-}
-
-.info-body {
-  color: var(--muted);
-  font-size: 0.95rem
-}
-
-.whatsapp-cta {
-  margin-top: 1.25rem;
-  background: #d4a924;
-  /* requested gold */
-  border: none;
-  padding: 0.95rem 1rem;
-  border-radius: 10px;
-  color: #000;
-  /* black text */
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-.whatsapp-cta i {
-  font-size: 1.1rem;
-  color: #000
-}
-
-.whatsapp-cta:hover {
-  filter: brightness(0.95);
-  transform: translateY(-2px)
-}
-
-.whatsapp-cta:focus {
-  outline: 3px solid rgba(0, 0, 0, 0.12);
-  outline-offset: 2px
-}
-
-/* Action row for modal CTAs */
-.modal-actions {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  margin-top: 1.25rem;
-  flex-wrap: wrap;
-}
-
-/* Feedback CTA: white pill-style button with star icon to match design */
-.feedback-cta {
-  background: #fff;
-  color: #1a1625;
-  border: none;
-  padding: 0.9rem 1rem;
-  border-radius: 10px;
-  font-weight: 800;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-  cursor: pointer;
-}
-
-.feedback-cta i {
-  color: #1a1625;
-  font-size: 1.05rem;
-}
-
-.feedback-cta:hover {
-  transform: translateY(-2px);
-}
-
-@media (max-width: 600px) {
-  .modal-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .feedback-cta, .whatsapp-cta {
-    width: 100%;
-  }
-}
-
-@media (max-width:600px) {
-  .whatsapp-cta {
-    width: 100%;
-    padding: 1.05rem 1.25rem;
-    font-size: 1rem
-  }
-}
-
-/* Close button inside modal */
+/* Modal close button - top right corner */
 .modal-close {
   position: absolute;
   top: 12px;
@@ -609,118 +372,281 @@
   font-size: 1.05rem;
   z-index: 20;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+/* Close button hover - rotate and brighten */
 .modal-close:hover {
   background: rgba(255, 255, 255, 0.06);
   transform: rotate(15deg);
 }
 
+/* ================================================================
+   PORTFOLIO DETAIL MODAL - RIGHT COLUMN CONTENT
+   ================================================================ */
 
-/* Responsive modal adjustments */
-@media (max-width: 900px) {
-  .modal-body {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-main-image {
-    height: 320px
-  }
-
-  .modal-content {
-    padding: 0.75rem
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr
-  }
+/* Modal details section - title, description, details */
+.modal-details-section {
+  color: #fff;
+  padding: 0.25rem 0.5rem;
 }
 
-@media (max-width: 600px) {
-
-  /* Stack header content and make filters wrap instead of scrolling */
-  .portfolio-header {
-    display: block;
-    /* switch from grid to stacked layout */
-    align-items: flex-start;
-    gap: 0.6rem;
-    padding: 1rem;
-  }
-
-  .header-left {
-    width: 100%;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start
-  }
-
-  .title-wrap {
-    flex: 1
-  }
-
-  .header-right {
-    width: 100%;
-    display: block;
-    margin-top: 0.35rem;
-    overflow: visible
-  }
-
-  .filter-bar {
-    width: 100%;
-    display: block;
-    padding: 0.25rem 0;
-  }
-
-  /* on small screens allow wrapping and larger touch targets */
-  .filter-scroll {
-    flex-wrap: wrap;
-    gap: 0.5rem
-  }
-
-  .filter-btn {
-    flex: 0 0 auto;
-    /* keep natural width */
-    padding: 0.6rem 1rem;
-    font-size: 0.96rem;
-    min-width: 72px;
-    height: 44px;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem
-  }
-
-  .card-image {
-    height: 220px
-  }
-
-  .modal-body {
-    grid-template-columns: 1fr
-  }
-
-  .modal-main-image {
-    height: 320px
-  }
+/* Modal header info - title and metadata badge */
+.modal-header-info {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@media (min-width: 860px) {
-
-  /* On larger screens show the full filters list and hide the compact visibleFilters + More button */
-  .desktop-only {
-    display: flex
-  }
-
-  .mobile-only {
-    display: none
-  }
-
-  .more-btn {
-    display: none
-  }
+/* Modal detail heading */
+.modal-header-info h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
-/* --- Enquiry modal (modal-on-modal) - Two Column Layout --- */
+/* Item details button - badge showing available info */
+.item-details-btn {
+  background: rgba(255, 193, 7, 0.12);
+  color: var(--accent);
+  border-radius: 18px;
+  padding: 0.45rem 0.85rem;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Modal description - main content text */
+.modal-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1rem;
+}
+
+/* ================================================================
+   PORTFOLIO DETAIL - PRICING & SPECIFICATIONS
+   ================================================================ */
+
+/* Pricing box - display price and details */
+.pricing-box {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  margin: 0.75rem 0;
+}
+
+/* Pricing icon - gold accent box */
+.pricing-box i {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Pricing text - price and details description */
+.pricing-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Fabric tags container - flex wrap for fabric list */
+.fabric-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Individual fabric tag - pill style */
+.fabric-tag {
+  padding: 0.45rem 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Info grid - specifications in 2-column layout */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+/* Info card - individual spec item */
+.info-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.04));
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Info card title - spec label */
+.info-title {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+/* Info card body - spec value */
+.info-body {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ================================================================
+   PORTFOLIO DETAIL MODAL - ACTION BUTTONS
+   ================================================================ */
+
+/* WhatsApp CTA button - gold gradient */
+.whatsapp-cta {
+  margin-top: 1.25rem;
+  background: #d4a924;
+  /* requested gold */
+  border: none;
+  padding: 0.95rem 1rem;
+  border-radius: 10px;
+  color: #000;
+  /* black text */
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* WhatsApp icon */
+.whatsapp-cta i {
+  font-size: 1.1rem;
+  color: #000;
+}
+
+/* WhatsApp CTA hover - darken and lift */
+.whatsapp-cta:hover {
+  filter: brightness(0.95);
+  transform: translateY(-2px);
+}
+
+/* WhatsApp CTA focus - accessibility */
+.whatsapp-cta:focus {
+  outline: 3px solid rgba(0, 0, 0, 0.12);
+  outline-offset: 2px;
+}
+
+/* Modal actions container - button row */
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Feedback CTA button - white styling */
+.feedback-cta {
+  background: #fff;
+  color: #1a1625;
+  border: none;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Feedback icon */
+.feedback-cta i {
+  color: #1a1625;
+  font-size: 1.05rem;
+}
+
+/* Feedback CTA hover - lift animation */
+.feedback-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ================================================================
+   FILTERS MODAL - MOBILE
+   ================================================================ */
+
+/* Filters modal overlay - mobile filters sheet */
+.filters-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10010;
+}
+
+/* Filters modal - bottom sheet panel */
+.filters-modal {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #171018 0%, #221225 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Filters modal heading */
+.filters-modal h3 {
+  margin: 0 0 0.6rem;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* Filters modal close button */
+.filters-modal .modal-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+/* Filters list - vertical flex column */
+.filters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+/* Filters list button - left-aligned in list */
+.filters-list .filter-btn {
+  justify-content: flex-start;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+}
+
+
+/* ================================================================
+   ENQUIRY MODAL - MAIN LAYOUT (MODAL-ON-MODAL)
+   ================================================================ */
+
+/* Enquiry modal overlay - backdrop behind modal */
 .enquiry-overlay {
   position: fixed;
   inset: 0;
@@ -733,6 +659,7 @@
   backdrop-filter: blur(4px);
 }
 
+/* Enquiry modal container - two-column form and preview */
 .enquiry-modal {
   width: 100%;
   max-width: 1200px;
@@ -743,14 +670,12 @@
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
   position: relative;
   max-height: calc(100vh - 2rem);
-  /* Allow the modal itself to scroll when content is taller than the viewport
-     (previously hidden which caused inner columns to overflow off-screen on mobile) */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-/* Close button - top right corner */
+/* Enquiry modal close button - top right corner */
 .enquiry-close-btn {
   position: absolute;
   right: 16px;
@@ -770,25 +695,29 @@
   transition: all 0.2s ease;
 }
 
+/* Close button hover - rotate animation */
 .enquiry-close-btn:hover {
   transform: rotate(90deg);
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Modal Header */
+/* Enquiry modal header section */
 .enquiry-header {
   padding: 1.5rem 1.75rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
 }
 
+/* Enquiry modal heading */
 .enquiry-header h3 {
   margin: 0 0 0.4rem;
   font-size: 1.4rem;
   color: #fff;
+  font-weight: 700;
 }
 
+/* Enquiry modal subtitle text */
 .enquiry-sub {
   margin: 0;
   color: var(--muted);
@@ -796,13 +725,11 @@
   line-height: 1.5;
 }
 
-/* Two-column layout */
+/* Two-column grid layout for form and preview */
 .enquiry-columns {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  /* Ensure the grid can shrink and allow its children to scroll when needed. 
-     min-height:0 prevents flex overflow bugs on WebKit/Blink-based mobile browsers. */
   overflow-y: auto;
   flex: 1 1 auto;
   min-height: 0;
@@ -816,7 +743,11 @@
   }
 }
 
-/* LEFT COLUMN - Form inputs */
+/* ================================================================
+   ENQUIRY FORM - LEFT COLUMN
+   ================================================================ */
+
+/* Form column container */
 .enquiry-form-column {
   padding: 1.25rem;
   overflow-y: auto;
@@ -830,24 +761,28 @@
   }
 }
 
+/* Form wrapper */
 .enquiry-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
+/* Form field container */
 .enquiry-form .field {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
+/* Form label text */
 .enquiry-form .label {
   font-size: 0.88rem;
   color: var(--muted);
   font-weight: 600;
 }
 
+/* Form inputs base styling */
 .enquiry-form input[type="text"],
 .enquiry-form input[type="email"],
 .enquiry-form input[type="tel"],
@@ -865,6 +800,7 @@
   font-family: inherit;
 }
 
+/* Form input focus state - gold border and highlight */
 .enquiry-form input:focus,
 .enquiry-form textarea:focus {
   outline: none;
@@ -873,17 +809,20 @@
   box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.08);
 }
 
+/* Form textarea - resizable with min height */
 .enquiry-form textarea {
   resize: vertical;
   min-height: 80px;
 }
 
+/* Read-only form input - disabled state */
 .enquiry-form input[readonly] {
   background: rgba(255, 255, 255, 0.02);
   color: var(--muted);
   cursor: not-allowed;
 }
 
+/* Form row - side-by-side fields */
 .form-row {
   display: flex;
   gap: 1rem;
@@ -893,6 +832,7 @@
   flex: 1;
 }
 
+/* Phone number row - country code + phone */
 .phone-row {
   display: grid;
   grid-template-columns: 130px 1fr;
@@ -907,16 +847,22 @@
   grid-column: 2;
 }
 
+/* Required field indicator - red asterisk */
 .required {
   color: #ffc107;
   font-weight: 700;
 }
 
-/* Enhanced Visit Options Section */
+/* ================================================================
+   ENQUIRY FORM - VISIT OPTIONS & CONTACT PREFERENCES
+   ================================================================ */
+
+/* Visit options field wrapper */
 .visit-field {
   margin: 0.5rem 0;
 }
 
+/* Visit options grid - radio button cards */
 .visit-options {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -924,11 +870,13 @@
   margin-top: 0.75rem;
 }
 
+/* Individual visit option */
 .visit-option {
   cursor: pointer;
   position: relative;
 }
 
+/* Hidden radio input */
 .visit-option input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -936,6 +884,7 @@
   height: 0;
 }
 
+/* Visit option card - clickable visual container */
 .visit-card {
   display: flex;
   flex-direction: column;
@@ -951,12 +900,14 @@
   min-height: 90px;
 }
 
+/* Visit card icon */
 .visit-card i {
   font-size: 1.5rem;
   color: var(--muted);
   transition: all 0.25s ease;
 }
 
+/* Visit card label text */
 .visit-text {
   font-size: 0.85rem;
   color: var(--muted);
@@ -965,27 +916,35 @@
   transition: all 0.25s ease;
 }
 
+/* Visit option checked state - gold highlight */
 .visit-option input[type="radio"]:checked+.visit-card {
   background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.08));
   border-color: rgba(255, 193, 7, 0.4);
   box-shadow: 0 4px 12px rgba(255, 193, 7, 0.12);
 }
 
+/* Checked card icon - gold and scaled */
 .visit-option input[type="radio"]:checked+.visit-card i {
   color: var(--accent);
   transform: scale(1.1);
 }
 
+/* Checked card text - white */
 .visit-option input[type="radio"]:checked+.visit-card .visit-text {
   color: #fff;
 }
 
+/* Visit option hover - subtle lift */
 .visit-option:hover .visit-card {
   border-color: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
 }
 
-/* Privacy note */
+/* ================================================================
+   ENQUIRY FORM - PRIVACY & CONSENT
+   ================================================================ */
+
+/* Privacy note container */
 .privacy-note {
   font-size: 0.85rem;
   color: var(--muted);
@@ -996,6 +955,7 @@
   border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
+/* Privacy checkbox wrapper */
 .privacy-checkbox {
   display: flex;
   gap: 0.75rem;
@@ -1003,6 +963,7 @@
   cursor: pointer;
 }
 
+/* Privacy checkbox input */
 .privacy-checkbox input[type="checkbox"] {
   margin-top: 0.25rem;
   cursor: pointer;
@@ -1011,12 +972,13 @@
   flex-shrink: 0;
 }
 
+/* Privacy link - gold accent */
 .privacy-note a {
   color: var(--accent);
   text-decoration: underline;
 }
 
-/* Form actions */
+/* Form actions - button row */
 .enquiry-actions {
   display: flex;
   gap: 0.75rem;
@@ -1024,6 +986,11 @@
   margin-top: 1rem;
 }
 
+/* ================================================================
+   BUTTON STYLES
+   ================================================================ */
+
+/* Base button styling */
 .btn {
   padding: 0.85rem 1.75rem;
   border-radius: 10px;
@@ -1037,6 +1004,7 @@
   transition: all 0.2s ease;
 }
 
+/* Primary button - gold gradient */
 .btn.primary {
   background: linear-gradient(135deg, #ffd966 0%, #ffc107 100%);
   color: #000;
@@ -1044,16 +1012,18 @@
   box-shadow: 0 6px 20px rgba(255, 193, 7, 0.25);
 }
 
+/* Primary button hover - lift and brighten */
 .btn.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 193, 7, 0.35);
 }
 
+/* Primary button icon */
 .btn.primary i {
   font-size: 1.1rem;
 }
 
-/* Email button styling - subtle inverse look */
+/* Email button - transparent with border */
 .btn.email {
   background: transparent;
   color: var(--muted);
@@ -1061,16 +1031,19 @@
   box-shadow: none;
 }
 
+/* Email button icon */
 .btn.email i {
   color: var(--muted-2);
 }
 
+/* Email button hover - subtle highlight */
 .btn.email:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.02);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+/* Disabled button state */
 .btn[disabled],
 .btn.disabled {
   opacity: 0.4;
@@ -1078,7 +1051,18 @@
   filter: grayscale(0.8);
 }
 
-/* RIGHT COLUMN - Message Preview */
+/* Disabled buttons in form */
+.btn:disabled,
+.enquiry-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================================================
+   ENQUIRY PREVIEW - RIGHT COLUMN
+   ================================================================ */
+
+/* Preview column container */
 .enquiry-preview-column {
   padding: 1.25rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.03));
@@ -1093,11 +1077,13 @@
   }
 }
 
+/* Sticky preview wrapper - stays at top when scrolling */
 .preview-sticky {
   position: sticky;
   top: 0;
 }
 
+/* Preview section title */
 .preview-title {
   margin: 0 0 0.4rem;
   font-size: 1.1rem;
@@ -1105,19 +1091,23 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  font-weight: 700;
 }
 
+/* Preview title icon - gold accent */
 .preview-title i {
   color: var(--accent);
   font-size: 1rem;
 }
 
+/* Preview subtitle text */
 .preview-subtitle {
   margin: 0 0 1rem;
   color: var(--muted);
   font-size: 0.85rem;
 }
 
+/* Preview card container */
 .preview-card {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04));
   padding: 1.25rem;
@@ -1128,6 +1118,7 @@
   gap: 0.75rem;
 }
 
+/* Preview item - label and value pair */
 .preview-item {
   display: grid;
   grid-template-columns: 110px 1fr;
@@ -1136,12 +1127,14 @@
   padding: 0.4rem 0;
 }
 
+/* Preview label - field name */
 .preview-label {
   font-size: 0.82rem;
   color: var(--muted-2);
   font-weight: 600;
 }
 
+/* Preview value - field content */
 .preview-value {
   font-size: 0.92rem;
   color: #fff;
@@ -1149,12 +1142,14 @@
   line-height: 1.5;
 }
 
+/* Preview divider - separator line */
 .preview-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
   margin: 0.25rem 0;
 }
 
+/* Preview notes section - message display area */
 .preview-notes-section {
   display: flex;
   flex-direction: column;
@@ -1162,6 +1157,7 @@
   margin-top: 0.5rem;
 }
 
+/* Preview notes text area */
 .preview-notes {
   background: rgba(0, 0, 0, 0.3);
   padding: 0.85rem;
@@ -1173,7 +1169,11 @@
   font-style: italic;
 }
 
-/* Validation messages */
+/* ================================================================
+   FORM VALIDATION & ERROR MESSAGES
+   ================================================================ */
+
+/* Helper text - guidance below fields */
 .helper {
   display: block;
   color: var(--muted-2);
@@ -1181,6 +1181,7 @@
   margin-top: 0.35rem;
 }
 
+/* Error message text */
 .error {
   color: #ff6b6b;
   font-size: 0.85rem;
@@ -1189,11 +1190,7 @@
   font-weight: 500;
 }
 
-.required {
-  color: #ff6b6b;
-}
-
-/* Angular Form Validation States */
+/* Angular form validation - invalid/touched state */
 .enquiry-form input.ng-invalid.ng-touched,
 .enquiry-form textarea.ng-invalid.ng-touched,
 .enquiry-form select.ng-invalid.ng-touched {
@@ -1201,12 +1198,14 @@
   background: rgba(255, 107, 107, 0.05);
 }
 
+/* Angular form validation - valid/touched state */
 .enquiry-form input.ng-valid.ng-touched,
 .enquiry-form textarea.ng-valid.ng-touched,
 .enquiry-form select.ng-valid.ng-touched {
   border-color: #4ecdc4;
 }
 
+/* Invalid input with focus - red shadow */
 .enquiry-form input:focus.ng-invalid,
 .enquiry-form textarea:focus.ng-invalid,
 .enquiry-form select:focus.ng-invalid {
@@ -1214,6 +1213,7 @@
   box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
+/* Valid input with focus - teal shadow */
 .enquiry-form input:focus.ng-valid,
 .enquiry-form textarea:focus.ng-valid,
 .enquiry-form select:focus.ng-valid {
@@ -1221,108 +1221,11 @@
   box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
 }
 
-.btn:disabled,
-.enquiry-actions button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+/* ================================================================
+   EMAIL SUCCESS MODAL
+   ================================================================ */
 
-/* Mobile responsiveness */
-@media (max-width: 899px) {
-  .enquiry-modal {
-    max-width: 600px;
-  }
-
-  .enquiry-header {
-    padding: 1.25rem 1rem 0.85rem;
-  }
-
-  .enquiry-header h3 {
-    font-size: 1.2rem;
-  }
-
-  /* Force columns to stack vertically on mobile */
-  .enquiry-columns {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  /* On mobile keep country code and phone side-by-side but aligned
-     with a fixed-ish column for country and the rest for phone. */
-  .phone-row {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 0.75rem;
-    align-items: start;
-  }
-
-  .visit-options {
-    grid-template-columns: 1fr;
-  }
-
-  /* Ensure form appears first, then preview below */
-  .enquiry-form-column {
-    order: 1;
-    padding: 1.25rem;
-    overflow-y: visible;
-  }
-
-  .enquiry-preview-column {
-    order: 2;
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 1.25rem;
-    padding-top: 1.5rem;
-  }
-
-  .preview-item {
-    grid-template-columns: 90px 1fr;
-    gap: 0.75rem;
-  }
-
-  /* Make inputs and textareas full width and use box-sizing so padding
-     doesn't break the layout. Improve label spacing for readability. */
-  .enquiry-form .field {
-    width: 100%;
-  }
-
-  .enquiry-form input[type="text"],
-  .enquiry-form input[type="email"],
-  .enquiry-form input[type="tel"],
-  .enquiry-form input[type="number"],
-  .enquiry-form textarea,
-  .enquiry-form select,
-  .enquiry-form input[list] {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.8rem 1rem;
-    font-size: 0.98rem;
-  }
-
-  .enquiry-form .label {
-    margin-bottom: 0.45rem;
-  }
-
-  /* Make sure the country input list and phone input expand to fill their grid cells */
-  .phone-row .phone-select,
-  .phone-row .phone-input {
-    width: 100%;
-  }
-
-  .phone-row .phone-select input,
-  .phone-row .phone-input input {
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-/* Email success modal styles */
+/* Email success overlay - backdrop */
 .email-success-overlay {
   position: fixed;
   inset: 0;
@@ -1334,6 +1237,7 @@
   padding: 1rem;
 }
 
+/* Email success modal - success message display */
 .email-success-modal {
   width: 100%;
   max-width: 720px;
@@ -1343,8 +1247,10 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   position: relative;
+  font-family: inherit;
 }
 
+/* Email success modal close button */
 .email-success-modal .modal-close {
   position: absolute;
   right: 12px;
@@ -1358,13 +1264,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
+/* Email success content heading */
 .email-success-content h3 {
   margin: 0 0 0.5rem;
-  color: #fff
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
+.email-success-content {
+  font-family: inherit;
+}
+
+/* Email preview box - shows message content */
 .email-preview {
   background: rgba(255, 255, 255, 0.02);
   padding: 0.85rem;
@@ -1373,16 +1288,18 @@
   white-space: pre-wrap;
   max-height: 40vh;
   overflow: auto;
-  margin-bottom: 0.85rem
-  ;
+  margin-bottom: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
+/* Email success actions - button row */
 .email-success-actions {
   display: flex;
   gap: 0.6rem;
   justify-content: flex-end;
 }
 
+/* Email success button - secondary styling */
 .email-success-actions .btn:not(.primary) {
   background: transparent;
   color: var(--muted-2);
@@ -1390,15 +1307,246 @@
   box-shadow: none;
   padding: 0.7rem 1rem;
   border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+/* Email success button hover */
 .email-success-actions .btn:not(.primary):hover {
   background: rgba(255, 255, 255, 0.02);
   color: #fff;
   transform: translateY(-2px);
 }
 
-.email-success-modal,
-.email-success-content {
-  font-family: inherit;
+/* ================================================================
+   RESPONSIVE MEDIA QUERIES
+   ================================================================ */
+
+/* Responsive - Modal layout adjustments at 900px */
+@media (max-width: 900px) {
+  /* Modal body - switch to single column */
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal image - fixed height */
+  .modal-main-image {
+    height: 320px;
+  }
+
+  /* Modal content - reduce padding */
+  .modal-content {
+    padding: 0.75rem;
+  }
+
+  /* Info grid - single column */
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive - Small screens and tablets at 600px */
+@media (max-width: 600px) {
+  /* Portfolio header - stack vertically */
+  .portfolio-header {
+    display: block;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 1rem;
+  }
+
+  /* Header left - full width flex */
+  .header-left {
+    width: 100%;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  /* Title wrapper - flex grow */
+  .title-wrap {
+    flex: 1;
+  }
+
+  /* Header right - full width block */
+  .header-right {
+    width: 100%;
+    display: block;
+    margin-top: 0.35rem;
+    overflow: visible;
+  }
+
+  /* Filter bar - full width */
+  .filter-bar {
+    width: 100%;
+    display: block;
+    padding: 0.25rem 0;
+  }
+
+  /* Filter scroll - wrap pills */
+  .filter-scroll {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Filter button - mobile sizing */
+  .filter-btn {
+    flex: 0 0 auto;
+    padding: 0.6rem 1rem;
+    font-size: 0.96rem;
+    min-width: 72px;
+    height: 44px;
+  }
+
+  /* Portfolio grid - single column */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Card image - taller on mobile */
+  .card-image {
+    height: 220px;
+  }
+
+  /* Modal body - single column */
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal main image - fixed height */
+  .modal-main-image {
+    height: 320px;
+  }
+
+  /* Modal actions - stack vertically */
+  .modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* WhatsApp and feedback CTAs - full width */
+  .feedback-cta,
+  .whatsapp-cta {
+    width: 100%;
+    padding: 1.05rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  /* Enquiry modal - max width adjustment */
+  .enquiry-modal {
+    max-width: 600px;
+  }
+
+  /* Enquiry header - reduce padding */
+  .enquiry-header {
+    padding: 1.25rem 1rem 0.85rem;
+  }
+
+  /* Enquiry header heading - smaller */
+  .enquiry-header h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Enquiry columns - force stacked flex layout */
+  .enquiry-columns {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  /* Form row - stack vertically */
+  .form-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Phone row - 2 column grid with smaller country column */
+  .phone-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  /* Visit options - single column on mobile */
+  .visit-options {
+    grid-template-columns: 1fr;
+  }
+
+  /* Enquiry form column - first, full padding */
+  .enquiry-form-column {
+    order: 1;
+    padding: 1.25rem;
+    overflow-y: visible;
+  }
+
+  /* Enquiry preview column - after form, with top border */
+  .enquiry-preview-column {
+    order: 2;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 1.25rem;
+    padding-top: 1.5rem;
+  }
+
+  /* Preview item - smaller label column */
+  .preview-item {
+    grid-template-columns: 90px 1fr;
+    gap: 0.75rem;
+  }
+
+  /* Form fields - full width and box-sizing */
+  .enquiry-form .field {
+    width: 100%;
+  }
+
+  /* Form inputs - full width */
+  .enquiry-form input[type="text"],
+  .enquiry-form input[type="email"],
+  .enquiry-form input[type="tel"],
+  .enquiry-form input[type="number"],
+  .enquiry-form textarea,
+  .enquiry-form select,
+  .enquiry-form input[list] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 1rem;
+    font-size: 0.98rem;
+  }
+
+  /* Form label - better spacing */
+  .enquiry-form .label {
+    margin-bottom: 0.45rem;
+  }
+
+  /* Phone fields - full width */
+  .phone-row .phone-select,
+  .phone-row .phone-input {
+    width: 100%;
+  }
+
+  .phone-row .phone-select input,
+  .phone-row .phone-input input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Responsive - Desktop show/hide filters at 860px */
+@media (min-width: 860px) {
+  /* Show full desktop filters list */
+  .desktop-only {
+    display: flex;
+  }
+
+  /* Hide mobile-only compact filters */
+  .mobile-only {
+    display: none;
+  }
+
+  /* Hide more button on desktop */
+  .more-btn {
+    display: none;
+  }
 }
