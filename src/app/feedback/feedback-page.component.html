@@ -23,10 +23,10 @@
           </label>
 
           <label class="rating-row">Rating (1–5) <span class="required">*</span>
-            <div class="stars" role="radiogroup" aria-label="Rating">
-              <label *ngFor="let r of [1,2,3,4,5]" class="star-label">
-                <input type="radio" name="rating" [value]="r" [(ngModel)]="model.rating" required aria-label="{{r}} stars" />
-                <span class="star" aria-hidden="true">★</span>
+            <div class="rating-button-group" role="radiogroup" aria-label="Rating">
+              <label *ngFor="let r of [1,2,3,4,5]" class="rating-btn-label">
+                <input type="radio" name="rating" [value]="r" [(ngModel)]="model.rating" required [attr.aria-label]="r + ' out of 5'" />
+                <span class="rating-btn">{{ r }}</span>
               </label>
             </div>
             <small class="error" *ngIf="!model.rating">

@@ -300,58 +300,68 @@ select:focus.ng-valid{
 }
 
 /* ================================================================
-   RATING STARS
+   RATING BUTTONS
    ================================================================ */
 
-/* Stars container - flex layout */
-.rating-row .stars{
-  display:flex;
-  gap:10px;
-  align-items:center;
+/* Rating button group container - horizontal flex layout */
+.rating-row .rating-button-group {
+	display: flex;
+	gap: 10px;
+	align-items: center;
 }
 
-/* Star label wrapper - contains hidden radio and visible star */
-.star-label{
-  position:relative;
+/* Rating button label wrapper - contains hidden radio and visible button */
+.rating-btn-label {
+	position: relative;
+	margin: 0;
+	margin-bottom: 0;
 }
 
 /* Hide native radio button */
-.star-label input[type="radio"]{
-  position:absolute;
-  opacity:0;
-  pointer-events:none;
-  height:0;
-  width:0;
+.rating-btn-label input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+	height: 0;
+	width: 0;
 }
 
-/* Star styling - clickable star button */
-.star{
-  display:inline-block;
-  padding:10px 12px;
-  min-width:44px;
-  text-align:center;
-  background:rgba(255,255,255,0.02);
-  border-radius:8px;
-  color:rgba(255,255,255,0.18);
-  font-size:20px;
-  transition:transform .12s ease,color .12s ease,background .12s ease;
-  box-shadow:0 6px 14px rgba(0,0,0,0.45);
-  user-select:none;
+/* Rating button styling - clickable number button */
+.rating-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.02);
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 18px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.12s ease, color 0.12s ease, background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	user-select: none;
+	line-height: 1;
 }
 
-/* Star hover state - lift and highlight */
-.star-label:hover .star{
-  color:var(--accent-gold);
-  transform:translateY(-3px);
-  background:rgba(204,160,44,0.06);
+/* Rating button hover state - lift and highlight */
+.rating-btn-label:hover .rating-btn {
+	transform: translateY(-2px);
+	color: rgba(255, 255, 255, 0.75);
+	background: rgba(255, 255, 255, 0.04);
+	border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Star checked/selected state - golden appearance */
-.star-label input[type="radio"]:checked + .star{
-  color:var(--accent-gold);
-  background:rgba(204,160,44,0.10);
-  transform:translateY(-2px) scale(1.03);
-  box-shadow:0 10px 24px rgba(0,0,0,0.55);
+/* Rating button active/selected state - golden appearance */
+.rating-btn-label input[type="radio"]:checked + .rating-btn {
+	color: #1b0f2a;
+	background: linear-gradient(135deg, #ffd966, var(--accent-gold));
+	border-color: var(--accent-gold);
+	transform: translateY(-2px) scale(1.05);
+	box-shadow: 0 8px 20px rgba(204, 160, 44, 0.4);
+	font-weight: 700;
 }
 
 /* ================================================================
@@ -684,11 +694,11 @@ select:focus.ng-valid{
     padding:10px;
   }
 
-  /* Larger touch-friendly stars */
-  .star{
-    min-width:52px;
-    padding:12px 14px;
-    font-size:22px;
+  /* Larger touch-friendly rating buttons */
+  .rating-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
   }
 
   /* Success modal adjustments */
@@ -729,9 +739,10 @@ select:focus.ng-valid{
     max-height:200px;
   }
 
-  .star{
-    min-width:48px;
-    padding:10px 12px;
+  .rating-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
   }
 
   .btn-action{
