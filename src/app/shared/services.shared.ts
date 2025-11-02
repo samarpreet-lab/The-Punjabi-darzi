@@ -232,7 +232,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
   // Palazzo & Sharara Suits
   {
-    id: 'embroidered-palazzo-suit',
+    id: 'classic-plazo-suit',
     title: 'Classic Palazzo Suit',
     subtitle: 'Modern • Wide leg',
     category: 'plazo-suits',
@@ -311,7 +311,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
   // Specialty Designer Wear
   {
-    id: 'pakistani-style-suit',
+    id: 'pakistani-afghani-style-salwar',
     title: 'Pakistani/Afghani Style Salwar',
     subtitle: 'Ethnic specialty • Unique cut',
     category: 'special-suits',
@@ -326,7 +326,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 500
   },
   {
-    id: 'lehenga-kurti-set',
+    id: 'lehenga-with-kurti-set',
     title: 'Lehenga with Kurti Set',
     subtitle: 'Bridal • Complete set',
     category: 'lehenga',
@@ -343,7 +343,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
   // School Uniforms & Blouses
   {
-    id: 'school-uniform',
+    id: 'school-uniform-salwar-suit',
     title: 'School Uniform (Salwar Suit)',
     subtitle: 'Durable • Comfortable',
     category: 'school-uniforms',
@@ -358,7 +358,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 350
   },
   {
-    id: 'saree-blouse',
+    id: 'simple-saree-blouse',
     title: 'Simple Saree Blouse',
     subtitle: 'Classic • Versatile',
     category: 'blouses',
@@ -422,7 +422,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
   // Detail Work & Customizations
   {
-    id: 'neckline-embroidery',
+    id: 'custom-neck-design',
     title: 'Custom Neck Design',
     subtitle: 'Detail work • Hand-finished',
     category: 'detail-work',
@@ -437,7 +437,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 100
   },
   {
-    id: 'designer-poncha',
+    id: 'designer-poncha-salwar-cuffs',
     title: 'Designer Poncha (Salwar Cuffs)',
     subtitle: 'Decorative cuffs • Traditional',
     category: 'detail-work',
@@ -452,7 +452,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 100
   },
   {
-    id: 'lace-work',
+    id: 'lace-attachment-customer-provides',
     title: 'Lace Attachment',
     subtitle: 'Border work • Elegant finish',
     category: 'detail-work',
