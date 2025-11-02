@@ -49,7 +49,8 @@ export class FeedbackPageComponent {
 
   model: Partial<Feedback> = {
     rating: 5,
-    serviceId: this.services.length ? this.services[0].id : ''
+    serviceId: this.services.length ? this.services[0].id : '',
+    suitId: ''
   };
 
   submitting = signal(false);
@@ -108,7 +109,7 @@ export class FeedbackPageComponent {
       this.recent.update(a => [fb, ...a]);
       this.successMessage.set('Thanks — your feedback was sent.');
       this.showSuccessModal.set(true);
-      this.model = { rating: 5, serviceId: this.services[0]?.id || '', name: '' };
+      this.model = { rating: 5, serviceId: this.services[0]?.id || '', suitId: '', name: '' };
     } catch (error) {
       this.successMessage.set('Failed to send feedback. Try WhatsApp or check your mail client.');
       console.error('Feedback submission error:', error);
@@ -145,7 +146,7 @@ export class FeedbackPageComponent {
   }
 
   reset() {
-    this.model = { rating: 5, serviceId: this.services[0].id };
+    this.model = { rating: 5, serviceId: this.services[0].id, suitId: '' };
     this.successMessage.set('');
   }
 
