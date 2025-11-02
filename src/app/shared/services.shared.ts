@@ -183,7 +183,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 250
   },
   {
-    id: 'straight-suit-piping',
+    id: 'straight-suit-with-designer-piping',
     title: 'Straight Suit with Designer Piping',
     subtitle: 'Cotton blend • Piping details',
     category: 'simple-suits',
@@ -215,7 +215,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 350
   },
   {
-    id: 'patiala-suit-lining',
+    id: 'patiala-suit-with-full-lining',
     title: 'Patiala Suit with Full Lining',
     subtitle: 'Premium • Full lining',
     category: 'patiala-suits',
@@ -247,7 +247,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 350
   },
   {
-    id: 'sharara-suit',
+    id: 'classic-sharara-suit',
     title: 'Classic Sharara Suit',
     subtitle: 'Traditional • Flared',
     category: 'sharara-suits',
@@ -264,7 +264,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
   // Frock & Anarkali Styles
   {
-    id: 'simple-frock-suit',
+    id: 'simple-frock-style-suit',
     title: 'Simple Frock Style Suit',
     subtitle: 'Flowing • Comfortable',
     category: 'frock-suits',
@@ -375,7 +375,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 
   // Children's Wear
   {
-    id: 'baby-frock',
+    id: 'simple-baby-frock-ages-1-6',
     title: 'Simple Baby Frock',
     subtitle: 'Ages 1-6 • Comfortable',
     category: 'baby-clothes',
@@ -390,7 +390,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     startingPrice: 250
   },
   {
-    id: 'kids-salwar-kameez',
+    id: 'baby-salwar-suit',
     title: 'Baby Salwar Suit',
     subtitle: 'Comfortable • Playful',
     category: 'baby-clothes',
