@@ -11,15 +11,17 @@
       <div class="row">
         <div class="col form-col">
           <label>Service (required)
-            <div class="select-wrapper">
-              <app-custom-select [options]="services" [(value)]="model.serviceId"></app-custom-select>
-            </div>
+            <select name="service" class="form-select" [(ngModel)]="model.serviceId" required>
+              <option value="" disabled hidden>Select a Service</option>
+              <option *ngFor="let svc of services" [value]="svc.id">{{ svc.title }}</option>
+            </select>
           </label>
 
           <label>Suit / Style (optional)
-            <div class="select-wrapper">
-              <app-custom-select [options]="suitOptions" [(value)]="model.suitId"></app-custom-select>
-            </div>
+            <select name="suit" class="form-select" [(ngModel)]="model.suitId">
+              <option value="">Select a Suit (optional)</option>
+              <option *ngFor="let suit of suitOptions" [value]="suit.id">{{ suit.title }}</option>
+            </select>
           </label>
 
           <label class="rating-row">Rating (1–5) <span class="required">*</span>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { CustomSelectComponent } from '../shared/custom-select/custom-select.component';
 import { FormSubmissionService } from '../core/form-submission.service';
 import { generateWhatsAppLink, openWhatsAppLink } from '../core/whatsapp.utils';
 import { PRICING_ROWS, SERVICE_CATEGORIES } from '../shared/services.shared';
@@ -31,7 +30,7 @@ function slugify(text: string) {
 @Component({
   selector: 'app-feedback-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, CustomSelectComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './feedback-page.component.html',
   styleUrls: ['./feedback-page.component.css']
 })

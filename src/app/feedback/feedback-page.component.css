@@ -193,61 +193,44 @@ textarea{
 
 /* SELECT DROPDOWN CUSTOMIZATION */
 
-/* Select wrapper - provides container for custom arrow */
-.select-wrapper{
-  position:relative;
-}
-
-/* Select element inside wrapper - remove native appearance */
-.select-wrapper select{
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  appearance:none;
-  padding-right:34px;
-  background: linear-gradient(180deg, rgba(9,6,16,0.95), rgba(22,16,35,0.96));
+/* Native select styling - enhanced appearance */
+.form-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 34px;
+  background: linear-gradient(180deg, rgba(9, 6, 16, 0.95), rgba(22, 16, 35, 0.96)) no-repeat;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-position: right 10px center;
+  background-size: 20px;
+  background-repeat: no-repeat;
   color: #fff;
-  border:1px solid rgba(255,255,255,0.06);
-  position:relative;
-  z-index:1000;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  padding: 10px 10px;
 }
 
-/* Custom dropdown arrow using ::after pseudo-element */
-.select-wrapper::after{
-  content:"\25BE";
-  position:absolute;
-  right:12px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#fff;
-  pointer-events:none;
-}
-
-/* Style select options - browser support varies */
-select option{
-  background: rgba(16,11,27,0.98);
+/* Select option styling - dark background */
+.form-select option {
+  background: rgba(16, 11, 27, 0.98);
   color: #fff;
+  padding: 8px;
+}
+
+/* Select placeholder option - lighter gray */
+.form-select option:disabled {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Firefox specific - ensure focused text remains white */
-select:-moz-focusring{
+.form-select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #fff;
 }
 
-/* IE/Edge expand arrow color */
-select::-ms-expand{
-  color: #fff;
-}
-
-/* Raise wrapper z-index when active to prevent clipping */
-.select-wrapper[aria-expanded="true"]{
-  z-index:1200;
-}
-
-/* Fallback option styling for better legibility */
-select option{
-  background:#fff;
-  color:#111;
+/* IE/Edge expand arrow visibility */
+.form-select::-ms-expand {
+  display: none;
 }
 
 /* ================================================================
