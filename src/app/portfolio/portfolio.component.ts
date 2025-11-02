@@ -369,6 +369,11 @@ export class PortfolioComponent {
   // Navigate to feedback page with selected item as a query param
   openFeedbackForItem(item: PortfolioItem): void {
     if (!item) return;
+
+    // Restore scrollbar and close modal before navigating
+    document.body.style.overflow = 'auto';
+    this.isModalOpen.set(false);
+
     this.router.navigate(['/feedback'], { queryParams: { suit: item.id } });
   }
 }
