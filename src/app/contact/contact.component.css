@@ -250,6 +250,11 @@
   color: #ffffff;
 }
 
+/* Form select placeholder option - lighter gray text */
+.form-input option:disabled {
+  color: rgba(255, 255, 255, 0.4);
+}
+
 /* Textarea - resizable with minimum height */
 textarea.form-input {
   resize: vertical;
