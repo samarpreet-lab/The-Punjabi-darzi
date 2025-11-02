@@ -19,7 +19,7 @@
 
           <label>Suit / Style (optional)
             <select name="suit" class="form-select" [(ngModel)]="model.suitId">
-              <option value="">Select a Suit (optional)</option>
+              <option value="" disabled hidden selected>Select a Suit (optional)</option>
               <option *ngFor="let suit of suitOptions" [value]="suit.id">{{ suit.title }}</option>
             </select>
           </label>
