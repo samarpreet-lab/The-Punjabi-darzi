@@ -635,4 +635,133 @@
 	.app-content {
 		padding-top: 16px;
 	}
+
+	/* Footer optimization for tablet screens */
+	.footer-inner {
+		grid-template-columns: 1fr 1fr;
+		gap: 22px;
+		padding: 28px 18px 16px;
+	}
+
+	.brand-col {
+		grid-column: 1 / -1;
+	}
+
+	.location-pill {
+		margin-top: 14px;
+		font-size: 0.95rem;
+		padding: 10px 16px;
+	}
+
+	.footer-bottom {
+		flex-direction: column;
+		gap: 10px;
+		padding: 12px 18px 20px;
+		justify-content: center;
+		text-align: center;
+	}
+}
+
+/* SMALL PHONES - Optimize footer for mobile */
+@media (max-width: 480px) {
+	/* Footer single column layout for mobile */
+	.footer-inner {
+		grid-template-columns: 1fr;
+		gap: 16px;
+		padding: 24px 12px 14px;
+	}
+
+	.brand-col {
+		grid-column: auto;
+	}
+
+	/* Brand section - adjust layout for small screens */
+	.brand-small {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.brand-small .brand-logo img.brand-img.small {
+		width: 44px;
+		height: auto;
+	}
+
+	.brand-name {
+		font-size: 1rem;
+	}
+
+	.brand-tag {
+		font-size: 0.88rem;
+		margin-top: 3px;
+	}
+
+	.owner-line {
+		font-size: 0.9rem;
+		margin-top: 6px;
+	}
+
+	/* Location pill optimization for mobile */
+	.location-pill {
+		margin-top: 12px;
+		width: 100%;
+		font-size: 0.9rem;
+		padding: 10px 14px;
+		justify-content: flex-start;
+	}
+
+	.location-pill i {
+		flex-shrink: 0;
+		font-size: 1rem;
+	}
+
+	/* Footer column headings - smaller font on mobile */
+	.footer-col h4 {
+		margin: 0 0 10px 0;
+		font-size: 0.95rem;
+	}
+
+	/* Footer column lists - tighter spacing */
+	.footer-col ul {
+		gap: 8px;
+	}
+
+	/* Footer links - adjust for touch */
+	.footer-col a {
+		font-size: 0.9rem;
+		padding: 4px 0;
+	}
+
+	.footer-col a:hover {
+		padding: 4px 6px;
+	}
+
+	.footer-col a i {
+		width: 18px;
+		font-size: 0.9rem;
+	}
+
+	/* Social media links mobile optimization */
+	.social-links {
+		gap: 8px;
+	}
+
+	.social-links a {
+		padding: 4px 0;
+		font-size: 0.9rem;
+	}
+
+	.social-links a i {
+		font-size: 1rem;
+	}
+
+	/* Footer bottom - adjust copyright text */
+	.footer-bottom {
+		padding: 10px 12px 16px;
+		font-size: 0.85rem;
+	}
+
+	.copy {
+		text-align: center;
+	}
 }
