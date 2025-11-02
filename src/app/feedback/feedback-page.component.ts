@@ -28,12 +28,6 @@ function slugify(text: string) {
   return text.toString().toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
-const PORTFOLIO = [
-  { id: 'patiala-01', title: 'Classic Patiala Suit' },
-  { id: 'lining-01', title: 'Lining Suit — Embroidered' },
-  { id: 'frock-01', title: 'Pink Baby Frock' }
-];
-
 @Component({
   selector: 'app-feedback-page',
   standalone: true,
@@ -47,8 +41,6 @@ export class FeedbackPageComponent {
 
   // Suit/style options should include the detailed pricing rows (core services)
   suitOptions = PRICING_ROWS.map((r, i) => ({ id: slugify(r.service + '-' + i), title: r.service }));
-
-  portfolio = PORTFOLIO;
 
   // Replace with your Formspree endpoint (eg. https://formspree.io/f/XXXXX)
   formspreeEndpoint = environment.contact.formspreeEndpoint;
@@ -73,9 +65,7 @@ export class FeedbackPageComponent {
 
   formatPreview(): string {
     const svc = this.services.find(s => s.id === this.model.serviceId)?.title || '';
-    const suitFromPortfolio = this.portfolio.find(p => p.id === this.model.suitId)?.title;
-    const suitFromPricing = (this as any).suitOptions?.find((s: any) => s.id === this.model.suitId)?.title;
-    const suit = suitFromPortfolio || suitFromPricing || '';
+    const suit = this.suitOptions.find((s: any) => s.id === this.model.suitId)?.title || '';
     const name = this.model.name ? `Name: ${this.model.name}\n` : '';
     return `${name}Feedback for: ${svc}${suit ? ' / ' + suit : ''}\nRating: ${this.model.rating} ★\n\n${this.model.comment || ''}`;
   }
@@ -90,7 +80,7 @@ export class FeedbackPageComponent {
       serviceId: this.model.serviceId,
       serviceTitle: this.services.find(s => s.id === this.model.serviceId)?.title,
       suitId: this.model.suitId,
-      suitTitle: this.portfolio.find(p => p.id === this.model.suitId)?.title || (this as any).suitOptions?.find((s: any) => s.id === this.model.suitId)?.title,
+      suitTitle: this.suitOptions.find((s: any) => s.id === this.model.suitId)?.title,
       rating: this.model.rating,
       comment: this.model.comment,
       email: this.model.email,
@@ -144,7 +134,7 @@ export class FeedbackPageComponent {
   sendViaWhatsApp() {
     if (!this.model.serviceId || !this.model.rating) return;
     const svc = this.services.find(s => s.id === this.model.serviceId)?.title || '';
-    const suit = this.portfolio.find(p => p.id === this.model.suitId)?.title || '';
+    const suit = this.suitOptions.find((s: any) => s.id === this.model.suitId)?.title || '';
     const pieces = [];
     pieces.push('Sat Sri Akal!');
     pieces.push(`I'm leaving feedback for: ${svc}${suit ? ' / ' + suit : ''}`);
