@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { FormSubmissionService } from '../core/form-submission.service';
 import { generateWhatsAppLink, openWhatsAppLink } from '../core/whatsapp.utils';
-import { PRICING_ROWS, SERVICE_CATEGORIES } from '../shared/services.shared';
+import { PRICING_ROWS } from '../shared/services.shared';
 
 export interface Feedback {
   id?: string;
@@ -35,8 +35,23 @@ function slugify(text: string) {
   styleUrls: ['./feedback-page.component.css']
 })
 export class FeedbackPageComponent {
-  // Services should be high-level (suit making, alterations, etc.) - use SERVICE_CATEGORIES
-  services = SERVICE_CATEGORIES.map((c, i) => ({ id: slugify(c.title + '-' + i), title: c.title }));
+  // Services should map to portfolio categories for consistency
+  services = [
+    { id: 'all', title: 'All' },
+    { id: 'simple-suits', title: 'Simple Suits' },
+    { id: 'patiala-suits', title: 'Patiala Suits' },
+    { id: 'plazo-suits', title: 'Plazo Suits' },
+    { id: 'frock-suits', title: 'Frock Suits' },
+    { id: 'anarkali-suits', title: 'Anarkali Suits' },
+    { id: 'sharara-suits', title: 'Sharara Suits' },
+    { id: 'umbrella-suits', title: 'Umbrella Suits' },
+    { id: 'special-suits', title: 'Special Suits' },
+    { id: 'lehenga', title: 'Lehenga' },
+    { id: 'blouses', title: 'Blouses' },
+    { id: 'school-uniforms', title: 'School Uniforms' },
+    { id: 'baby-clothes', title: 'Baby Clothes' },
+    { id: 'detail-work', title: 'Detail Work' },
+  ];
 
   // Suit/style options should include the detailed pricing rows (core services)
   suitOptions = PRICING_ROWS.map(r => ({ id: slugify(r.service), title: r.service }));

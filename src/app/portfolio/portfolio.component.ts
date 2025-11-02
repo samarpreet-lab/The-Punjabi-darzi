@@ -374,6 +374,6 @@ export class PortfolioComponent {
     document.body.style.overflow = 'auto';
     this.isModalOpen.set(false);
 
-    this.router.navigate(['/feedback'], { queryParams: { suit: item.id } });
+    this.router.navigate(['/feedback'], { queryParams: { suit: item.id, service: item.category } });
   }
 }
