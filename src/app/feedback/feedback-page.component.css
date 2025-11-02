@@ -213,11 +213,9 @@ textarea{
   line-height: 1.5;
 }
 
-/* Select option styling - dark background */
-.form-select option {
-  background: rgba(16, 11, 27, 0.98);
-  color: #fff;
-  padding: 8px;
+select option {
+  background: #100918;
+  color: #ffffff;
 }
 
 /* Select placeholder option - display text even when disabled */

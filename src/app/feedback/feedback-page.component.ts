@@ -39,7 +39,7 @@ export class FeedbackPageComponent {
   services = SERVICE_CATEGORIES.map((c, i) => ({ id: slugify(c.title + '-' + i), title: c.title }));
 
   // Suit/style options should include the detailed pricing rows (core services)
-  suitOptions = PRICING_ROWS.map((r, i) => ({ id: slugify(r.service + '-' + i), title: r.service }));
+  suitOptions = PRICING_ROWS.map(r => ({ id: slugify(r.service), title: r.service }));
 
   // Replace with your Formspree endpoint (eg. https://formspree.io/f/XXXXX)
   formspreeEndpoint = environment.contact.formspreeEndpoint;
