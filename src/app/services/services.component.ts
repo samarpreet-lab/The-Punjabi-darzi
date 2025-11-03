@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { TailoringDataService } from './tailoring-data.service';
 
 @Component({
@@ -106,11 +105,6 @@ export class ServicesComponent {
     }
   ];
 
-  // (Modal preview removed) action preview modal state and helpers were removed as they are unused.
-
-  // WhatsApp number for enquiries (same format as home component)
-  whatsappNumber = environment.contact.whatsappNumber;
-
 
   // Scroll helper used by modal 'View section' button
   scrollTo(id: string) {
@@ -128,26 +122,10 @@ export class ServicesComponent {
     this.router.navigate(['/feedback']);
   }
 
-  // Format price string into small HTML with spans for styling ranges and prefixes.
+  // Format price string into HTML span for styling.
   formatPrice(raw: string) {
     if (!raw) return '';
-    // common prefixes like 'Starts at' or 'Starting' - separate them
-    const prefixMatch = raw.match(/^(Starts at|Starting at|Starts|Starting)\s*/i);
-    let prefix = '';
-    let rest = raw;
-    if (prefixMatch) {
-      prefix = prefixMatch[0].trim();
-      rest = raw.slice(prefixMatch[0].length).trim();
-    }
-
-    // handle ranges with dash or hyphen
-    const rangeSep = rest.includes('-') ? '-' : rest.includes('–') ? '–' : null;
-    if (rangeSep) {
-      const parts = rest.split(/[-–]/).map(p => p.trim());
-      return `${prefix ? `<span class="price-prefix">${prefix}</span> ` : ''}<span class="price-amount"><span class="price-val">${parts[0]}</span><span class="price-range-sep"> - </span><span class="price-val">${parts[1]}</span></span>`;
-    }
-
-    return `${prefix ? `<span class="price-prefix">${prefix}</span> ` : ''}<span class="price-amount">${rest}</span>`;
+    return `<span class="price-amount">${raw}</span>`;
   }
 
 }

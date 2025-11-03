@@ -643,33 +643,10 @@
 }
 
 /* Price cell - price display container */
-.price-cell .price-prefix {
-	display: block;
-	font-size: 0.72rem;
-	color: var(--muted);
-	font-weight: 600;
-	margin-bottom: 2px;
-}
-
-/* Price amount - price value display */
 .price-cell .price-amount {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-}
-
-/* Price value - numeric price */
-.price-cell .price-val {
-	font-weight: 800;
 	color: var(--accent);
-}
-
-/* Price range separator - dash between prices */
-.price-cell .price-range-sep {
-	font-size: 0.85rem;
-	opacity: 0.95;
-	margin: 0 4px;
-	letter-spacing: -0.02em;
+	font-weight: 800;
+	font-size: 1rem;
 }
 
 /* Pricing card header icon styling */
