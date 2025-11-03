@@ -161,23 +161,18 @@ export class PortfolioComponent {
     { code: '+998', name: 'Uzbekistan' }
   ];
 
-  // When the user types/selects a country string in the country input, parse the leading code
-  setCountryFromInput(value: string): void {
-    if (!value) return;
-    const m = value.match(/(\+\d{1,4})/);
-    if (m) this.enquiry.countryCode = m[1];
-  }
   // user consent for storing/using PII in the enquiry
   enquiryConsent = false;
 
-  // Return first N filters for compact mobile header. We keep this as a simple getter to use from template.
-  visibleFilters(count = 4) {
-    return this.filters.slice(0, count);
-  }
+  // Formspree integration: send enquiry directly via Formspree (no mail client)
+  // Requires you to set `formspreeEndpoint` to your Formspree form URL (e.g. https://formspree.io/f/{your-id})
+  private formspreeEndpoint = environment.contact.formspreeEndpoint;
 
-  moreFilters(count = 4) {
-    return this.filters.slice(count);
-  }
+  // UI state for email sending
+  emailSending = false;
+  emailSent = false;
+  emailError: string | null = null;
+  showEmailSuccessModal = false;
 
   constructor(
     private dataService: TailoringDataService,
@@ -188,10 +183,27 @@ export class PortfolioComponent {
     this.filteredItems = this.portfolioItems;
   }
 
+  // ===========================
+  // FILTER & DISPLAY FUNCTIONS
+  // ===========================
+
   setFilter(category: FilterCategory): void {
     this.selectedFilter.set(category);
     this.filteredItems = this.dataService.getPortfolioItemsByCategory(category);
   }
+
+  // Return first N filters for compact mobile header. We keep this as a simple getter to use from template.
+  visibleFilters(count = 4) {
+    return this.filters.slice(0, count);
+  }
+
+  moreFilters(count = 4) {
+    return this.filters.slice(count);
+  }
+
+  // ===========================
+  // MODAL MANAGEMENT FUNCTIONS
+  // ===========================
 
   openFiltersModal(): void {
     this.isFiltersModalOpen.set(true);
@@ -215,8 +227,19 @@ export class PortfolioComponent {
     document.body.style.overflow = 'auto'; // Restore body scroll
   }
 
-  sendWhatsAppInquiry(item: PortfolioItem): void {
-    // open the enquiry modal (modal-on-modal)
+  // ===========================
+  // ENQUIRY FORM FUNCTIONS
+  // ===========================
+
+  // When the user types/selects a country string in the country input, parse the leading code
+  setCountryFromInput(value: string): void {
+    if (!value) return;
+    const m = value.match(/(\+\d{1,4})/);
+    if (m) this.enquiry.countryCode = m[1];
+  }
+
+  openEnquiry(item: PortfolioItem): void {
+    // Open the enquiry modal (modal-on-modal)
     this.enquiry = { quantity: 1, name: '', phone: '', email: '', location: '', visitOption: 'self', address: '', representativeName: '', representativePhone: '', notes: '', countryCode: '+91' };
     this.isEnquiryOpen.set(true);
   }
@@ -225,32 +248,42 @@ export class PortfolioComponent {
     this.isEnquiryOpen.set(false);
   }
 
-  sendEnquiryViaWhatsApp(): void {
-    const item = this.selectedItem();
-    if (!item) return;
-    // validate required fields: name, phone, email, location, notes
+  // Validate enquiry form fields
+  private validateEnquiry(): boolean {
     if (!this.enquiry.name || !this.enquiry.phone || !this.enquiry.email || !this.enquiry.location) {
-      return;
+      return false;
     }
     if (!this.enquiry.notes || this.enquiry.notes.trim().length < 3) {
-      return;
+      return false;
     }
+    return true;
+  }
 
-    const visitText = this.enquiry.visitOption === 'self'
-      ? 'I will come to the boutique myself'
-      : (this.enquiry.visitOption === 'someone' ? 'Someone will visit on my behalf' : 'I will send the fabric by post/courier');
-
-    let extraInfo = '';
+  // Build extra info based on visit option
+  private getExtraInfoFromVisitOption(): string {
     if (this.enquiry.visitOption === 'send-fabric') {
-      extraInfo = this.enquiry.address ? `Address: ${this.enquiry.address}` : '';
+      return this.enquiry.address ? `Address: ${this.enquiry.address}` : '';
     } else if (this.enquiry.visitOption === 'someone') {
       const rep = this.enquiry.representativeName ? `Representative: ${this.enquiry.representativeName}` : '';
       const repPhone = this.enquiry.representativePhone ? ` (${this.enquiry.representativePhone})` : '';
-      extraInfo = rep ? `${rep}${repPhone}` : '';
+      return rep ? `${rep}${repPhone}` : '';
     }
+    return '';
+  }
 
-    // Build a newline-separated message so WhatsApp shows a structured message preview
-    const message = [
+  // Build visit preference text
+  private getVisitText(): string {
+    return this.enquiry.visitOption === 'self'
+      ? 'I will come to the boutique myself'
+      : (this.enquiry.visitOption === 'someone' ? 'Someone will visit on my behalf' : 'I will send the fabric by post/courier');
+  }
+
+  // Build the complete enquiry message body
+  private buildEnquiryMessage(item: PortfolioItem): string {
+    const visitText = this.getVisitText();
+    const extraInfo = this.getExtraInfoFromVisitOption();
+
+    return [
       `Sat Sri Akal! I'm interested in the '${item.title}' (Qty: ${this.enquiry.quantity}).`,
       `Name: ${this.enquiry.name}`,
       `Phone: ${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
@@ -260,60 +293,45 @@ export class PortfolioComponent {
       extraInfo,
       `Notes: ${this.enquiry.notes}`
     ].filter(Boolean).join('\n');
+  }
 
+  // ===========================
+  // WHATSAPP COMMUNICATION
+  // ===========================
+
+  sendWhatsAppInquiry(item: PortfolioItem): void {
+    this.openEnquiry(item);
+  }
+
+  sendEnquiryViaWhatsApp(): void {
+    const item = this.selectedItem();
+    if (!item) return;
+
+    if (!this.validateEnquiry()) {
+      return;
+    }
+
+    const message = this.buildEnquiryMessage(item);
     const url = generateWhatsAppLink(this.whatsappNumber, message);
     openWhatsAppLink(url);
     this.isEnquiryOpen.set(false);
     this.closeModal();
   }
 
-  // Compose and open a mailto: link with the same message content as WhatsApp
-  // Formspree integration: send enquiry directly via Formspree (no mail client)
-  // Requires you to set `formspreeEndpoint` to your Formspree form URL (e.g. https://formspree.io/f/{your-id})
-  private formspreeEndpoint = environment.contact.formspreeEndpoint;
-
-  // UI state for email sending
-  emailSending = false;
-  emailSent = false;
-  emailError: string | null = null;
-  showEmailSuccessModal = false;
+  // ===========================
+  // EMAIL COMMUNICATION
+  // ===========================
 
   async sendEnquiryViaEmail(): Promise<void> {
     const item = this.selectedItem();
     if (!item) return;
 
-    // run the same validations as the WhatsApp flow
-    if (!this.enquiry.name || !this.enquiry.phone || !this.enquiry.email || !this.enquiry.location) {
+    if (!this.validateEnquiry()) {
       return;
-    }
-    if (!this.enquiry.notes || this.enquiry.notes.trim().length < 3) {
-      return;
-    }
-
-    const visitText = this.enquiry.visitOption === 'self'
-      ? 'I will come to the boutique myself'
-      : (this.enquiry.visitOption === 'someone' ? 'Someone will visit on my behalf' : 'I will send the fabric by post/courier');
-
-    let extraInfo = '';
-    if (this.enquiry.visitOption === 'send-fabric') {
-      extraInfo = this.enquiry.address ? `Address: ${this.enquiry.address}` : '';
-    } else if (this.enquiry.visitOption === 'someone') {
-      const rep = this.enquiry.representativeName ? `Representative: ${this.enquiry.representativeName}` : '';
-      const repPhone = this.enquiry.representativePhone ? ` (${this.enquiry.representativePhone})` : '';
-      extraInfo = rep ? `${rep}${repPhone}` : '';
     }
 
     const subject = `Enquiry: ${item.title} (Qty ${this.enquiry.quantity})`;
-    const body = [
-      `Sat Sri Akal! I'm interested in the '${item.title}' (Qty: ${this.enquiry.quantity}).`,
-      `Name: ${this.enquiry.name}`,
-      `Phone: ${this.enquiry.countryCode || ''} ${this.enquiry.phone}`,
-      `Email: ${this.enquiry.email}`,
-      `Location: ${this.enquiry.location}`,
-      visitText,
-      extraInfo,
-      `Notes: ${this.enquiry.notes}`
-    ].filter(Boolean).join('\n');
+    const body = this.buildEnquiryMessage(item);
 
     // Send via Formspree
     this.emailSending = true;
@@ -365,6 +383,10 @@ export class PortfolioComponent {
     }
     this.showEmailSuccessModal = false;
   }
+
+  // ===========================
+  // NAVIGATION FUNCTIONS
+  // ===========================
 
   // Navigate to feedback page with selected item as a query param
   openFeedbackForItem(item: PortfolioItem): void {
