@@ -122,10 +122,4 @@ export class ServicesComponent {
     this.router.navigate(['/feedback']);
   }
 
-  // Format price string into HTML span for styling.
-  formatPrice(raw: string) {
-    if (!raw) return '';
-    return `<span class="price-amount">${raw}</span>`;
-  }
-
 }

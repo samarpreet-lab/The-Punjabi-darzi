@@ -123,7 +123,7 @@
 				<tbody>
 					<tr *ngFor="let row of pricingRows">
 						<td data-label="Service">{{ row.service }}</td>
-						<td data-label="Starting Price" class="text-center price-cell" [innerHTML]="formatPrice(row.price)"></td>
+						<td data-label="Starting Price" class="text-center price-cell">{{ row.price }}</td>
 						<td data-label="Notes">{{ row.notes }}</td>
 					</tr>
 				</tbody>

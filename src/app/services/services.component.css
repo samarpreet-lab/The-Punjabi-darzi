@@ -642,13 +642,6 @@
 	font-size: 0.95rem;
 }
 
-/* Price cell - price display container */
-.price-cell .price-amount {
-	color: var(--accent);
-	font-weight: 800;
-	font-size: 1rem;
-}
-
 /* Pricing card header icon styling */
 .pricing-card .section-header i {
 	font-size: 1.05rem;
