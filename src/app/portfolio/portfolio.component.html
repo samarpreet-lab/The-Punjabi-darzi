@@ -9,38 +9,36 @@
     </div>
 
     <div class="header-right">
-      <div class="filter-bar" role="toolbar" aria-label="Portfolio filters">
+      <div class="filter-bar">
         <div class="filter-scroll">
           <!-- Visible filters (first few) - on mobile this is the only visible list -->
           <ng-container *ngFor="let filter of visibleFilters()">
             <button
-              [attr.aria-pressed]="selectedFilter() === filter.id"
               [class.active]="selectedFilter() === filter.id"
               (click)="setFilter(filter.id)"
               class="filter-btn mobile-only"
               [attr.title]="filter.label"
             >
-              <span class="filter-icon" *ngIf="filter.id === 'all'" aria-hidden="true"><i class="fas fa-filter"></i></span>
+              <span class="filter-icon" *ngIf="filter.id === 'all'"><i class="fas fa-filter"></i></span>
               <span class="filter-label">{{ filter.label }}</span>
             </button>
           </ng-container>
 
           <!-- More button on mobile to open modal with remaining filters -->
-          <button class="filter-btn more-btn" (click)="openFiltersModal()" aria-haspopup="dialog" [attr.aria-expanded]="isFiltersModalOpen()">
-            <span class="filter-icon" aria-hidden="true"><i class="fas fa-ellipsis-h"></i></span>
+          <button class="filter-btn more-btn" (click)="openFiltersModal()">
+            <span class="filter-icon"><i class="fas fa-ellipsis-h"></i></span>
             <span class="filter-label">More</span>
           </button>
 
           <!-- Desktop: full list (kept for larger screens) -->
           <ng-container *ngFor="let filter of filters">
             <button
-              [attr.aria-pressed]="selectedFilter() === filter.id"
               [class.active]="selectedFilter() === filter.id"
               (click)="setFilter(filter.id)"
               class="filter-btn desktop-only"
               [attr.title]="filter.label"
             >
-              <span class="filter-icon" *ngIf="filter.id === 'all'" aria-hidden="true"><i class="fas fa-filter"></i></span>
+              <span class="filter-icon" *ngIf="filter.id === 'all'"><i class="fas fa-filter"></i></span>
               <span class="filter-label">{{ filter.label }}</span>
             </button>
           </ng-container>
@@ -49,8 +47,8 @@
 
       <!-- Filters Modal (mobile) -->
       <div class="filters-modal-overlay" *ngIf="isFiltersModalOpen()" (click)="closeFiltersModal()">
-        <div class="filters-modal" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-label="More filters">
-          <button class="modal-close" (click)="closeFiltersModal()" aria-label="Close filters">
+        <div class="filters-modal" (click)="$event.stopPropagation()">
+          <button class="modal-close" (click)="closeFiltersModal()">
             <i class="fas fa-times"></i>
           </button>
 
@@ -104,7 +102,7 @@
 >
   <div class="modal-content" (click)="$event.stopPropagation()">
     <!-- Close Button -->
-    <button class="modal-close" (click)="closeModal()" aria-label="Close modal">
+    <button class="modal-close" (click)="closeModal()">
       <i class="fas fa-times"></i>
     </button>
 
@@ -179,14 +177,13 @@
           <button
             class="whatsapp-cta"
             (click)="sendWhatsAppInquiry(selectedItem()!)"
-            aria-haspopup="dialog"
           >
             <i class="fab fa-whatsapp"></i>
             <span>Inquire about this style on WhatsApp</span>
           </button>
 
           <!-- Feedback CTA for the specific style -->
-          <button class="feedback-cta" (click)="openFeedbackForItem(selectedItem()!)" aria-label="Leave feedback for this style">
+          <button class="feedback-cta" (click)="openFeedbackForItem(selectedItem()!)">
             <i class="fas fa-star"></i>
             <span>Leave feedback for this style</span>
           </button>
@@ -194,9 +191,9 @@
 
         <!-- Enquiry Modal (modal-on-modal) - Two Column Layout -->
         <div class="enquiry-overlay" *ngIf="isEnquiryOpen()" (click)="closeEnquiry()">
-          <div class="enquiry-modal" role="dialog" aria-modal="true" aria-labelledby="enquiry-title" (click)="$event.stopPropagation()">
+          <div class="enquiry-modal" (click)="$event.stopPropagation()">
             <!-- Close button in top-right corner -->
-            <button class="enquiry-close-btn" (click)="closeEnquiry()" aria-label="Close enquiry">
+            <button class="enquiry-close-btn" (click)="closeEnquiry()">
               <i class="fas fa-times"></i>
             </button>
 
@@ -345,11 +342,11 @@
                   </div>
 
                   <div class="enquiry-actions">
-                    <button type="button" class="btn email" [disabled]="!enquiryForm.valid || !enquiryConsent" (click)="sendEnquiryViaEmail()" aria-label="Send via Email">
+                    <button type="button" class="btn email" [disabled]="!enquiryForm.valid || !enquiryConsent" (click)="sendEnquiryViaEmail()">
                       <i class="fas fa-envelope"></i>
                       Send via Email
                     </button>
-                    <button type="button" class="btn primary" [disabled]="!enquiryForm.valid || !enquiryConsent" (click)="sendEnquiryViaWhatsApp()" aria-label="Send via WhatsApp">
+                    <button type="button" class="btn primary" [disabled]="!enquiryForm.valid || !enquiryConsent" (click)="sendEnquiryViaWhatsApp()">
                       <i class="fab fa-whatsapp"></i>
                       Send via WhatsApp
                     </button>
@@ -422,8 +419,8 @@
 
                     <!-- Email success modal (shown after Formspree send) -->
                     <div class="email-success-overlay" *ngIf="showEmailSuccessModal" (click)="showEmailSuccessModal = false">
-                      <div class="email-success-modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
-                        <button class="modal-close" (click)="showEmailSuccessModal = false" aria-label="Close"><i class="fas fa-times"></i></button>
+                      <div class="email-success-modal" (click)="$event.stopPropagation()">
+                        <button class="modal-close" (click)="showEmailSuccessModal = false"><i class="fas fa-times"></i></button>
                         <div class="email-success-content">
                           <h3>Message sent</h3>
                           <p>We've successfully sent your enquiry.</p>

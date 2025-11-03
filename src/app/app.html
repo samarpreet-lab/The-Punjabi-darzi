@@ -7,8 +7,7 @@
 				</span>
 				<span class="brand-name">The Punjabi Darzi</span>
 			</a>
-			<button type="button" class="nav-toggle" (click)="toggleNav()" [class.is-open]="navOpen()"
-				[attr.aria-expanded]="navOpen()" aria-controls="primaryNav" aria-label="Toggle navigation">
+			<button type="button" class="nav-toggle" (click)="toggleNav()" [class.is-open]="navOpen()">
 				<span></span>
 				<span></span>
 				<span></span>
@@ -19,25 +18,25 @@
 			<ul class="nav-links">
 				<li>
 					<a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeNav()">
-						<i class="fas fa-home" aria-hidden="true"></i>
+						<i class="fas fa-home"></i>
 						<span>Home</span>
 					</a>
 				</li>
 				<li>
 					<a routerLink="/services" routerLinkActive="active" (click)="closeNav()">
-						<i class="fas fa-cut" aria-hidden="true"></i>
+						<i class="fas fa-cut"></i>
 						<span>Services</span>
 					</a>
 				</li>
 				<li>
 					<a routerLink="/portfolio" routerLinkActive="active" (click)="closeNav()">
-						<i class="fas fa-images" aria-hidden="true"></i>
+						<i class="fas fa-images"></i>
 						<span>Portfolio</span>
 					</a>
 				</li>
 				<li>
 					<a routerLink="/contact" routerLinkActive="active" (click)="closeNav()">
-						<i class="fas fa-phone" aria-hidden="true"></i>
+						<i class="fas fa-phone"></i>
 						<span>Contact</span>
 					</a>
 				</li>
@@ -45,7 +44,7 @@
 		</div>
 
 		<a class="nav-cta" routerLink="/contact" (click)="closeNav()">
-			<i class="fas fa-envelope" aria-hidden="true"></i>
+			<i class="fas fa-envelope"></i>
 			<span>Enquire Now</span>
 		</a>
 	</nav>
@@ -71,7 +70,7 @@
 			</div>
 
 			<div class="location-pill">
-				<i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+				<i class="fas fa-map-marker-alt"></i>
 				<span>Sulehrian Khurd — 5 minutes from Mukerian</span>
 			</div>
 		</div>
@@ -92,7 +91,7 @@
 			
 				<li>
 					<a href="https://wa.me/917589114421" target="_blank" rel="noopener noreferrer">
-						<i class="fab fa-whatsapp" aria-hidden="true"></i>
+						<i class="fab fa-whatsapp"></i>
 						<span>WhatsApp</span>
 					</a>
 				</li>

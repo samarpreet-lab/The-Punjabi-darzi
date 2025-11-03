@@ -25,9 +25,9 @@
           </label>
 
           <label class="rating-row">Rating (1–5) <span class="required">*</span>
-            <div class="rating-button-group" role="radiogroup" aria-label="Rating">
+            <div class="rating-button-group">
               <label *ngFor="let r of [1,2,3,4,5]" class="rating-btn-label">
-                <input type="radio" name="rating" [value]="r" [(ngModel)]="model.rating" required [attr.aria-label]="r + ' out of 5'" />
+                <input type="radio" name="rating" [value]="r" [(ngModel)]="model.rating" required />
                 <span class="rating-btn">{{ r }}</span>
               </label>
             </div>
@@ -105,8 +105,8 @@
 
   <!-- Success modal (shown after email submission) -->
   <div class="feedback-success-overlay" *ngIf="showSuccessModal()" (click)="closeSuccessModal()">
-    <div class="feedback-success-modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
-      <button class="modal-close" (click)="closeSuccessModal()" aria-label="Close"><i class="fas fa-times"></i></button>
+    <div class="feedback-success-modal" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeSuccessModal()"><i class="fas fa-times"></i></button>
       <div class="feedback-success-content">
         <h3>Thank you!</h3>
         <p>Your feedback has been sent successfully. We appreciate your time and will use it to improve our services.</p>
