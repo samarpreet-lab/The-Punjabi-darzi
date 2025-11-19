@@ -45,7 +45,8 @@
                   "maximumError": "24kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/The-Punjabi-darzi/"
             },
             "development": {
               "optimization": false,
