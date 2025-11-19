@@ -21,7 +21,6 @@ type FilterCategory = 'all' | 'simple-suits' | 'patiala-suits' | 'plazo-suits' |
 })
 export class PortfolioComponent {
   private whatsappNumber = environment.contact.whatsappNumber;
-  // Fallback email address to receive enquiries when WhatsApp isn't available
   private enquiryEmail = environment.contact.enquiryEmail;
   
   portfolioItems: PortfolioItem[] = [];
@@ -201,9 +200,7 @@ export class PortfolioComponent {
     return this.filters.slice(count);
   }
 
-  // ===========================
   // MODAL MANAGEMENT FUNCTIONS
-  // ===========================
 
   openFiltersModal(): void {
     this.isFiltersModalOpen.set(true);
@@ -227,9 +224,7 @@ export class PortfolioComponent {
     document.body.style.overflow = 'auto'; // Restore body scroll
   }
 
-  // ===========================
   // ENQUIRY FORM FUNCTIONS
-  // ===========================
 
   // When the user types/selects a country string in the country input, parse the leading code
   setCountryFromInput(value: string): void {
@@ -295,9 +290,7 @@ export class PortfolioComponent {
     ].filter(Boolean).join('\n');
   }
 
-  // ===========================
   // WHATSAPP COMMUNICATION
-  // ===========================
 
   sendWhatsAppInquiry(item: PortfolioItem): void {
     this.openEnquiry(item);
@@ -318,9 +311,7 @@ export class PortfolioComponent {
     this.closeModal();
   }
 
-  // ===========================
   // EMAIL COMMUNICATION
-  // ===========================
 
   async sendEnquiryViaEmail(): Promise<void> {
     const item = this.selectedItem();
@@ -384,9 +375,8 @@ export class PortfolioComponent {
     this.showEmailSuccessModal = false;
   }
 
-  // ===========================
+
   // NAVIGATION FUNCTIONS
-  // ===========================
 
   // Navigate to feedback page with selected item as a query param
   openFeedbackForItem(item: PortfolioItem): void {
